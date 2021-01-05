@@ -71,20 +71,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClansWarAttackDal.cs" />
+    <Compile Include="ClanWarAttackDal.cs" />
+    <Compile Include="GameDal.cs" />
+    <Compile Include="GameWarriorDal.cs" />
+    <Compile Include="Interfaces\ILeagueScoreOptionsDal.cs" />
+    <Compile Include="Interfaces\IGameDal.cs" />
+    <Compile Include="Interfaces\IGameWarriorDal.cs" />
     <Compile Include="Interfaces\ILeagueWarPlayerDal.cs" />
+    <Compile Include="Interfaces\IWarriorScoreOptionsDal.cs" />
+    <Compile Include="WarriorScoreOptionsDal.cs" />
+    <Compile Include="LeagueScoreOptionsDal.cs" />
     <Compile Include="LeagueWarPlayerDal.cs" />
     <Compile Include="Interfaces\ILeagueWarDal.cs" />
     <Compile Include="Interfaces\IClanDal.cs" />
     <Compile Include="LeagueWarDal.cs" />
-    <Compile Include="Interfaces\IClansWarDal.cs" />
-    <Compile Include="Interfaces\IClansWarPlayerDal.cs" />
-    <Compile Include="Interfaces\IClansWarAttackDal.cs" />
+    <Compile Include="Interfaces\IClanWarDal.cs" />
+    <Compile Include="Interfaces\IClanWarPlayerDal.cs" />
+    <Compile Include="Interfaces\IClanWarAttackDal.cs" />
     <Compile Include="Interfaces\IWarriorDal.cs" />
     <Compile Include="ClanDal.cs" />
     <Compile Include="WarriorDal.cs" />
-    <Compile Include="ClansWarPlayerDal.cs" />
-    <Compile Include="ClansWarDal.cs" />
+    <Compile Include="ClanWarPlayerDal.cs" />
+    <Compile Include="ClanWarDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,19 +3,19 @@ using System;
 
 namespace ClashData
 {
-    public class LeagueWarDal : ILeagueWarDal
+    public class ClanWarDal : IClanWarDal
     {
-        public int GetLeaguesCount(DateTime from)
+        public ClanWar LoadCurrentWar()
         {
             throw new NotImplementedException();
         }
 
-        public int GetLeaguesCount(int warriorId)
+        public int GetWarsCount(DateTime from)
         {
             throw new NotImplementedException();
         }
 
-        public LeagueWar LoadCurrentLeague(int clanId)
+        public int GetWarsCount(int warriorId)
         {
             throw new NotImplementedException();
         }

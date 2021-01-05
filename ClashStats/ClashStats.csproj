@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,8 +48,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute, Version=4.2.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\packages\NSubstitute.4.2.2\lib\net46\NSubstitute.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,15 +71,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SimulationMainForm.cs">
+    <Compile Include="CustomControls\DataGridViewNumericUpDown\DataGridViewNumericUpDownCell.cs" />
+    <Compile Include="CustomControls\DataGridViewNumericUpDown\DataGridViewNumericUpDownColumn.cs" />
+    <Compile Include="CustomControls\DataGridViewNumericUpDown\DataGridViewNumericUpDownEditingControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\Tools\User32\User32.cs" />
+    <Compile Include="Simulation\ScoreDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SimulationMainForm.Designer.cs">
+    <Compile Include="Simulation\ScoreDetails.Designer.cs">
+      <DependentUpon>ScoreDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Simulation\SeniorityParameters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Simulation\SeniorityParameters.Designer.cs">
+      <DependentUpon>SeniorityParameters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Simulation\SimulationHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Simulation\SimulationHelp.Designer.cs">
+      <DependentUpon>SimulationHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Simulation\SimulationMainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Simulation\SimulationMainForm.Designer.cs">
       <DependentUpon>SimulationMainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="SimulationMainForm.resx">
+    <Compile Include="Simulation\SimulationWarrior.cs" />
+    <Compile Include="Simulation\TownhallLevelParameters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Simulation\TownhallLevelParameters.Designer.cs">
+      <DependentUpon>TownhallLevelParameters.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Simulation\ScoreDetails.resx">
+      <DependentUpon>ScoreDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Simulation\SeniorityParameters.resx">
+      <DependentUpon>SeniorityParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Simulation\SimulationHelp.resx">
+      <DependentUpon>SimulationHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Simulation\SimulationMainForm.resx">
       <DependentUpon>SimulationMainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -66,16 +131,24 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Properties\DataSources\ClashEntities.ClansWar.datasource" />
-    <None Include="Properties\DataSources\ClashEntities.ClansWarAttack.datasource" />
-    <None Include="Properties\DataSources\ClashEntities.ClansWarPlayer.datasource" />
+    <EmbeddedResource Include="Simulation\TownhallLevelParameters.resx">
+      <DependentUpon>TownhallLevelParameters.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\ClashEntities.ClanWar.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.ClanWarAttack.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.ClanWarPlayer.datasource" />
     <None Include="Properties\DataSources\ClashEntities.LeagueWar.datasource" />
     <None Include="Properties\DataSources\ClashEntities.LeagueWarAttack.datasource" />
     <None Include="Properties\DataSources\ClashEntities.LeagueWarPlayer.datasource" />
     <None Include="Properties\DataSources\ClashEntities.Reward.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.Rewards.LeagueReward.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.Rewards.WarriorReward.datasource" />
     <None Include="Properties\DataSources\ClashEntities.ScoreOptions.LeagueScoreOptions.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.ScoreOptions.WarriorScoreOptions.datasource" />
     <None Include="Properties\DataSources\ClashEntities.WarAttack.datasource" />
     <None Include="Properties\DataSources\ClashEntities.Warrior.datasource" />
+    <None Include="Properties\DataSources\ClashStats.Simulation.SimulationWarrior.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -85,6 +158,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="Simulation\SimulationHelp.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -94,10 +170,26 @@
       <Project>{4cacff0e-d3d5-4410-9633-8101fa674c3d}</Project>
       <Name>ClashBusiness</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ClashData\ClashData.csproj">
+      <Project>{712f3535-8734-40f2-a314-a18de301f419}</Project>
+      <Name>ClashData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ClashEntities\ClashEntities.csproj">
       <Project>{1d0d3f00-f1da-4fb9-a024-c310bcabb02f}</Project>
       <Name>ClashEntities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

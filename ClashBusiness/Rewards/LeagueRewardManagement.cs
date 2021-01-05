@@ -1,4 +1,8 @@
-﻿using ClashEntities;
+﻿
+using ClashBusiness.ScoreOptions;
+using ClashData;
+using ClashEntities;
+using ClashEntities.Rewards;
 using ClashEntities.ScoreOptions;
 using System;
 using System.Collections.Generic;
@@ -6,9 +10,23 @@ using System.Linq;
 
 namespace ClashBusiness.Rewards
 {
-    public class LeagueRewardManagement : ILeagueRewardManagement
+    public class LeagueRewardManagement : IScoreRewardManagement
     {
-        public List<Reward> ComputeLeagueScore(LeagueWar league, LeagueScoreOptions options)
+        private readonly IScoreOptionsLoader _scoreOptionsLoader;
+
+        public LeagueRewardManagement(IScoreOptionsLoader scoreOptionsLoader)
+        {
+            _scoreOptionsLoader = scoreOptionsLoader;
+        }
+
+        public List<IAbstractReward> ComputeLeagueScore(LeagueWar leagueWar)
+        {
+            var rewards = ComputeLeagueScore(leagueWar, _scoreOptionsLoader.LoadLeagueScoreOptions());
+
+            return rewards.Cast<IAbstractReward>().ToList();
+        }
+
+        private List<LeagueReward> ComputeLeagueScore(LeagueWar league, LeagueScoreOptions options)
         {
             var rewards = InitializeRewards(league);
 
@@ -22,19 +40,19 @@ namespace ClashBusiness.Rewards
             return rewards.OrderByDescending(x=>x.Score).ToList();
         }
 
-        private List<Reward> InitializeRewards(LeagueWar league)
+        private List<LeagueReward> InitializeRewards(LeagueWar league)
         {
-            var rewards = new List<Reward>();
+            var rewards = new List<LeagueReward>();
 
             foreach (var player in league.Players)
             {
-                rewards.Add(new Reward { Warrior = player, Score = 0 });
+                rewards.Add(new LeagueReward { Warrior = player, Score = 0 });
             }
 
             return rewards;
         }
 
-        private void SetIndividualScores(Action<LeagueWar, Reward, LeagueScoreOptions> individualScoreAction, bool isOptionActivated, LeagueWar league, List<Reward> rewards, LeagueScoreOptions options)
+        private void SetIndividualScores(Action<LeagueWar, LeagueReward, LeagueScoreOptions> individualScoreAction, bool isOptionActivated, LeagueWar league, List<LeagueReward> rewards, LeagueScoreOptions options)
         {
             if (isOptionActivated)
             {
@@ -45,56 +63,62 @@ namespace ClashBusiness.Rewards
             }
         }
 
-        private void SetIndividualScoreWithStars(LeagueWar league, Reward reward, LeagueScoreOptions options)
+        private void SetIndividualScoreWithStars(LeagueWar league, LeagueReward reward, LeagueScoreOptions options)
         {
             int starScore = league.PlayersPerDay.SelectMany(x => x.Value).Where(x => x.PlayerId == reward.Warrior.Id).Sum(x => x.Stars);
+            reward.TotalStars = starScore;
             reward.Score += starScore;
         }
 
-        private void SetIndividualScoreWithOpeningAttacks(LeagueWar league, Reward reward, LeagueScoreOptions options)
+        private void SetIndividualScoreWithOpeningAttacks(LeagueWar league, LeagueReward reward, LeagueScoreOptions options)
         {
             int higherAttacks = league.PlayersPerDay.SelectMany(x => x.Value).Where(x =>
                 x.PlayerId == reward.Warrior.Id
                 && x.AttackedThLevel > x.CurrentThLevel
                 && x.Stars >= options.HigherTownHallAttackMinimumStars).Count();
 
+            reward.TotalHigherAttacks = higherAttacks;
             reward.Score += (higherAttacks * options.HigherTownHallAttackPoints);
         }
 
-        private void SetIndividualScoreWithAttacksNotDone(LeagueWar league, Reward reward, LeagueScoreOptions options)
+        private void SetIndividualScoreWithAttacksNotDone(LeagueWar league, LeagueReward reward, LeagueScoreOptions options)
         {
             int attacksNotDone = league.PlayersPerDay.SelectMany(x => x.Value).Where(x =>
                 x.PlayerId == reward.Warrior.Id
                 && x.AttackDone == false).Count();
 
+            reward.TotalAttacksNotDone = attacksNotDone;
             reward.Score -= (attacksNotDone * options.NoAttackDonePoints);
         }
 
-        private void SetIndividualScoreWithIncoherentAttacks(LeagueWar league, Reward reward, LeagueScoreOptions options)
+        private void SetIndividualScoreWithIncoherentAttacks(LeagueWar league, LeagueReward reward, LeagueScoreOptions options)
         {
-            int attacksNotDone = league.PlayersPerDay.SelectMany(x => x.Value).Where(x =>
+            int incoherentAttacks = league.PlayersPerDay.SelectMany(x => x.Value).Where(x =>
                 x.PlayerId == reward.Warrior.Id
                 && x.IsCoherentAttack == false).Count();
 
-            reward.Score -= (attacksNotDone * options.IncoherentAttackPoints);
+            reward.TotalIncoherentAttacks = incoherentAttacks;
+            reward.Score -= (incoherentAttacks * options.IncoherentAttackPoints);
         }
 
-        private void SetIndividualScoreWithStrategyNotFollowed(LeagueWar league, Reward reward, LeagueScoreOptions options)
+        private void SetIndividualScoreWithStrategyNotFollowed(LeagueWar league, LeagueReward reward, LeagueScoreOptions options)
         {
-            int attacksNotDone = league.PlayersPerDay.SelectMany(x => x.Value).Where(x =>
+            int notFollowedStrategy = league.PlayersPerDay.SelectMany(x => x.Value).Where(x =>
                 x.PlayerId == reward.Warrior.Id
                 && x.HasFollowedStrategy == false).Count();
 
-            reward.Score -= (attacksNotDone * options.NotFollowedStrategyPoints);
+            reward.TotalNotFollowedStrategy = notFollowedStrategy;
+            reward.Score -= (notFollowedStrategy * options.NotFollowedStrategyPoints);
         }
 
-        private void SetIndividualScoreWithFailedWarFault(LeagueWar league, Reward reward, LeagueScoreOptions options)
+        private void SetIndividualScoreWithFailedWarFault(LeagueWar league, LeagueReward reward, LeagueScoreOptions options)
         {
-            int attacksNotDone = league.PlayersPerDay.SelectMany(x => x.Value).Where(x =>
+            int failedWarFault = league.PlayersPerDay.SelectMany(x => x.Value).Where(x =>
                 x.PlayerId == reward.Warrior.Id
                 && x.FailedWarFault == true).Count();
 
-            reward.Score -= (attacksNotDone * options.FailedWarFaultPoints);
+            reward.TotalFailedWarFault = failedWarFault;
+            reward.Score -= (failedWarFault * options.FailedWarFaultPoints);
         }
     }
 }

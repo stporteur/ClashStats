@@ -64,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RewardManagementTests\LeagueRewardTests.cs" />
     <Compile Include="RewardManagementTests\RewardTests.cs" />
+    <Compile Include="RewardManagementTests\WarriorRewardTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

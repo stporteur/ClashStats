@@ -43,11 +43,15 @@
   <ItemGroup>
     <Compile Include="Exceptions\UnkownClanException.cs" />
     <Compile Include="LeagueManagement.cs" />
-    <Compile Include="ClansWarManagement.cs" />
+    <Compile Include="ClanWarManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rewards\ILeagueRewardManagement.cs" />
+    <Compile Include="Rewards\IScoreRewardManagement.cs" />
+    <Compile Include="Rewards\IRewardManagement.cs" />
+    <Compile Include="Rewards\WarriorRewardManagement.cs" />
     <Compile Include="Rewards\LeagueRewardManagement.cs" />
     <Compile Include="Rewards\RewardManagement.cs" />
+    <Compile Include="ScoreOptions\IScoreOptionsLoader.cs" />
+    <Compile Include="ScoreOptions\ScoreOptionsLoader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClashData\ClashData.csproj">

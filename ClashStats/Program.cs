@@ -16,7 +16,7 @@ namespace ClashStats
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SimulationMainForm());
+            Application.Run(new Simulation.SimulationMainForm());
         }
     }
 }
