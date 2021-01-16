@@ -2,6 +2,7 @@
 {
     public class LeagueReward : AbstractReward
     {
+        public int LeagueId { get; set; }
         public int TotalStars { get; set; }
         public int StarScore { get; set; }
         public int TotalHigherAttacks { get; set; }

@@ -15,7 +15,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
     public class LeagueRewardTests
     {
         private LeagueRewardManagement _rewardManagement;
-        private LeagueWar _league;
+        private League _league;
         private LeagueScoreOptions _options;
 
         [SetUp]
@@ -25,24 +25,24 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             _rewardManagement = new LeagueRewardManagement(scoreOptionsLoader);
 
-            _league = new LeagueWar();
+            _league = new League();
             _league.Id = 1;
             _league.ClanId = 99;
             _league.Clan = new Clan { Id = 99, Name = "Test Clan" };
-            _league.WarDate = DateTime.Today.AddDays(-7);
+            _league.LeagueDate = DateTime.Today.AddDays(-7);
             _league.Position = 3;
             _league.Players = new List<Warrior>
             {
-                new Warrior { Id = 100, Name = "Warrior 1", Hash = "Warrior1", ArrivalDate = _league.WarDate, Clan = _league.Clan, TownHallLevel = 13, TownHallLevelMaturity = TownHallLevelMaturities.Max },
-                new Warrior { Id = 101, Name = "Warrior 2", Hash = "Warrior2", ArrivalDate = _league.WarDate, Clan = _league.Clan, TownHallLevel = 13, TownHallLevelMaturity = TownHallLevelMaturities.Max },
-                new Warrior { Id = 102, Name = "Warrior 3", Hash = "Warrior3", ArrivalDate = _league.WarDate, Clan = _league.Clan, TownHallLevel = 13, TownHallLevelMaturity = TownHallLevelMaturities.Max },
-                new Warrior { Id = 103, Name = "Warrior 4", Hash = "Warrior4", ArrivalDate = _league.WarDate, Clan = _league.Clan, TownHallLevel = 13, TownHallLevelMaturity = TownHallLevelMaturities.Max }
+                new Warrior { Id = 100, Name = "Warrior 1", Hash = "Warrior1", ArrivalDate = _league.LeagueDate, Clan = _league.Clan, TownHallLevel = 13, TownHallLevelMaturity = TownHallLevelMaturities.Max },
+                new Warrior { Id = 101, Name = "Warrior 2", Hash = "Warrior2", ArrivalDate = _league.LeagueDate, Clan = _league.Clan, TownHallLevel = 13, TownHallLevelMaturity = TownHallLevelMaturities.Max },
+                new Warrior { Id = 102, Name = "Warrior 3", Hash = "Warrior3", ArrivalDate = _league.LeagueDate, Clan = _league.Clan, TownHallLevel = 13, TownHallLevelMaturity = TownHallLevelMaturities.Max },
+                new Warrior { Id = 103, Name = "Warrior 4", Hash = "Warrior4", ArrivalDate = _league.LeagueDate, Clan = _league.Clan, TownHallLevel = 13, TownHallLevelMaturity = TownHallLevelMaturities.Max }
             };
 
-            _league.PlayersPerDay = new Dictionary<int, List<LeagueWarPlayer>>();
+            _league.PlayersPerDay = new Dictionary<int, List<LeaguePlayer>>();
             for (int leagueDay = 1; leagueDay <= 7; leagueDay++)
             {
-                _league.PlayersPerDay.Add(leagueDay, new List<LeagueWarPlayer>());
+                _league.PlayersPerDay.Add(leagueDay, new List<LeaguePlayer>());
 
                 for (int playerNumber = 0; playerNumber < _league.Players.Count; playerNumber++)
                 {
@@ -75,12 +75,11 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
         private void AddPlayerToDay(int leagueDay, int playerNumber)
         {
-            _league.PlayersPerDay[leagueDay].Add(new LeagueWarPlayer
+            _league.PlayersPerDay[leagueDay].Add(new LeaguePlayer
             {
-                Id = playerNumber + 1,
                 LeagueId = _league.Id,
-                PlayerId = _league.Players[playerNumber].Id,
-                Player = _league.Players[playerNumber],
+                WarriorId = _league.Players[playerNumber].Id,
+                Warrior = _league.Players[playerNumber],
                 Position = playerNumber + 1,
                 AttackDone = true,
                 IsCoherentAttack = true,
@@ -117,8 +116,8 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             foreach (var reward in rewards)
             {
-                Check.That(((LeagueReward)reward).TotalStars).IsEqualTo(_league.PlayersPerDay[1].Single(x => x.PlayerId == reward.Warrior.Id).Stars);
-                Check.That(reward.Score).IsEqualTo(_league.PlayersPerDay[1].Single(x => x.PlayerId == reward.Warrior.Id).Stars);
+                Check.That(((LeagueReward)reward).TotalStars).IsEqualTo(_league.PlayersPerDay[1].Single(x => x.WarriorId == reward.Warrior.Id).Stars);
+                Check.That(reward.Score).IsEqualTo(_league.PlayersPerDay[1].Single(x => x.WarriorId == reward.Warrior.Id).Stars);
             }
         }
 
@@ -134,7 +133,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(7);
         }
 
@@ -147,7 +146,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(0);
         }
 
@@ -162,7 +161,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(((LeagueReward)reward).TotalHigherAttacks).IsEqualTo(1);
             Check.That(reward.Score).IsEqualTo(5);
         }
@@ -181,7 +180,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(35);
         }
 
@@ -198,7 +197,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(0);
         }
 
@@ -212,7 +211,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(-5);
         }
 
@@ -229,7 +228,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(-35);
         }
 
@@ -243,7 +242,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(0);
         }
 
@@ -257,7 +256,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(-2);
         }
 
@@ -274,7 +273,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(-14);
         }
 
@@ -288,7 +287,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(0);
         }
 
@@ -302,7 +301,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(-10);
         }
 
@@ -319,7 +318,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(-70);
         }
 
@@ -333,7 +332,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(0);
         }
 
@@ -347,7 +346,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(-50);
         }
 
@@ -364,7 +363,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(-350);
         }
 
@@ -378,7 +377,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var rewards = _rewardManagement.ComputeLeagueScore(_league);
 
-            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].PlayerId);
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(0);
         }
 

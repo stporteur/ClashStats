@@ -65,8 +65,10 @@
     <Compile Include="RewardManagementTests\LeagueRewardTests.cs" />
     <Compile Include="RewardManagementTests\RewardTests.cs" />
     <Compile Include="RewardManagementTests\WarriorRewardTests.cs" />
+    <Compile Include="Storage\StorageManagementTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,6 @@ namespace ClashBusiness.Rewards
 {
     public interface IRewardManagement
     {
-        List<Reward> GetRankSuggestion(LeagueWar leagueWar);
+        List<Reward> GetRankSuggestion(League leagueWar);
     }
 }

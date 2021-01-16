@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ClashEntities.ScoreOptions
+﻿namespace ClashEntities.ScoreOptions
 {
-    public class LeagueScoreOptions
+    public class LeagueScoreOptions : IScoreOptions
     {
         public bool ScoreStarResults { get; set; }
 

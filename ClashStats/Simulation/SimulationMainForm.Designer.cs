@@ -946,7 +946,7 @@ namespace ClashStats.Simulation
             // dayOneBindingSource
             // 
             this.dayOneBindingSource.AllowNew = false;
-            this.dayOneBindingSource.DataSource = typeof(ClashEntities.LeagueWarPlayer);
+            this.dayOneBindingSource.DataSource = typeof(ClashEntities.LeaguePlayer);
             // 
             // tabPage2
             // 
@@ -1008,7 +1008,7 @@ namespace ClashStats.Simulation
             // dayTwoBindingSource
             // 
             this.dayTwoBindingSource.AllowNew = false;
-            this.dayTwoBindingSource.DataSource = typeof(ClashEntities.LeagueWarPlayer);
+            this.dayTwoBindingSource.DataSource = typeof(ClashEntities.LeaguePlayer);
             // 
             // tabPage3
             // 
@@ -1071,7 +1071,7 @@ namespace ClashStats.Simulation
             // dayThreeBindingSource
             // 
             this.dayThreeBindingSource.AllowNew = false;
-            this.dayThreeBindingSource.DataSource = typeof(ClashEntities.LeagueWarPlayer);
+            this.dayThreeBindingSource.DataSource = typeof(ClashEntities.LeaguePlayer);
             // 
             // tabPage4
             // 
@@ -1134,7 +1134,7 @@ namespace ClashStats.Simulation
             // dayFourBindingSource
             // 
             this.dayFourBindingSource.AllowNew = false;
-            this.dayFourBindingSource.DataSource = typeof(ClashEntities.LeagueWarPlayer);
+            this.dayFourBindingSource.DataSource = typeof(ClashEntities.LeaguePlayer);
             // 
             // tabPage5
             // 
@@ -1197,7 +1197,7 @@ namespace ClashStats.Simulation
             // dayFiveBindingSource
             // 
             this.dayFiveBindingSource.AllowNew = false;
-            this.dayFiveBindingSource.DataSource = typeof(ClashEntities.LeagueWarPlayer);
+            this.dayFiveBindingSource.DataSource = typeof(ClashEntities.LeaguePlayer);
             // 
             // tabPage6
             // 
@@ -1260,7 +1260,7 @@ namespace ClashStats.Simulation
             // daySixBindingSource
             // 
             this.daySixBindingSource.AllowNew = false;
-            this.daySixBindingSource.DataSource = typeof(ClashEntities.LeagueWarPlayer);
+            this.daySixBindingSource.DataSource = typeof(ClashEntities.LeaguePlayer);
             // 
             // tabPage7
             // 
@@ -1323,7 +1323,7 @@ namespace ClashStats.Simulation
             // daySevenBindingSource
             // 
             this.daySevenBindingSource.AllowNew = false;
-            this.daySevenBindingSource.DataSource = typeof(ClashEntities.LeagueWarPlayer);
+            this.daySevenBindingSource.DataSource = typeof(ClashEntities.LeaguePlayer);
             // 
             // tabPageWars
             // 
@@ -1393,7 +1393,7 @@ namespace ClashStats.Simulation
             // 
             // leagueWarBindingSource
             // 
-            this.leagueWarBindingSource.DataSource = typeof(ClashEntities.LeagueWar);
+            this.leagueWarBindingSource.DataSource = typeof(ClashEntities.League);
             // 
             // dataGridViewTextBoxColumn1
             // 

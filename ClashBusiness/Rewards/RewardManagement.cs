@@ -1,7 +1,5 @@
-﻿using ClashBusiness.ScoreOptions;
-using ClashEntities;
+﻿using ClashEntities;
 using ClashEntities.Rewards;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -16,7 +14,7 @@ namespace ClashBusiness.Rewards
             _scoreRewardManagers = scoreRewardManagers;
         }
 
-        public List<Reward> GetRankSuggestion(LeagueWar leagueWar)
+        public List<Reward> GetRankSuggestion(League leagueWar)
         {
             var rewards = InitializeRewards(leagueWar);
 
@@ -42,7 +40,7 @@ namespace ClashBusiness.Rewards
             }
         }
 
-        private List<Reward> InitializeRewards(LeagueWar league)
+        private List<Reward> InitializeRewards(League league)
         {
             var rewards = new List<Reward>();
 

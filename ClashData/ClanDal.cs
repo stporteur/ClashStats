@@ -1,13 +1,12 @@
-﻿using ClashEntities;
-using System;
+﻿using ClashData.SQLite;
+using ClashEntities;
 
 namespace ClashData
 {
-    public class ClanDal : IClanDal
+    public class ClanDal : CrudActions<Clan>, IClanDal
     {
-        public Clan LoadClan(int clanId)
+        public ClanDal(ISQLiteManagement iSQLiteManagement) : base(iSQLiteManagement)
         {
-            throw new NotImplementedException();
         }
     }
 }

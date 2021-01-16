@@ -1,15 +1,10 @@
 ﻿namespace ClashEntities
 {
-    public class WarAttack
+    public class WarAttack : AbstractAttack, IDatabaseEntity
     {
-        public int Id { get; set; }
-        public int CurrentThLevel { get; set; }
-        public int AttackedThLevel { get; set; }
-        public int Stars { get; set; }
-        public bool AttackDone { get; set; }
-        public bool IsCoherentAttack { get; set; }
-        public bool HasFollowedStrategy { get; set; }
-        public bool FailedWarFault { get; set; }
-        public string Comment { get; set; }
+        public int WarPlayerId { get; set; }
+        public int WarId { get; set; }
+        public int AttackNumber { get; set; }
+        public bool IsOpeningAttack { get; set; }
     }
 }

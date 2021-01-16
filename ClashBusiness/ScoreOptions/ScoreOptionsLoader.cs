@@ -1,10 +1,5 @@
 ﻿using ClashData;
 using ClashEntities.ScoreOptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClashBusiness.ScoreOptions
 {
@@ -18,6 +13,11 @@ namespace ClashBusiness.ScoreOptions
             _leagueScoreOptionsDal = leagueScoreOptionsDal;
             _warriorScoreOptionsDal = warriorScoreOptionsDal;
         }
+
+        //public T LoadScoreOptions<T>()
+        //{
+        //    return _leagueScoreOptionsDal.LoadOptions();
+        //}
 
         public LeagueScoreOptions LoadLeagueScoreOptions()
         {

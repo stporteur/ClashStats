@@ -17,12 +17,12 @@ namespace ClashBusiness.Tests.RewardManagementTests
     {
         private WarriorScoreOptions _warriorScoreOptions;
         private WarriorRewardManagement _warriorRewardManagement;
-        private ILeagueWarDal _leagueWarDal;
-        private IClanWarDal _clanWarDal;
+        private ILeagueDal _leagueWarDal;
+        private IWarDal _clanWarDal;
         private IGameDal _gameDal;
         private IGameWarriorDal _gameWarriorDal;
         private List<Warrior> _warriors;
-        private LeagueWar _league;
+        private League _league;
 
         [SetUp]
         public void Setup()
@@ -36,7 +36,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
                 new Warrior { Id = 3, ArrivalDate = DateTime.Today.AddMonths(-24), TownHallLevel = 11, TownHallLevelMaturity = TownHallLevelMaturities.Beginning }
             };
 
-            _league = new LeagueWar();
+            _league = new League();
             _league.Id = 1;
 
             _warriorScoreOptions = new WarriorScoreOptions();
@@ -76,10 +76,10 @@ namespace ClashBusiness.Tests.RewardManagementTests
                 new SeniorityBonus{MinimumMonth = 6, MaximumMonth = 50000, Bonus = 150 },
             };
 
-            _clanWarDal = Substitute.For<IClanWarDal>();
+            _clanWarDal = Substitute.For<IWarDal>();
             _clanWarDal.GetWarsCount(Arg.Any<DateTime>()).Returns(10);
 
-            _leagueWarDal = Substitute.For<ILeagueWarDal>();
+            _leagueWarDal = Substitute.For<ILeagueDal>();
             _leagueWarDal.GetLeaguesCount(Arg.Any<DateTime>()).Returns(10);
 
             _gameDal = Substitute.For<IGameDal>();
@@ -87,34 +87,34 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             _gameWarriorDal = Substitute.For<IGameWarriorDal>();
             _gameWarriorDal.GetGames(_warriors[0].Id).Returns(new List<GameWarrior> {
-                new GameWarrior { Id = 1, Score = 100, Warrior = _warriors[0] },
-                new GameWarrior { Id = 2, Score = 100, Warrior = _warriors[0] },
-                new GameWarrior { Id = 3, Score = 100, Warrior = _warriors[0] },
-                new GameWarrior { Id = 4, Score = 4000, Warrior = _warriors[0] },
-                new GameWarrior { Id = 5, Score = 4000, Warrior = _warriors[0] },
-                new GameWarrior { Id = 6, Score = 4000, Warrior = _warriors[0] },
-                new GameWarrior { Id = 7, Score = 4000, Warrior = _warriors[0] },
-                new GameWarrior { Id = 8, Score = 4000, Warrior = _warriors[0] },
-                new GameWarrior { Id = 9, Score = 4000, Warrior = _warriors[0] },
-                new GameWarrior { Id = 10, Score = 4000, Warrior = _warriors[0] }
+                new GameWarrior { Score = 100, Warrior = _warriors[0] },
+                new GameWarrior { Score = 100, Warrior = _warriors[0] },
+                new GameWarrior { Score = 100, Warrior = _warriors[0] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[0] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[0] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[0] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[0] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[0] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[0] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[0] }
             });
             _gameWarriorDal.GetGames(_warriors[1].Id).Returns(new List<GameWarrior> {
-                new GameWarrior { Id = 1, Score = 100, Warrior = _warriors[1] },
-                new GameWarrior { Id = 2, Score = 100, Warrior = _warriors[1] },
-                new GameWarrior { Id = 3, Score = 100, Warrior = _warriors[1] },
-                new GameWarrior { Id = 4, Score = 4000, Warrior = _warriors[1] },
-                new GameWarrior { Id = 5, Score = 4000, Warrior = _warriors[1] },
-                new GameWarrior { Id = 6, Score = 4000, Warrior = _warriors[1] },
-                new GameWarrior { Id = 7, Score = 4000, Warrior = _warriors[1] }
+                new GameWarrior { Score = 100, Warrior = _warriors[1] },
+                new GameWarrior { Score = 100, Warrior = _warriors[1] },
+                new GameWarrior { Score = 100, Warrior = _warriors[1] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[1] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[1] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[1] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[1] }
             });
             _gameWarriorDal.GetGames(_warriors[2].Id).Returns(new List<GameWarrior> {
-                new GameWarrior { Id = 1, Score = 100, Warrior = _warriors[2] },
-                new GameWarrior { Id = 2, Score = 100, Warrior = _warriors[2] },
-                new GameWarrior { Id = 3, Score = 100, Warrior = _warriors[2] },
-                new GameWarrior { Id = 4, Score = 4000, Warrior = _warriors[2] },
-                new GameWarrior { Id = 5, Score = 4000, Warrior = _warriors[2] },
-                new GameWarrior { Id = 6, Score = 4000, Warrior = _warriors[2] },
-                new GameWarrior { Id = 7, Score = 4000, Warrior = _warriors[2] }
+                new GameWarrior { Score = 100, Warrior = _warriors[2] },
+                new GameWarrior { Score = 100, Warrior = _warriors[2] },
+                new GameWarrior { Score = 100, Warrior = _warriors[2] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[2] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[2] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[2] },
+                new GameWarrior { Score = 4000, Warrior = _warriors[2] }
             });
 
             _warriorRewardManagement = new WarriorRewardManagement(scoreOptionsLoader, _leagueWarDal, _clanWarDal, _gameWarriorDal, _gameDal);

@@ -46,26 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationSetting.cs" />
     <Compile Include="Clan.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameWarrior.cs" />
-    <Compile Include="LeagueWarPlayer.cs" />
-    <Compile Include="LeagueWar.cs" />
-    <Compile Include="LeagueWarAttack.cs" />
-    <Compile Include="ClanWarAttack.cs" />
+    <Compile Include="IDatabaseEntity.cs" />
+    <Compile Include="LeaguePlayer.cs" />
+    <Compile Include="League.cs" />
+    <Compile Include="LeagueAttack.cs" />
+    <Compile Include="WarAttack.cs" />
     <Compile Include="Rewards\AbstractReward.cs" />
     <Compile Include="Rewards\IAbstractReward.cs" />
     <Compile Include="Rewards\Reward.cs" />
     <Compile Include="Rewards\LeagueReward.cs" />
     <Compile Include="Rewards\WarriorReward.cs" />
+    <Compile Include="ScoreOptions\IScoreOptions.cs" />
     <Compile Include="ScoreOptions\SeniorityBonus.cs" />
     <Compile Include="ScoreOptions\TownHallMaturityBonus.cs" />
     <Compile Include="ScoreOptions\WarriorScoreOptions.cs" />
     <Compile Include="ScoreOptions\WarScoreOptions.cs" />
     <Compile Include="ScoreOptions\LeagueScoreOptions.cs" />
-    <Compile Include="WarAttack.cs" />
-    <Compile Include="ClanWarPlayer.cs" />
-    <Compile Include="ClanWar.cs" />
+    <Compile Include="AbstractAttack.cs" />
+    <Compile Include="WarPlayer.cs" />
+    <Compile Include="War.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TownHallLevelMaturities.cs" />
     <Compile Include="Warrior.cs" />

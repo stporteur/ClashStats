@@ -1,10 +1,9 @@
 ﻿using ClashEntities;
 using System;
-using System.Collections.Generic;
 
 namespace ClashData
 {
-    public interface IGameDal
+    public interface IGameDal : ICrudActions<Game>
     {
         int GetGamesCount(DateTime from);
     }

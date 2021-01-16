@@ -1,7 +1,6 @@
 ﻿using ClashBusiness.Exceptions;
 using ClashData;
 using ClashEntities;
-using System;
 using System.Collections.Generic;
 
 namespace ClashBusiness
@@ -9,19 +8,19 @@ namespace ClashBusiness
     public class LeagueManagement
     {
         private readonly IClanDal _clanDal;
-        private readonly ILeagueWarDal _leagueWarDal;
-        private readonly ILeagueWarPlayerDal _leagueWarPlayerDal;
+        private readonly ILeagueDal _leagueWarDal;
+        private readonly ILeaguePlayerDal _leagueWarPlayerDal;
 
-        public LeagueManagement(IClanDal clanDal, ILeagueWarDal leagueWarDal, ILeagueWarPlayerDal leagueWarPlayerDal)
+        public LeagueManagement(IClanDal clanDal, ILeagueDal leagueWarDal, ILeaguePlayerDal leagueWarPlayerDal)
         {
             _clanDal = clanDal;
             _leagueWarDal = leagueWarDal;
             _leagueWarPlayerDal = leagueWarPlayerDal;
         }
 
-        public LeagueWar LoadCurrentLeague(int clanId)
+        public League LoadCurrentLeague(int clanId)
         {
-            var clan = _clanDal.LoadClan(clanId);
+            var clan = _clanDal.Get(clanId);
 
             if (clan == null)
             {
@@ -36,13 +35,13 @@ namespace ClashBusiness
 
             leagueWar.Players = _leagueWarPlayerDal.LoadCurrentLeaguePlayers(leagueWar.Id);
 
-            leagueWar.PlayersPerDay = new Dictionary<int, List<LeagueWarPlayer>>();
+            leagueWar.PlayersPerDay = new Dictionary<int, List<LeaguePlayer>>();
             for(int i = 1; i <= 7; i++)
             {
                 var playersOfDay = _leagueWarPlayerDal.LoadCurrentLeaguePlayersOfDay(leagueWar.Id, i);
                 if(playersOfDay == null)
                 {
-                    playersOfDay = new List<LeagueWarPlayer>();
+                    playersOfDay = new List<LeaguePlayer>();
                 }
                 leagueWar.PlayersPerDay.Add(i, playersOfDay);
             }

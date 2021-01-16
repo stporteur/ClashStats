@@ -2,7 +2,7 @@
 
 namespace ClashData
 {
-    public interface IWarriorDal
+    public interface IWarriorDal : ICrudActions<Warrior>
     {
         Warrior LoadWarrior(int warriorId);
     }

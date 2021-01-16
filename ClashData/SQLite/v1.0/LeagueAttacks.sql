@@ -1,0 +1,18 @@
+﻿CREATE TABLE IF NOT EXISTS LeagueAttacks (
+	Id INTEGER PRIMARY KEY,
+	LeagueId INTEGER NOT NULL,
+	Day INTEGER NOT NULL,
+	WarriorId INTEGER NOT NULL,
+	Position INTEGER NOT NULL,
+	CurrentThLevel INTEGER NOT NULL,
+	AttackedThLevel INTEGER NULL,
+	Stars INTEGER NULL,
+	AttackDone BOOLEAN NULL,
+	IsCoherentAttack BOOLEAN NULL,
+	HasFollowedStrategy BOOLEAN NULL,
+	FailedWarFault BOOLEAN NULL,
+	Comment VARCHAR(150) NULL, 
+	FOREIGN KEY(LeagueId) REFERENCES Leagues(Id),
+	FOREIGN KEY(WarriorId) REFERENCES Warriors(Id),
+	UNIQUE(LeagueId, Day, WarriorId)
+)

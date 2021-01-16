@@ -2,8 +2,7 @@
 
 namespace ClashData
 {
-    public interface IClanDal
+    public interface IClanDal : ICrudActions<Clan>
     {
-        Clan LoadClan(int id);
     }
 }

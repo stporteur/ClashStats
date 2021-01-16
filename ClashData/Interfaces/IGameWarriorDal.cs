@@ -1,10 +1,9 @@
 ﻿using ClashEntities;
-using System;
 using System.Collections.Generic;
 
 namespace ClashData
 {
-    public interface IGameWarriorDal
+    public interface IGameWarriorDal : ICrudActions<GameWarrior>
     {
         List<GameWarrior> GetGames(int warriorId);
     }

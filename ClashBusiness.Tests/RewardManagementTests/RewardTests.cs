@@ -4,18 +4,15 @@ using ClashEntities.Rewards;
 using NFluent;
 using NSubstitute;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ClashBusiness.Tests.RewardManagementTests
 {
     public class RewardTests
     {
         private RewardManagement _rewardManagement;
-        private LeagueWar _league;
+        private League _league;
         private List<Warrior> _warriors;
         private List<IScoreRewardManagement> _dummyManagers;
 
@@ -30,7 +27,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             _rewardManagement = new RewardManagement(_dummyManagers);
 
-            _league = new LeagueWar();
+            _league = new League();
             _league.Id = 1;
             _warriors = new List<Warrior>
             {

@@ -12,12 +12,12 @@ namespace ClashBusiness.Rewards
     public class WarriorRewardManagement : IScoreRewardManagement
     {
         private readonly IScoreOptionsLoader _scoreOptionsLoader;
-        private readonly ILeagueWarDal _leagueWarDal;
-        private readonly IClanWarDal _clanWarDal;
+        private readonly ILeagueDal _leagueWarDal;
+        private readonly IWarDal _clanWarDal;
         private readonly IGameDal _gameDal;
         private readonly IGameWarriorDal _gameWarriorDal;
 
-        public WarriorRewardManagement(IScoreOptionsLoader scoreOptionsLoader, ILeagueWarDal leagueWarDal, IClanWarDal clanWarDal, IGameWarriorDal gameWarriorDal, IGameDal gameDal)
+        public WarriorRewardManagement(IScoreOptionsLoader scoreOptionsLoader, ILeagueDal leagueWarDal, IWarDal clanWarDal, IGameWarriorDal gameWarriorDal, IGameDal gameDal)
         {
             _leagueWarDal = leagueWarDal;
             _clanWarDal = clanWarDal;
@@ -26,14 +26,14 @@ namespace ClashBusiness.Rewards
             _scoreOptionsLoader = scoreOptionsLoader;
         }
 
-        public List<IAbstractReward> ComputeLeagueScore(LeagueWar leagueWar)
+        public List<IAbstractReward> ComputeLeagueScore(League leagueWar)
         {
             var rewards = ComputeWarriorsScore(leagueWar, _scoreOptionsLoader.LoadWarriorScoreOptions());
 
             return rewards.Cast<IAbstractReward>().ToList();
         }
 
-        private List<WarriorReward> ComputeWarriorsScore(LeagueWar leagueWar, WarriorScoreOptions options)
+        private List<WarriorReward> ComputeWarriorsScore(League leagueWar, WarriorScoreOptions options)
         {
             var rewards = InitializeRewards(leagueWar.Players);
 

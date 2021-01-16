@@ -2,7 +2,7 @@
 
 namespace ClashEntities
 {
-    public class Warrior
+    public class Warrior : IDatabaseEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

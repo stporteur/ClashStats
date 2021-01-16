@@ -11,15 +11,15 @@ namespace ClashBusiness.Tests.LeagueManagementTests
     public class LoadingTests
     {
         private LeagueManagement _leagueManagement;
-        private ILeagueWarPlayerDal _leagueWarPlayerDal;
-        private ILeagueWarDal _leagueWarDal;
+        private ILeaguePlayerDal _leagueWarPlayerDal;
+        private ILeagueDal _leagueWarDal;
         private IClanDal _clanDal;
 
         [SetUp]
         public void Setup()
         {
-            _leagueWarDal = Substitute.For<ILeagueWarDal>();
-            _leagueWarPlayerDal = Substitute.For<ILeagueWarPlayerDal>();
+            _leagueWarDal = Substitute.For<ILeagueDal>();
+            _leagueWarPlayerDal = Substitute.For<ILeaguePlayerDal>();
             _clanDal = Substitute.For<IClanDal>();
 
             _leagueManagement = new LeagueManagement(_clanDal, _leagueWarDal, _leagueWarPlayerDal);
@@ -29,7 +29,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
         public void Should_throw_UnkownClanException_exception_when_loading_current_league_and_clan_doesnt_exist()
         {
             var clanId = 1;
-            _clanDal.LoadClan(clanId).Returns(x => null);
+            _clanDal.Get(clanId).Returns(x => null);
             Check.ThatCode(() => _leagueManagement.LoadCurrentLeague(clanId)).Throws<UnkownClanException>();
         }
 
@@ -38,7 +38,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
         {
             var clanId = 1;
             var clan = new Clan { Id = 1, Name = "dummy clan" };
-            _clanDal.LoadClan(clanId).Returns(x => clan);
+            _clanDal.Get(clanId).Returns(x => clan);
             _leagueWarDal.LoadCurrentLeague(clan.Id).Returns(x => null);
 
             var league = _leagueManagement.LoadCurrentLeague(clanId);
@@ -50,8 +50,8 @@ namespace ClashBusiness.Tests.LeagueManagementTests
         {
             var clanId = 1;
             var clan = new Clan { Id = 1, Name = "dummy clan" };
-            _clanDal.LoadClan(clanId).Returns(x => clan);
-            var currentLeague = new LeagueWar { };
+            _clanDal.Get(clanId).Returns(x => clan);
+            var currentLeague = new League { };
             _leagueWarDal.LoadCurrentLeague(clan.Id).Returns(x => null);
 
             var league = _leagueManagement.LoadCurrentLeague(clanId);
@@ -63,9 +63,9 @@ namespace ClashBusiness.Tests.LeagueManagementTests
         {
             var clanId = 1;
             var clan = new Clan { Id = 1, Name = "dummy clan" };
-            _clanDal.LoadClan(clanId).Returns(x => clan);
+            _clanDal.Get(clanId).Returns(x => clan);
 
-            var currentLeague = new LeagueWar { Id = 1 };
+            var currentLeague = new League { Id = 1 };
             _leagueWarDal.LoadCurrentLeague(clan.Id).Returns(currentLeague);
 
             var warrior = new Warrior();
@@ -82,9 +82,9 @@ namespace ClashBusiness.Tests.LeagueManagementTests
         {
             var clanId = 1;
             var clan = new Clan { Id = 1, Name = "dummy clan" };
-            _clanDal.LoadClan(clanId).Returns(x => clan);
+            _clanDal.Get(clanId).Returns(x => clan);
 
-            var currentLeague = new LeagueWar { Id = 1 };
+            var currentLeague = new League { Id = 1 };
             _leagueWarDal.LoadCurrentLeague(clan.Id).Returns(currentLeague);
 
             var warrior = new Warrior();
@@ -112,20 +112,20 @@ namespace ClashBusiness.Tests.LeagueManagementTests
         {
             var clanId = 1;
             var clan = new Clan { Id = 1, Name = "dummy clan" };
-            _clanDal.LoadClan(clanId).Returns(x => clan);
+            _clanDal.Get(clanId).Returns(x => clan);
 
-            var currentLeague = new LeagueWar { Id = 1 };
+            var currentLeague = new League { Id = 1 };
             _leagueWarDal.LoadCurrentLeague(clan.Id).Returns(currentLeague);
 
             var warrior = new Warrior();
             _leagueWarPlayerDal.LoadCurrentLeaguePlayers(currentLeague.Id).Returns(new List<Warrior> { warrior });
             _leagueWarPlayerDal.LoadCurrentLeaguePlayersOfDay(currentLeague.Id, Arg.Any<int>()).Returns(x => null);
-            var leagueWarPlayers = new List<LeagueWarPlayer>();
+            var leagueWarPlayers = new List<LeaguePlayer>();
             for (int i = 1; i <= numberOfSetupDays; i++)
             {
-                var leagueWarPlayer = new LeagueWarPlayer();
+                var leagueWarPlayer = new LeaguePlayer();
                 leagueWarPlayers.Add(leagueWarPlayer);
-                _leagueWarPlayerDal.LoadCurrentLeaguePlayersOfDay(currentLeague.Id, i).Returns(x => new List<LeagueWarPlayer> { leagueWarPlayer });
+                _leagueWarPlayerDal.LoadCurrentLeaguePlayersOfDay(currentLeague.Id, i).Returns(x => new List<LeaguePlayer> { leagueWarPlayer });
             }
 
             var league = _leagueManagement.LoadCurrentLeague(clanId);
