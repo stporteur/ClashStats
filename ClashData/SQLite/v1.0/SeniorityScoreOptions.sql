@@ -1,0 +1,6 @@
+﻿CREATE TABLE IF NOT EXISTS SeniorityScoreOptions (
+	Id INTEGER PRIMARY KEY,
+	MinimumMonth INTEGER NOT NULL,
+	MaximumMonth INTEGER NOT NULL,
+	Bonus INTEGER NOT NULL
+)

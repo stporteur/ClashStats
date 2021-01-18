@@ -10,3 +10,6 @@ Wars.sql
 WarPlayers.sql
 WarAttacks.sql
 ScoreOptions.sql
+SeniorityScoreOptions.sql
+TownHallLevelScoreOptions.sql
+InitializeScoreOptions.sql

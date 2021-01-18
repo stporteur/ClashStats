@@ -11,18 +11,22 @@ namespace ClashBusiness.Tests.LeagueManagementTests
     public class LoadingTests
     {
         private LeagueManagement _leagueManagement;
-        private ILeaguePlayerDal _leagueWarPlayerDal;
-        private ILeagueDal _leagueWarDal;
+        private ILeaguePlayerDal _leaguePlayerDal;
+        private ILeagueAttackDal _leagueAttackDal;
+        private ILeagueDal _leagueDal;
         private IClanDal _clanDal;
+        private IWarriorDal _warriorDal;
 
         [SetUp]
         public void Setup()
         {
-            _leagueWarDal = Substitute.For<ILeagueDal>();
-            _leagueWarPlayerDal = Substitute.For<ILeaguePlayerDal>();
+            _leagueDal = Substitute.For<ILeagueDal>();
+            _leaguePlayerDal = Substitute.For<ILeaguePlayerDal>();
+            _leagueAttackDal = Substitute.For<ILeagueAttackDal>();
             _clanDal = Substitute.For<IClanDal>();
+            _warriorDal = Substitute.For<IWarriorDal>();
 
-            _leagueManagement = new LeagueManagement(_clanDal, _leagueWarDal, _leagueWarPlayerDal);
+            _leagueManagement = new LeagueManagement(_clanDal, _warriorDal, _leagueDal, _leaguePlayerDal, _leagueAttackDal);
         }
 
         [Test]
@@ -39,7 +43,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             var clanId = 1;
             var clan = new Clan { Id = 1, Name = "dummy clan" };
             _clanDal.Get(clanId).Returns(x => clan);
-            _leagueWarDal.LoadCurrentLeague(clan.Id).Returns(x => null);
+            _leagueDal.LoadCurrentLeague(clan.Id).Returns(x => null);
 
             var league = _leagueManagement.LoadCurrentLeague(clanId);
             Check.That(league).IsNull();
@@ -52,7 +56,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             var clan = new Clan { Id = 1, Name = "dummy clan" };
             _clanDal.Get(clanId).Returns(x => clan);
             var currentLeague = new League { };
-            _leagueWarDal.LoadCurrentLeague(clan.Id).Returns(x => null);
+            _leagueDal.LoadCurrentLeague(clan.Id).Returns(x => null);
 
             var league = _leagueManagement.LoadCurrentLeague(clanId);
             Check.That(league).IsNull();
@@ -66,15 +70,42 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             _clanDal.Get(clanId).Returns(x => clan);
 
             var currentLeague = new League { Id = 1 };
-            _leagueWarDal.LoadCurrentLeague(clan.Id).Returns(currentLeague);
+            _leagueDal.LoadCurrentLeague(clan.Id).Returns(currentLeague);
 
             var warrior = new Warrior();
-            _leagueWarPlayerDal.LoadCurrentLeaguePlayers(currentLeague.Id).Returns(new List<Warrior> { warrior });
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(currentLeague.Id).Returns(new List<Warrior> { warrior });
 
             var league = _leagueManagement.LoadCurrentLeague(clanId);
             Check.That(league.Players).IsNotNull();
             Check.That(league.Players).HasSize(1);
             Check.That(league.Players).Contains(warrior);
+        }
+
+        [Test]
+        public void Should_load_clan_of_players_only_once_when_they_are_coming_from_other_clans()
+        {
+            var clanId = 1;
+            var clan = new Clan { Id = 1, Name = "dummy clan" };
+            var clan2 = new Clan { Id = 2, Name = "dummy clan 2" };
+            var clan3 = new Clan { Id = 3, Name = "dummy clan 3" };
+            _clanDal.Get(clanId).Returns(x => clan);
+            _clanDal.Get(2).Returns(x => clan2);
+            _clanDal.Get(3).Returns(x => clan3);
+
+
+            var currentLeague = new League { Id = 1 };
+            _leagueDal.LoadCurrentLeague(clan.Id).Returns(currentLeague);
+
+            var warrior1 = new Warrior { ClanId = 1 };
+            var warrior2 = new Warrior { ClanId = 2 };
+            var warrior3 = new Warrior { ClanId = 3 };
+            var warrior4 = new Warrior { ClanId = 3 };
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(currentLeague.Id).Returns(new List<Warrior> { warrior1, warrior2, warrior3, warrior4 });
+
+            var league = _leagueManagement.LoadCurrentLeague(clanId);
+            Check.That(league.Players).HasSize(4);
+            _clanDal.Received(1).Get(2);
+            _clanDal.Received(1).Get(3);
         }
 
         [Test]
@@ -85,18 +116,18 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             _clanDal.Get(clanId).Returns(x => clan);
 
             var currentLeague = new League { Id = 1 };
-            _leagueWarDal.LoadCurrentLeague(clan.Id).Returns(currentLeague);
+            _leagueDal.LoadCurrentLeague(clan.Id).Returns(currentLeague);
 
             var warrior = new Warrior();
-            _leagueWarPlayerDal.LoadCurrentLeaguePlayers(currentLeague.Id).Returns(new List<Warrior> { warrior });
-            _leagueWarPlayerDal.LoadCurrentLeaguePlayersOfDay(currentLeague.Id, Arg.Any<int>()).Returns(x => null);
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(currentLeague.Id).Returns(new List<Warrior> { warrior });
+            _leagueAttackDal.LoadCurrentLeaguePlayersOfDay(currentLeague.Id, Arg.Any<int>()).Returns(x => null);
 
             var league = _leagueManagement.LoadCurrentLeague(clanId);
             Check.That(league.PlayersPerDay).IsNotNull();
             Check.That(league.PlayersPerDay).HasSize(7);
             for (int i = 1; i <= 7; i++)
             {
-                _leagueWarPlayerDal.Received(1).LoadCurrentLeaguePlayersOfDay(currentLeague.Id, i);
+                _leagueAttackDal.Received(1).LoadCurrentLeaguePlayersOfDay(currentLeague.Id, i);
                 Check.That(league.PlayersPerDay[i]).IsNotNull();
             }
         }
@@ -115,17 +146,18 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             _clanDal.Get(clanId).Returns(x => clan);
 
             var currentLeague = new League { Id = 1 };
-            _leagueWarDal.LoadCurrentLeague(clan.Id).Returns(currentLeague);
+            _leagueDal.LoadCurrentLeague(clan.Id).Returns(currentLeague);
 
-            var warrior = new Warrior();
-            _leagueWarPlayerDal.LoadCurrentLeaguePlayers(currentLeague.Id).Returns(new List<Warrior> { warrior });
-            _leagueWarPlayerDal.LoadCurrentLeaguePlayersOfDay(currentLeague.Id, Arg.Any<int>()).Returns(x => null);
-            var leagueWarPlayers = new List<LeaguePlayer>();
+            var warrior = new Warrior { Id = 1, ClanId = 1 };
+            _warriorDal.Get(1).Returns(warrior);
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(currentLeague.Id).Returns(new List<Warrior> { warrior });
+            _leagueAttackDal.LoadCurrentLeaguePlayersOfDay(currentLeague.Id, Arg.Any<int>()).Returns(x => null);
+            var leagueWarPlayers = new List<LeagueAttack>();
             for (int i = 1; i <= numberOfSetupDays; i++)
             {
-                var leagueWarPlayer = new LeaguePlayer();
+                var leagueWarPlayer = new LeagueAttack { WarriorId = 1, LeagueId = 1 };
                 leagueWarPlayers.Add(leagueWarPlayer);
-                _leagueWarPlayerDal.LoadCurrentLeaguePlayersOfDay(currentLeague.Id, i).Returns(x => new List<LeaguePlayer> { leagueWarPlayer });
+                _leagueAttackDal.LoadCurrentLeaguePlayersOfDay(currentLeague.Id, i).Returns(x => new List<LeagueAttack> { leagueWarPlayer });
             }
 
             var league = _leagueManagement.LoadCurrentLeague(clanId);
@@ -141,7 +173,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             {
                 for (int i = numberOfSetupDays + 1; i <= 7; i++)
                 {
-                    _leagueWarPlayerDal.Received(1).LoadCurrentLeaguePlayersOfDay(currentLeague.Id, i);
+                    _leagueAttackDal.Received(1).LoadCurrentLeaguePlayersOfDay(currentLeague.Id, i);
                     Check.That(league.PlayersPerDay[i]).IsNotNull();
                     Check.That(league.PlayersPerDay[i]).HasSize(0);
                 }

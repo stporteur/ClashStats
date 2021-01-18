@@ -27,7 +27,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
         [SetUp]
         public void Setup()
         {
-            var scoreOptionsLoader = Substitute.For<IScoreOptionsLoader>();
+            var scoreOptionsLoader = Substitute.For<IScoreOptionsManagement>();
 
             _warriors = new List<Warrior>
             {
@@ -72,8 +72,8 @@ namespace ClashBusiness.Tests.RewardManagementTests
             _warriorScoreOptions.SeniorityPoints = new List<SeniorityBonus>
             {
                 new SeniorityBonus { MinimumMonth = 0, MaximumMonth = 1, Bonus = 50 },
-                new SeniorityBonus{MinimumMonth = 1, MaximumMonth = 6, Bonus = 100 },
-                new SeniorityBonus{MinimumMonth = 6, MaximumMonth = 50000, Bonus = 150 },
+                new SeniorityBonus { MinimumMonth = 1, MaximumMonth = 6, Bonus = 100 },
+                new SeniorityBonus { MinimumMonth = 6, MaximumMonth = 50000, Bonus = 150 },
             };
 
             _clanWarDal = Substitute.For<IWarDal>();

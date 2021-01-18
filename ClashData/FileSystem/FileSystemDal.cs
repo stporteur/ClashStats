@@ -24,7 +24,7 @@ namespace ClashData.FileSystem
 
         public void WriteTextFile(string filename, string text)
         {
-            File.WriteAllText(filename, "v0.0");
+            File.WriteAllText(filename, text);
         }
 
         public string ReadTextFile(string filename)

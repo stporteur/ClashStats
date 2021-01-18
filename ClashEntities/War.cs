@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Dapper.Contrib.Extensions;
+using System;
 using System.Collections.Generic;
 
 namespace ClashEntities
 {
+    [Table("Wars")]
     public class War : IDatabaseEntity
     {
         public int Id { get; set; }

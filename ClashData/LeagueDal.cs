@@ -22,7 +22,7 @@ namespace ClashData
 
         public League LoadCurrentLeague(int clanId)
         {
-            throw new NotImplementedException();
+            return _iSQLiteManagement.Get<League>($"SELECT * FROM Leagues WHERE ClanId = {clanId} ORDER BY LeagueDate DESC LIMIT 1");
         }
     }
 }

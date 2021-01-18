@@ -1,7 +1,8 @@
-﻿namespace ClashData
+﻿using ClashData.DataEntities;
+
+namespace ClashData
 {
-    public interface IScoreOptionsDal
+    public interface IScoreOptionsDal : ICrudActions<ScoreOption>
     {
-        T LoadOptions<T>();
     }
 }

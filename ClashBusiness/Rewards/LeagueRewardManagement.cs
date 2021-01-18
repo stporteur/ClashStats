@@ -11,9 +11,9 @@ namespace ClashBusiness.Rewards
 {
     public class LeagueRewardManagement : IScoreRewardManagement
     {
-        private readonly IScoreOptionsLoader _scoreOptionsLoader;
+        private readonly IScoreOptionsManagement _scoreOptionsLoader;
 
-        public LeagueRewardManagement(IScoreOptionsLoader scoreOptionsLoader)
+        public LeagueRewardManagement(IScoreOptionsManagement scoreOptionsLoader)
         {
             _scoreOptionsLoader = scoreOptionsLoader;
         }

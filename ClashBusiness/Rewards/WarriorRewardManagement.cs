@@ -11,13 +11,13 @@ namespace ClashBusiness.Rewards
 {
     public class WarriorRewardManagement : IScoreRewardManagement
     {
-        private readonly IScoreOptionsLoader _scoreOptionsLoader;
+        private readonly IScoreOptionsManagement _scoreOptionsLoader;
         private readonly ILeagueDal _leagueWarDal;
         private readonly IWarDal _clanWarDal;
         private readonly IGameDal _gameDal;
         private readonly IGameWarriorDal _gameWarriorDal;
 
-        public WarriorRewardManagement(IScoreOptionsLoader scoreOptionsLoader, ILeagueDal leagueWarDal, IWarDal clanWarDal, IGameWarriorDal gameWarriorDal, IGameDal gameDal)
+        public WarriorRewardManagement(IScoreOptionsManagement scoreOptionsLoader, ILeagueDal leagueWarDal, IWarDal clanWarDal, IGameWarriorDal gameWarriorDal, IGameDal gameDal)
         {
             _leagueWarDal = leagueWarDal;
             _clanWarDal = clanWarDal;

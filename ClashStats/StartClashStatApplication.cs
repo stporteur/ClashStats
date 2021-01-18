@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using ClashBusiness;
+using ClashBusiness.Storage;
+using System.Windows.Forms;
 
 namespace ClashStats
 {
@@ -6,9 +8,10 @@ namespace ClashStats
     {
         public Form StartApplication()
         {
-            
+            var storageManagement = AutofacFactory.Instance.GetInstance<IStorageManagement>();
+            storageManagement.InitializeStorage();
 
-            return new Simulation.SimulationMainForm();
+            return new MainForm();
         }
     }
 }

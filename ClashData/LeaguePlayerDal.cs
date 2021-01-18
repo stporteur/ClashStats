@@ -2,6 +2,7 @@
 using ClashEntities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ClashData
 {
@@ -13,12 +14,7 @@ namespace ClashData
 
         public List<Warrior> LoadCurrentLeaguePlayers(int leagueId)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<LeaguePlayer> LoadCurrentLeaguePlayersOfDay(int leagueId, int day)
-        {
-            throw new NotImplementedException();
+            return _iSQLiteManagement.GetAll<Warrior>($"SELECT W.* FROM Warriors W INNER JOIN LeaguePlayers LP ON W.Id = LP.WarriorId WHERE LP.LeagueId = {leagueId}").ToList();
         }
     }
 }

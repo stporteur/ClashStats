@@ -1,5 +1,8 @@
-﻿namespace ClashEntities
+﻿using Dapper.Contrib.Extensions;
+
+namespace ClashEntities
 {
+    [Table("GameWarriors")]
     public class GameWarrior : IDatabaseEntity
     {
         public int Id { get; set; }

@@ -14,7 +14,6 @@ namespace ClashBusiness.Tests.Storage
         private StorageManagement _storageManagement;
         private ISQLiteManagement _sqliteManagement;
         private IFileSystemDal _fileSystemDal;
-        private IApplicationSettingDal _applicationSettingDal;
 
         [SetUp]
         public void Setup()
@@ -26,9 +25,7 @@ namespace ClashBusiness.Tests.Storage
             _fileSystemDal.GetCurrentDirectory().Returns(@"C:\dummyFolder");
             _fileSystemDal.GetSubDirectories(@"C:\dummyFolder\SQLite").Returns(new List<string>());
 
-            _applicationSettingDal = Substitute.For<IApplicationSettingDal>();
-
-            _applicationSettingDal.LoadSettings().Returns(new List<ApplicationSetting>
+            _sqliteManagement.GetDatabaseSettings().Returns(new List<ApplicationSetting>
             {
                 new ApplicationSetting { SettingName = "DatabaseFolder", SettingValue = @"C:\ClashStatDatabase" },
                 new ApplicationSetting { SettingName = "DatabaseFile", SettingValue = "ClashStat.db" },
@@ -36,28 +33,14 @@ namespace ClashBusiness.Tests.Storage
                 new ApplicationSetting { SettingName = "DatabaseScriptsFile", SettingValue = "Scripts.txt" }
             });
 
-            _storageManagement = new StorageManagement(_sqliteManagement, _fileSystemDal, _applicationSettingDal);
+            _storageManagement = new StorageManagement(_sqliteManagement, _fileSystemDal);
         }
 
         [Test]
         public void Should_load_application_settings_only_once_when_initializing_storage()
         {
             _storageManagement.InitializeStorage();
-            _applicationSettingDal.Received(1).LoadSettings();
-        }
-
-        [Test]
-        public void Should_create_storage_folder_when_initializing_storage_for_first_time()
-        {
-            _storageManagement.InitializeStorage();
-            _fileSystemDal.Received(1).CreateFolder(@"C:\ClashStatDatabase");
-        }
-
-        [Test]
-        public void Should_create_database_file_when_initializing_storage_for_first_time()
-        {
-            _storageManagement.InitializeStorage();
-            _sqliteManagement.Received(1).CreateDatabase(@"C:\ClashStatDatabase\ClashStat.db");
+            _sqliteManagement.Received(1).GetDatabaseSettings();
         }
 
         [Test]
@@ -103,7 +86,7 @@ namespace ClashBusiness.Tests.Storage
 
             _storageManagement.InitializeStorage();
 
-            _sqliteManagement.Received(1).InitializeDatabaseAccess(@"C:\ClashStatDatabase\ClashStat.db");
+            _sqliteManagement.Received(1).InitializeDatabaseAccess();
         }
 
         [Test]
@@ -114,7 +97,7 @@ namespace ClashBusiness.Tests.Storage
 
             _storageManagement.InitializeStorage();
 
-            _sqliteManagement.DidNotReceive().InitializeDatabaseAccess(@"C:\ClashStatDatabase\ClashStat.db");
+            _sqliteManagement.DidNotReceive().InitializeDatabaseAccess();
         }
 
         [Test]

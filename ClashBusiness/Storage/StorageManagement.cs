@@ -13,29 +13,27 @@ namespace ClashBusiness.Storage
     {
         private readonly ISQLiteManagement _sqliteManagement;
         private readonly IFileSystemDal _fileSystemDal;
-        private readonly IApplicationSettingDal _applicationSettingDal;
 
         private List<ApplicationSetting> _applicationSettings;
 
-        public StorageManagement(ISQLiteManagement sqliteManagement, IFileSystemDal fileSystemDal, IApplicationSettingDal applicationSettingDal)
+        public StorageManagement(ISQLiteManagement sqliteManagement, IFileSystemDal fileSystemDal)
         {
             _sqliteManagement = sqliteManagement;
             _fileSystemDal = fileSystemDal;
-            _applicationSettingDal = applicationSettingDal;
         }
 
         public void InitializeStorage()
         {
             if (!DoesDatabaseExist())
             {
-                CreateDatabase();
+                //CreateDatabase();
                 CreateDatabaseVersion();
             }
 
             var databaseVersionsToUpdate = GetDatabaseVersionsToUpdate();
             if (databaseVersionsToUpdate.Count > 0)
             {
-                _sqliteManagement.InitializeDatabaseAccess(GetDatabaseFile());
+                _sqliteManagement.InitializeDatabaseAccess();
 
                 foreach (var dbVersion in databaseVersionsToUpdate)
                 {
@@ -48,7 +46,7 @@ namespace ClashBusiness.Storage
         {
             if (_applicationSettings == null)
             {
-                _applicationSettings = _applicationSettingDal.LoadSettings();
+                _applicationSettings = _sqliteManagement.GetDatabaseSettings();
             }
         }
 
@@ -60,13 +58,13 @@ namespace ClashBusiness.Storage
 
         private bool DoesDatabaseExist()
         {
-            return _fileSystemDal.DoesFileExist(GetDatabaseFile());
+            return _fileSystemDal.DoesFileExist(GetDatabaseVersionFile());
         }
 
         private void CreateDatabase()
         {
             _fileSystemDal.CreateFolder(GetAppSetting("DatabaseFolder"));
-            _sqliteManagement.CreateDatabase(GetDatabaseFile());
+            _sqliteManagement.CreateDatabase();
         }
 
         private void CreateDatabaseVersion()
@@ -77,11 +75,6 @@ namespace ClashBusiness.Storage
         private string GetCurrentDatabaseVersion()
         {
             return _fileSystemDal.ReadTextFile(GetDatabaseVersionFile());
-        }
-
-        private string GetDatabaseFile()
-        {
-            return Path.Combine(GetAppSetting("DatabaseFolder"), GetAppSetting("DatabaseFile"));
         }
 
         private string GetDatabaseVersionFile()

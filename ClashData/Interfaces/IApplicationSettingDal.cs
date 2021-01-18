@@ -5,6 +5,5 @@ namespace ClashData
 {
     public interface IApplicationSettingDal : ICrudActions<ApplicationSetting>
     {
-        List<ApplicationSetting> LoadSettings();
     }
 }

@@ -66,10 +66,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationManagement.cs" />
     <Compile Include="AutofacFactory.cs" />
+    <Compile Include="IApplicationManagement.cs" />
+    <Compile Include="ILeagueManagement.cs" />
+    <Compile Include="IWarriorManagement.cs" />
+    <Compile Include="WarriorManagement.cs" />
     <Compile Include="Exceptions\UnkownClanException.cs" />
+    <Compile Include="IClanManagement.cs" />
     <Compile Include="LeagueManagement.cs" />
     <Compile Include="Storage\IStorageManagement.cs" />
+    <Compile Include="ClanManagement.cs" />
     <Compile Include="WarManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rewards\IScoreRewardManagement.cs" />
@@ -77,8 +84,8 @@
     <Compile Include="Rewards\WarriorRewardManagement.cs" />
     <Compile Include="Rewards\LeagueRewardManagement.cs" />
     <Compile Include="Rewards\RewardManagement.cs" />
-    <Compile Include="ScoreOptions\IScoreOptionsLoader.cs" />
-    <Compile Include="ScoreOptions\ScoreOptionsLoader.cs" />
+    <Compile Include="ScoreOptions\IScoreOptionsManagement.cs" />
+    <Compile Include="ScoreOptions\ScoreOptionsManagement.cs" />
     <Compile Include="Storage\StorageManagement.cs" />
   </ItemGroup>
   <ItemGroup>

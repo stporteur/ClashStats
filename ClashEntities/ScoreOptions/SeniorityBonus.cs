@@ -1,7 +1,11 @@
-﻿namespace ClashEntities.ScoreOptions
+﻿using Dapper.Contrib.Extensions;
+
+namespace ClashEntities.ScoreOptions
 {
-    public class SeniorityBonus
+    [Table("SeniorityScoreOptions")]
+    public class SeniorityBonus : IDatabaseEntity
     {
+        public int Id { get; set; }
         public int MinimumMonth { get; set; }
         public int MaximumMonth { get; set; }
         public int Bonus { get; set; }

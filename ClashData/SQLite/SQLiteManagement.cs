@@ -1,18 +1,45 @@
-﻿using Dapper;
+﻿using ClashEntities;
+using Dapper;
 using Dapper.Contrib.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 
 namespace ClashData.SQLite
 {
-    public class SQLiteManagement : ISQLiteManagement
+    public class SQLiteManagement : ISQLiteManagement, IDisposable
     {
-        private SQLiteConnection _sqliteConnection;
+        private bool _isDisposed;
 
-        public void InitializeDatabaseAccess(string fileName)
+        private SQLiteConnection _sqliteConnection;
+        private List<ApplicationSetting> _databaseSettings;
+
+        public SQLiteManagement()
         {
-            _sqliteConnection = new SQLiteConnection($"URI=file:{fileName}");
+            InitializeDatabaseAccess();
+        }
+
+        public List<ApplicationSetting> GetDatabaseSettings()
+        {
+            return new List<ApplicationSetting>
+            {
+                new ApplicationSetting { SettingName = "DatabaseFolder", SettingValue = @"C:\ClashStatDatabase" },
+                new ApplicationSetting { SettingName = "DatabaseFile", SettingValue = "ClashStat.db" },
+                new ApplicationSetting { SettingName = "DatabaseVersionFile", SettingValue = "ClashStatVersion.txt" },
+                new ApplicationSetting { SettingName = "DatabaseScriptsFile", SettingValue = "Scripts.txt" }
+            };
+        }
+
+        public string GetDatabaseFile()
+        {
+            return Path.Combine(GetAppSetting("DatabaseFolder"), GetAppSetting("DatabaseFile"));
+        }
+
+        public void InitializeDatabaseAccess()
+        {
+            _sqliteConnection = new SQLiteConnection($"URI=file:{GetDatabaseFile()}");
             _sqliteConnection.Open();
         }
 
@@ -21,9 +48,9 @@ namespace ClashData.SQLite
             _sqliteConnection.Close();
         }
 
-        public void CreateDatabase(string fileName)
+        public void CreateDatabase()
         {
-            SQLiteConnection.CreateFile(fileName);
+            SQLiteConnection.CreateFile(GetDatabaseFile());
         }
 
         public int ExecuteNonQueryScript(string sqlCommand)
@@ -65,6 +92,43 @@ namespace ClashData.SQLite
         public bool Delete<T>(T item) where T : class
         {
             return _sqliteConnection.Delete(item);
+        }
+
+        private void InitializeApplicationSettings()
+        {
+            if (_databaseSettings == null)
+            {
+                _databaseSettings = GetDatabaseSettings();
+            }
+        }
+
+        private string GetAppSetting(string settingName)
+        {
+            InitializeApplicationSettings();
+            return _databaseSettings.Single(x => x.SettingName == settingName).SettingValue;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (_isDisposed) return;
+
+            if (disposing)
+            {
+                CloseConnection();
+            }
+
+            _isDisposed = true;
+        }
+
+        ~SQLiteManagement()
+        {
+            Dispose(false);
         }
     }
 }

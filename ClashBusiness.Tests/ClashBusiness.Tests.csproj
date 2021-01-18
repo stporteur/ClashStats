@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LeagueManagementTests\LoadingTests.cs" />
+    <Compile Include="LeagueManagementTests\SavingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RewardManagementTests\LeagueRewardTests.cs" />
     <Compile Include="RewardManagementTests\RewardTests.cs" />

@@ -1,0 +1,6 @@
+﻿CREATE TABLE IF NOT EXISTS TownHallLevelScoreOptions (
+	Id INTEGER PRIMARY KEY,
+	TownHallLevel INTEGER NOT NULL,
+	Maturity INTEGER NOT NULL,
+	Bonus INTEGER NOT NULL
+)

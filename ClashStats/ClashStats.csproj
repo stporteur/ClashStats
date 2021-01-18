@@ -95,12 +95,75 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomControls\ComboboxEnum\KeyValueTriplet.cs" />
+    <Compile Include="CustomControls\DataGridViewDateTimePicker\DataGridViewDateTimePickerColumn.cs" />
     <Compile Include="CustomControls\DataGridViewNumericUpDown\DataGridViewNumericUpDownCell.cs" />
     <Compile Include="CustomControls\DataGridViewNumericUpDown\DataGridViewNumericUpDownColumn.cs" />
     <Compile Include="CustomControls\DataGridViewNumericUpDown\DataGridViewNumericUpDownEditingControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomControls\ComboboxEnum\EnumHelper.cs" />
     <Compile Include="CustomControls\Tools\User32\User32.cs" />
+    <Compile Include="LetsPlay\ClanSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LetsPlay\ClanSelectionForm.Designer.cs">
+      <DependentUpon>ClanSelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LetsPlay\CurrentLeagueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LetsPlay\CurrentLeagueControl.Designer.cs">
+      <DependentUpon>CurrentLeagueControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LetsPlay\StartLeagueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LetsPlay\StartLeagueControl.Designer.cs">
+      <DependentUpon>StartLeagueControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LetsPlay\WarriorSelectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LetsPlay\WarriorSelectionForm.Designer.cs">
+      <DependentUpon>WarriorSelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Organization\ClansControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Organization\ClansControl.Designer.cs">
+      <DependentUpon>ClansControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Organization\WarriorsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Organization\WarriorsControl.Designer.cs">
+      <DependentUpon>WarriorsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScoreOptionControls\LeagueScoreOptionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ScoreOptionControls\LeagueScoreOptionControl.Designer.cs">
+      <DependentUpon>LeagueScoreOptionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScoreOptionControls\WarriorScoreOptionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ScoreOptionControls\WarriorScoreOptionControl.Designer.cs">
+      <DependentUpon>WarriorScoreOptionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectScriptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectScriptForm.Designer.cs">
+      <DependentUpon>SelectScriptForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Simulation\ScoreDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,11 +176,11 @@
     <Compile Include="Simulation\SeniorityParameters.Designer.cs">
       <DependentUpon>SeniorityParameters.cs</DependentUpon>
     </Compile>
-    <Compile Include="Simulation\SimulationHelp.cs">
+    <Compile Include="HelpForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Simulation\SimulationHelp.Designer.cs">
-      <DependentUpon>SimulationHelp.cs</DependentUpon>
+    <Compile Include="HelpForm.Designer.cs">
+      <DependentUpon>HelpForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Simulation\SimulationMainForm.cs">
       <SubType>Form</SubType>
@@ -135,14 +198,44 @@
       <DependentUpon>TownhallLevelParameters.cs</DependentUpon>
     </Compile>
     <Compile Include="StartClashStatApplication.cs" />
+    <EmbeddedResource Include="LetsPlay\ClanSelectionForm.resx">
+      <DependentUpon>ClanSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LetsPlay\CurrentLeagueControl.resx">
+      <DependentUpon>CurrentLeagueControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LetsPlay\StartLeagueControl.resx">
+      <DependentUpon>StartLeagueControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LetsPlay\WarriorSelectionForm.resx">
+      <DependentUpon>WarriorSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Organization\ClansControl.resx">
+      <DependentUpon>ClansControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Organization\WarriorsControl.resx">
+      <DependentUpon>WarriorsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScoreOptionControls\LeagueScoreOptionControl.resx">
+      <DependentUpon>LeagueScoreOptionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ScoreOptionControls\WarriorScoreOptionControl.resx">
+      <DependentUpon>WarriorScoreOptionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectScriptForm.resx">
+      <DependentUpon>SelectScriptForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Simulation\ScoreDetails.resx">
       <DependentUpon>ScoreDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Simulation\SeniorityParameters.resx">
       <DependentUpon>SeniorityParameters.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Simulation\SimulationHelp.resx">
-      <DependentUpon>SimulationHelp.cs</DependentUpon>
+    <EmbeddedResource Include="HelpForm.resx">
+      <DependentUpon>HelpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Simulation\SimulationMainForm.resx">
       <DependentUpon>SimulationMainForm.cs</DependentUpon>
@@ -155,23 +248,35 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Simulation\TownhallLevelParameters.resx">
       <DependentUpon>TownhallLevelParameters.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\ClashEntities.ClanWar.datasource" />
-    <None Include="Properties\DataSources\ClashEntities.ClanWarAttack.datasource" />
-    <None Include="Properties\DataSources\ClashEntities.ClanWarPlayer.datasource" />
-    <None Include="Properties\DataSources\ClashEntities.LeagueWar.datasource" />
-    <None Include="Properties\DataSources\ClashEntities.LeagueWarAttack.datasource" />
-    <None Include="Properties\DataSources\ClashEntities.LeagueWarPlayer.datasource" />
-    <None Include="Properties\DataSources\ClashEntities.Reward.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.AbstractAttack.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.ApplicationSetting.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.Clan.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.Game.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.GameWarrior.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.IDatabaseEntity.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.League.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.LeagueAttack.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.LeaguePlayer.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.Rewards.AbstractReward.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.Rewards.IAbstractReward.datasource" />
     <None Include="Properties\DataSources\ClashEntities.Rewards.LeagueReward.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.Rewards.Reward.datasource" />
     <None Include="Properties\DataSources\ClashEntities.Rewards.WarriorReward.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.ScoreOptions.IScoreOptions.datasource" />
     <None Include="Properties\DataSources\ClashEntities.ScoreOptions.LeagueScoreOptions.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.ScoreOptions.SeniorityBonus.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.ScoreOptions.TownHallMaturityBonus.datasource" />
     <None Include="Properties\DataSources\ClashEntities.ScoreOptions.WarriorScoreOptions.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.ScoreOptions.WarScoreOptions.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.War.datasource" />
     <None Include="Properties\DataSources\ClashEntities.WarAttack.datasource" />
+    <None Include="Properties\DataSources\ClashEntities.WarPlayer.datasource" />
     <None Include="Properties\DataSources\ClashEntities.Warrior.datasource" />
     <None Include="Properties\DataSources\ClashStats.Simulation.SimulationWarrior.datasource" />
     <None Include="Properties\Settings.settings">
@@ -183,7 +288,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Save_16x.png" />
+    <None Include="Resources\Cancel_16x.png" />
+    <None Include="Resources\Close_16x.png" />
+    <None Include="Resources\Help-icon.png" />
+    <None Include="Resources\help.ico" />
+    <None Include="Resources\help.png" />
     <Content Include="Simulation\SimulationHelp.rtf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ScoreOptionControls\ScoreHelp.rtf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

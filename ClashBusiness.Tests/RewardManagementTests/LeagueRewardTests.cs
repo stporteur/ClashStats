@@ -21,7 +21,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
         [SetUp]
         public void Setup()
         {
-            var scoreOptionsLoader = Substitute.For<IScoreOptionsLoader>();
+            var scoreOptionsLoader = Substitute.For<IScoreOptionsManagement>();
 
             _rewardManagement = new LeagueRewardManagement(scoreOptionsLoader);
 
@@ -39,10 +39,10 @@ namespace ClashBusiness.Tests.RewardManagementTests
                 new Warrior { Id = 103, Name = "Warrior 4", Hash = "Warrior4", ArrivalDate = _league.LeagueDate, Clan = _league.Clan, TownHallLevel = 13, TownHallLevelMaturity = TownHallLevelMaturities.Max }
             };
 
-            _league.PlayersPerDay = new Dictionary<int, List<LeaguePlayer>>();
+            _league.PlayersPerDay = new Dictionary<int, List<LeagueAttack>>();
             for (int leagueDay = 1; leagueDay <= 7; leagueDay++)
             {
-                _league.PlayersPerDay.Add(leagueDay, new List<LeaguePlayer>());
+                _league.PlayersPerDay.Add(leagueDay, new List<LeagueAttack>());
 
                 for (int playerNumber = 0; playerNumber < _league.Players.Count; playerNumber++)
                 {
@@ -75,7 +75,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
         private void AddPlayerToDay(int leagueDay, int playerNumber)
         {
-            _league.PlayersPerDay[leagueDay].Add(new LeaguePlayer
+            _league.PlayersPerDay[leagueDay].Add(new LeagueAttack
             {
                 LeagueId = _league.Id,
                 WarriorId = _league.Players[playerNumber].Id,

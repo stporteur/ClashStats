@@ -1,10 +1,6 @@
-﻿using ClashBusiness;
-using ClashBusiness.Rewards;
+﻿using ClashBusiness.Rewards;
 using ClashBusiness.ScoreOptions;
-using ClashBusiness.Storage;
 using ClashData;
-using ClashData.FileSystem;
-using ClashData.SQLite;
 using ClashEntities;
 using ClashEntities.Rewards;
 using ClashEntities.ScoreOptions;
@@ -28,7 +24,7 @@ namespace ClashStats.Simulation
 
         private LeagueScoreOptions _leagueOptions;
         private WarriorScoreOptions _warriorOptions;
-        private IScoreOptionsLoader _scoreOptionsLoader;
+        private IScoreOptionsManagement _scoreOptionsLoader;
 
         private List<IScoreRewardManagement> _scoreRewardManagements;
 
@@ -54,17 +50,13 @@ namespace ClashStats.Simulation
 
         private void SimulationMainForm_Load(object sender, EventArgs e)
         {
-            var storageManagement = AutofacFactory.Instance.GetInstance<IStorageManagement>();
-            //var storageManagement = new StorageManagement(new SQLiteManagement(), new FileSystemDal(), new ApplicationSettingDal());
-            storageManagement.InitializeStorage();
-
             InitializeClan();
-            InitializeRealWarriors();
-            InitializeRealLeague();
+            InitializeWarriors();
+            InitializeLeague();
             InitializeLeagueOptions();
             InitializeWarriorOptions();
 
-            _scoreOptionsLoader = Substitute.For<IScoreOptionsLoader>();
+            _scoreOptionsLoader = Substitute.For<IScoreOptionsManagement>();
             _scoreOptionsLoader.LoadLeagueScoreOptions().Returns(_leagueOptions);
             _scoreOptionsLoader.LoadWarriorScoreOptions().Returns(_warriorOptions);
 
@@ -195,31 +187,6 @@ namespace ClashStats.Simulation
             warriorBindingSource.DataSource = _warriors;
         }
 
-        private void InitializeRealWarriors()
-        {
-            _warriors = new List<SimulationWarrior>();
-
-            _warriors.Add(GetWarrior(/*  0 */ "Boum DubFire", 13, TownHallLevelMaturities.Intermediate, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/*  1 */ "St Porteur", 13, TownHallLevelMaturities.Max, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/*  2 */ "willow", 13, TownHallLevelMaturities.Max, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/*  3 */ "GrandSchtroumpf", 13, TownHallLevelMaturities.Intermediate, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/*  4 */ "Pascal", 13, TownHallLevelMaturities.Intermediate, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/*  5 */ "mimi83", 13, TownHallLevelMaturities.Max, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/*  6 */ "xavierh", 13, TownHallLevelMaturities.Intermediate, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/*  7 */ "Nigian", 13, TownHallLevelMaturities.Intermediate, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/*  8 */ "Géant Vert", 13, TownHallLevelMaturities.Intermediate, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/*  9 */ "frodo001", 13, TownHallLevelMaturities.Intermediate, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/* 10 */ "Djobidjoba", 13, TownHallLevelMaturities.Beginning, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/* 11 */ "Cirdec", 13, TownHallLevelMaturities.Intermediate, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/* 12 */ "spartacus", 13, TownHallLevelMaturities.Beginning, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/* 13 */ "Yakiller", 13, TownHallLevelMaturities.Max, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/* 14 */ "8willow8", 13, TownHallLevelMaturities.Intermediate, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/* 15 */ "Manu Le Barbu", 13, TownHallLevelMaturities.Beginning, DateTime.Today.AddDays(-5)));
-            _warriors.Add(GetWarrior(/* 16 */ "Matheo", 13, TownHallLevelMaturities.Max, DateTime.Today.AddDays(-5)));
-            
-            warriorBindingSource.DataSource = _warriors;
-        }
-
         private SimulationWarrior GetWarrior(string name, int thLevel, TownHallLevelMaturities thMaturity, DateTime arrivalDate)
         {
             var today = DateTime.Today;
@@ -245,7 +212,7 @@ namespace ClashStats.Simulation
             _leagueWar = new League();
             _leagueWar.Players = _warriors.Cast<Warrior>().ToList();
 
-            _leagueWar.PlayersPerDay = new Dictionary<int, List<LeaguePlayer>>();
+            _leagueWar.PlayersPerDay = new Dictionary<int, List<LeagueAttack>>();
 
             AddLeagueDay(1, new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 });
             dayOneBindingSource.DataSource = _leagueWar.PlayersPerDay[1];
@@ -283,70 +250,19 @@ namespace ClashStats.Simulation
             ResetLeagueGridLayout(daySevenDataGridView);
         }
 
-        private void InitializeRealLeague()
-        {
-            _leagueWar = new League();
-            _leagueWar.Players = _warriors.Cast<Warrior>().ToList();
-
-            _leagueWar.PlayersPerDay = new Dictionary<int, List<LeaguePlayer>>();
-
-            AddLeagueDay(1, new List<int> { 2, 16, 1, 13, 5, 14, 9, 3, 0, 6, 8, 4, 11, 12, 7});
-            SetLeagueStars(1, new List<int> { 2, 1, 2, 1, 2, 1, 2, 2, 3, 3, 1, 1, 2, 1, 2 });
-            dayOneBindingSource.DataSource = _leagueWar.PlayersPerDay[1];
-            dayOneBindingSource.ResetBindings(false);
-            ResetLeagueGridLayout(dayOneDataGridView);
-
-            AddLeagueDay(2, new List<int> { 2, 16, 1, 13, 5, 14, 9, 3, 0, 6, 10, 8, 4, 12, 7 });
-            SetLeagueStars(2, new List<int> { 2, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 2, 3, 2, 1 });
-            dayTwoBindingSource.DataSource = _leagueWar.PlayersPerDay[2];
-            dayTwoBindingSource.ResetBindings(false);
-            ResetLeagueGridLayout(dayTwoDataGridView);
-
-            AddLeagueDay(3, new List<int> { 2, 1, 13, 5, 14, 9, 3, 0, 6, 10, 8, 4, 11, 15, 7 });
-            SetLeagueStars(3, new List<int> { 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2 });
-            dayThreeBindingSource.DataSource = _leagueWar.PlayersPerDay[3];
-            dayThreeBindingSource.ResetBindings(false);
-            ResetLeagueGridLayout(dayThreeDataGridView);
-
-            AddLeagueDay(4, new List<int> { 2, 13, 1, 5, 14, 9, 3, 0, 6, 10, 4, 11, 15, 12, 7 });
-            SetLeagueStars(4, new List<int> { 2, 2, 3, 2, 2, 1, 3, 2, 1, 1, 2, 2, 2, 3, 2 });
-            dayFourBindingSource.DataSource = _leagueWar.PlayersPerDay[4];
-            dayFourBindingSource.ResetBindings(false);
-            ResetLeagueGridLayout(dayFourDataGridView);
-
-            AddLeagueDay(5, new List<int> { 2, 1, 5, 14, 9, 3, 0, 6, 10, 8, 4, 11, 15, 12, 7 });
-            SetLeagueStars(5, new List<int> { 2, 3, 2, 2, 2, 3, 2, 1, 2, 2, 2, 2, 1, 2, 2 });
-            dayFiveBindingSource.DataSource = _leagueWar.PlayersPerDay[5];
-            dayFiveBindingSource.ResetBindings(false);
-            ResetLeagueGridLayout(dayFiveDataGridView);
-
-            AddLeagueDay(6, new List<int> { 2, 13, 1, 5, 9, 3, 0, 6, 10, 8, 4, 11, 15, 12, 7 });
-            SetLeagueStars(6, new List<int> { 2, 2, 2, 2, 2, 2, 2, 3, 1, 3, 2, 2, 2, 1, 2 });
-            daySixBindingSource.DataSource = _leagueWar.PlayersPerDay[6];
-            daySixBindingSource.ResetBindings(false);
-            ResetLeagueGridLayout(daySixDataGridView);
-
-            AddLeagueDay(7, new List<int> { 2, 13, 1, 5, 14, 9, 3, 0, 10, 8, 4, 11, 15, 12, 7 });
-            SetLeagueStars(7, new List<int> { 2, 2, 2, 1, 2, 0, 1, 3, 3, 2, 3, 2, 1, 2, 2 });
-            _leagueWar.PlayersPerDay[7][5].AttackDone = false;
-            daySevenBindingSource.DataSource = _leagueWar.PlayersPerDay[7];
-            daySevenBindingSource.ResetBindings(false);
-            ResetLeagueGridLayout(daySevenDataGridView);
-        }
-
         private void AddLeagueDay(int day, List<int> players)
         {
-            _leagueWar.PlayersPerDay.Add(day, new List<LeaguePlayer>());
+            _leagueWar.PlayersPerDay.Add(day, new List<LeagueAttack>());
             foreach (var playerIndex in players)
             {
                 AddPlayerToDay(_leagueWar.PlayersPerDay[day], _warriors[playerIndex], 2, _warriors[playerIndex].TownHallLevel, true, true, true);
             }
         }
 
-        private void AddPlayerToDay(List<LeaguePlayer> leagueDay, Warrior warrior, int stars, int attackedThLevel, bool attackDone,
+        private void AddPlayerToDay(List<LeagueAttack> leagueDay, Warrior warrior, int stars, int attackedThLevel, bool attackDone,
             bool hasFollowedStrategy, bool isCoherentAttack)
         {
-            var dayPlayer = new LeaguePlayer();
+            var dayPlayer = new LeagueAttack();
             dayPlayer.Warrior = warrior;
             dayPlayer.WarriorId = warrior.Id;
             dayPlayer.Position = leagueDay.Count + 1;
@@ -617,8 +533,9 @@ namespace ClashStats.Simulation
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            using (var form = new SimulationHelp())
+            using (var form = new HelpForm())
             {
+                form.LoadHelp("Simulation/SimulationHelp.rtf");
                 form.ShowDialog();
             }
         }

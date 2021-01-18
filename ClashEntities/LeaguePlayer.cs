@@ -1,10 +1,15 @@
-﻿namespace ClashEntities
+﻿using Dapper.Contrib.Extensions;
+
+namespace ClashEntities
 {
-    public class LeaguePlayer : LeagueAttack, IDatabaseEntity
+    [Table("LeaguePlayers")]
+    public class LeaguePlayer : IDatabaseEntity
     {
+        public int Id { get; set; }
         public int WarriorId { get; set; }
-        public string WarriorName { get { return Warrior.Name; } }
-        public Warrior Warrior { get; set; }
-        public int Position { get; set; }
+        [Write(false)] public string WarriorName { get { return Warrior.Name; } }
+        [Write(false)] public Warrior Warrior { get; set; }
+
+        public int LeagueId { get; set; }
     }
 }
