@@ -13,6 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClashData", "ClashData\Clas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClashBusiness.Tests", "ClashBusiness.Tests\ClashBusiness.Tests.csproj", "{76853502-F1F4-4633-B504-9C94F5D6D9FB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InitializationScripts", "InitializationScripts", "{5EB26569-3900-4AD7-B93B-833AA1D24FC5}"
+	ProjectSection(SolutionItems) = preProject
+		InitializationScripts\ClashOfAdulteInit.sql = InitializationScripts\ClashOfAdulteInit.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
