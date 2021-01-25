@@ -251,52 +251,55 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SQLite\v1.0\ApplicationSettings.sql">
+    <Content Include="SQLite\v0.4\ApplicationSettings.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\InitializeScoreOptions.sql">
+    <Content Include="SQLite\v0.4\ClashOfAdulteInit.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\TownHallLevelScoreOptions.sql">
+    <Content Include="SQLite\v0.4\InitializeScoreOptions.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\SeniorityScoreOptions.sql">
+    <Content Include="SQLite\v0.4\TownHallLevelScoreOptions.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\ScoreOptions.sql">
+    <Content Include="SQLite\v0.4\SeniorityScoreOptions.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\Clans.sql">
+    <Content Include="SQLite\v0.4\ScoreOptions.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\WarAttacks.sql">
+    <Content Include="SQLite\v0.4\Clans.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\WarPlayers.sql">
+    <Content Include="SQLite\v0.4\WarAttacks.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\LeagueAttacks.sql">
+    <Content Include="SQLite\v0.4\WarPlayers.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\GamePlayers.sql">
+    <Content Include="SQLite\v0.4\LeagueAttacks.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\LeaguePlayers.sql">
+    <Content Include="SQLite\v0.4\GamePlayers.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\Games.sql">
+    <Content Include="SQLite\v0.4\LeaguePlayers.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\Wars.sql">
+    <Content Include="SQLite\v0.4\Games.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\Scripts.txt">
+    <Content Include="SQLite\v0.4\Wars.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\Leagues.sql">
+    <Content Include="SQLite\v0.4\Scripts.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v1.0\Warriors.sql">
+    <Content Include="SQLite\v0.4\Leagues.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLite\v0.4\Warriors.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

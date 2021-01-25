@@ -1,7 +1,9 @@
 ﻿using ClashBusiness;
 using ClashEntities;
 using ClashStats.CustomControls.ComboboxEnum;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -9,6 +11,7 @@ namespace ClashStats.Organization
 {
     public partial class WarriorsControl : UserControl
     {
+        private IApplicationManagement _applicationManagement;
         private IWarriorManagement _warriorManagement;
         private List<Warrior> _deletedWarriors;
 
@@ -24,6 +27,7 @@ namespace ClashStats.Organization
             clanBindingSource.DataSource = clans;
 
             _warriorManagement = AutofacFactory.Instance.GetInstance<IWarriorManagement>();
+            _applicationManagement = AutofacFactory.Instance.GetInstance<IApplicationManagement>();
             _deletedWarriors = new List<Warrior>();
         }
 
@@ -69,6 +73,26 @@ namespace ClashStats.Organization
         private void WarriorsControl_Load(object sender, System.EventArgs e)
         {
             warriorBindingSource.DataSource = _warriorManagement.GetWarriors();
+        }
+
+        private void warriorDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var warrior = warriorDataGridView.CurrentRow.DataBoundItem as Warrior;
+            if (e.ColumnIndex == ClashOfStatsLink.Index)
+            {
+                OpenLink("ClashOfStatsPlayerLink", warrior);
+            }
+            else if (e.ColumnIndex == ClashSpotLink.Index)
+            {
+                OpenLink("ClashSpotPlayerLink", warrior);
+            }
+        }
+
+        private void OpenLink(string appSettingKey, Warrior warrior)
+        {
+            var url = _applicationManagement.GetApplicationSetting(appSettingKey);
+            url = string.Format(url, warrior.Hash.Replace("#", ""));
+            Process.Start(url);
         }
     }
 }

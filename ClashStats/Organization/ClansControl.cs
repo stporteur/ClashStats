@@ -3,6 +3,7 @@ using ClashEntities;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -10,6 +11,7 @@ namespace ClashStats.Organization
 {
     public partial class ClansControl : UserControl
     {
+        private IApplicationManagement _applicationManagement;
         private IClanManagement _clanManagement;
         private List<Clan> _deletedClans;
 
@@ -17,6 +19,7 @@ namespace ClashStats.Organization
         {
             InitializeComponent();
             _clanManagement = AutofacFactory.Instance.GetInstance<IClanManagement>();
+            _applicationManagement = AutofacFactory.Instance.GetInstance<IApplicationManagement>();
             _deletedClans = new List<Clan>();
         }
 
@@ -62,6 +65,26 @@ namespace ClashStats.Organization
                 }
                 clanBindingSource.Remove(clan);
             }
+        }
+
+        private void clanDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var clan = clanDataGridView.CurrentRow.DataBoundItem as Clan;
+            if (e.ColumnIndex == ClashOfStatsLink.Index)
+            {
+                OpenLink("ClashOfStatsClanLink", clan);
+            }
+            else if (e.ColumnIndex == ClashSpotLink.Index)
+            {
+                OpenLink("ClashSpotClanLink", clan);
+            }
+        }
+
+        private void OpenLink(string appSettingKey, Clan clan)
+        {
+            var url = _applicationManagement.GetApplicationSetting(appSettingKey);
+            url = string.Format(url, clan.Hash.Replace("#", ""));
+            Process.Start(url);
         }
     }
 }
