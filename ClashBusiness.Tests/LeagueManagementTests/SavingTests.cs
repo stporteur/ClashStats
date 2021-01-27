@@ -74,6 +74,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
         {
             var league = new League
             {
+                Players = new List<Warrior>(),
                 PlayersPerDay = new Dictionary<int, List<LeagueAttack>>
                 {
                     { 1, new List<LeagueAttack>() },
@@ -85,6 +86,8 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack>() }
                 }
             };
+
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             _leagueDal.Received(1).Update(league);
@@ -95,6 +98,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
         {
             var league = new League
             {
+                Players = new List<Warrior>(),
                 PlayersPerDay = new Dictionary<int, List<LeagueAttack>>
                 {
                     { 1, new List<LeagueAttack>() },
@@ -106,6 +110,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack>() }
                 }
             };
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             _leagueAttackDal.Received(1).DeleteCurrentLeaguePlayers(league.Id);
@@ -117,6 +122,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             var leagueAttack = new LeagueAttack();
             var league = new League
             {
+                Players = new List<Warrior>(),
                 PlayersPerDay = new Dictionary<int, List<LeagueAttack>>
                 {
                     { 1, new List<LeagueAttack> { leagueAttack } },
@@ -128,6 +134,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack>() }
                 }
             };
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             _leagueAttackDal.Received(1).Insert(leagueAttack);
@@ -142,6 +149,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             var leagueAttack4 = new LeagueAttack();
             var league = new League
             {
+                Players = new List<Warrior>(),
                 PlayersPerDay = new Dictionary<int, List<LeagueAttack>>
                 {
                     { 1, new List<LeagueAttack> { leagueAttack1, leagueAttack2, leagueAttack3, leagueAttack4 } },
@@ -153,6 +161,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack>() }
                 }
             };
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             _leagueAttackDal.Received(1).Insert(leagueAttack1);
@@ -173,6 +182,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             var leagueAttack7 = new LeagueAttack();
             var league = new League
             {
+                Players = new List<Warrior>(),
                 PlayersPerDay = new Dictionary<int, List<LeagueAttack>>
                 {
                     { 1, new List<LeagueAttack> { leagueAttack1 } },
@@ -184,6 +194,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack> { leagueAttack7 } }
                 }
             };
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             _leagueAttackDal.Received(1).Insert(leagueAttack1);
@@ -214,6 +225,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             var leagueAttack14 = new LeagueAttack();
             var league = new League
             {
+                Players = new List<Warrior>(),
                 PlayersPerDay = new Dictionary<int, List<LeagueAttack>>
                 {
                     { 1, new List<LeagueAttack> { leagueAttack1, leagueAttack8 } },
@@ -225,6 +237,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack> { leagueAttack7, leagueAttack14 } }
                 }
             };
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             _leagueAttackDal.Received(1).Insert(leagueAttack1);
@@ -252,6 +265,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             var leagueAttack4 = new LeagueAttack();
             var league = new League
             {
+                Players = new List<Warrior>(),
                 PlayersPerDay = new Dictionary<int, List<LeagueAttack>>
                 {
                     { 1, new List<LeagueAttack> { leagueAttack1, leagueAttack2, leagueAttack3, leagueAttack4 } },
@@ -263,6 +277,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack>() }
                 }
             };
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             Check.That(leagueAttack1.Position).IsEqualTo(1);
@@ -287,6 +302,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
 
             var league = new League
             {
+                Players = new List<Warrior>(),
                 PlayersPerDay = new Dictionary<int, List<LeagueAttack>>
                 {
                     { 1, new List<LeagueAttack> { leagueAttack1, leagueAttack2, leagueAttack3, leagueAttack4 } },
@@ -298,6 +314,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack>() }
                 }
             };
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             Check.That(leagueAttack1.Position).IsEqualTo(1);
@@ -309,6 +326,103 @@ namespace ClashBusiness.Tests.LeagueManagementTests
             Check.That(leagueAttack6.Position).IsEqualTo(2);
             Check.That(leagueAttack7.Position).IsEqualTo(3);
             Check.That(leagueAttack8.Position).IsEqualTo(4);
+        }
+
+        [Test]
+        public void Should_assign_new_player_to_league_in_database_when_updating_league()
+        {
+            var league = new League
+            {
+                Id = 1, 
+                Players = new List<Warrior>
+                {
+                    new Warrior { Id = 1},
+                    new Warrior { Id = 2}
+                },
+                PlayersPerDay = new Dictionary<int, List<LeagueAttack>>
+                {
+                    { 1, new List<LeagueAttack>() },
+                    { 2, new List<LeagueAttack>() },
+                    { 3, new List<LeagueAttack>() },
+                    { 4, new List<LeagueAttack>() },
+                    { 5, new List<LeagueAttack>() },
+                    { 6, new List<LeagueAttack>() },
+                    { 7, new List<LeagueAttack>() }
+                }
+            };
+
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>
+                {
+                    new Warrior { Id = 1}
+                });
+            _leagueManagement.UpdateLeague(league);
+
+            _leaguePlayerDal.Received(1).Insert(Arg.Is<LeaguePlayer>(x => x.WarriorId == 2 && x.LeagueId == 1));
+        }
+
+        [Test]
+        public void Should_assign_new_players_to_league_in_database_when_updating_league()
+        {
+            var league = new League
+            {
+                Id = 1,
+                Players = new List<Warrior>
+                {
+                    new Warrior { Id = 1},
+                    new Warrior { Id = 2},
+                    new Warrior { Id = 3}
+                },
+                PlayersPerDay = new Dictionary<int, List<LeagueAttack>>
+                {
+                    { 1, new List<LeagueAttack>() },
+                    { 2, new List<LeagueAttack>() },
+                    { 3, new List<LeagueAttack>() },
+                    { 4, new List<LeagueAttack>() },
+                    { 5, new List<LeagueAttack>() },
+                    { 6, new List<LeagueAttack>() },
+                    { 7, new List<LeagueAttack>() }
+                }
+            };
+
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>
+                {
+                    new Warrior { Id = 1}
+                });
+            _leagueManagement.UpdateLeague(league);
+
+            _leaguePlayerDal.Received(1).Insert(Arg.Is<LeaguePlayer>(x => x.WarriorId == 2 && x.LeagueId == 1));
+            _leaguePlayerDal.Received(1).Insert(Arg.Is<LeaguePlayer>(x => x.WarriorId == 3 && x.LeagueId == 1));
+        }
+
+        [Test]
+        public void Should_not_assign_existing_player_to_league_in_database_when_updating_league()
+        {
+            var league = new League
+            {
+                Id = 1,
+                Players = new List<Warrior>
+                {
+                    new Warrior { Id = 1}
+                },
+                PlayersPerDay = new Dictionary<int, List<LeagueAttack>>
+                {
+                    { 1, new List<LeagueAttack>() },
+                    { 2, new List<LeagueAttack>() },
+                    { 3, new List<LeagueAttack>() },
+                    { 4, new List<LeagueAttack>() },
+                    { 5, new List<LeagueAttack>() },
+                    { 6, new List<LeagueAttack>() },
+                    { 7, new List<LeagueAttack>() }
+                }
+            };
+
+            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>
+                {
+                    new Warrior { Id = 1}
+                });
+            _leagueManagement.UpdateLeague(league);
+
+            _leaguePlayerDal.DidNotReceive().Insert(Arg.Any<LeaguePlayer>());
         }
     }
 }

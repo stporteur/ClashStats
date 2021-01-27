@@ -65,31 +65,6 @@ namespace ClashBusiness
             return league;
         }
 
-        private void FillWarriorClan(Warrior warrior)
-        {
-            var loadedClan = _loadedClans.SingleOrDefault(x => x.Id == warrior.ClanId);
-            if(loadedClan == null)
-            {
-                loadedClan = _clanDal.Get(warrior.ClanId);
-                _loadedClans.Add(loadedClan);
-            }
-
-            warrior.Clan = loadedClan;
-        }
-
-        private void FillWarrior(LeagueAttack attack)
-        {
-            var loadedWarrior = _loadedWarriors.SingleOrDefault(x => x.Id == attack.WarriorId);
-            if (loadedWarrior == null)
-            {
-                loadedWarrior = _warriorDal.Get(attack.WarriorId);
-                _loadedWarriors.Add(loadedWarrior);
-            }
-
-            attack.Warrior = loadedWarrior;
-            FillWarriorClan(attack.Warrior);
-        }
-
         public bool RegisterNewLeague(League newLeague)
         {
             var result = true;
@@ -114,6 +89,20 @@ namespace ClashBusiness
         {
             var result = _leagueDal.Update(league);
 
+            var registeredWarriorsId = _leaguePlayerDal.LoadCurrentLeaguePlayers(league.Id).Select(x => x.Id);
+            var unregisteredWarriors = league.Players.Where(x => !registeredWarriorsId.Contains(x.Id)).ToList();
+            foreach (var player in unregisteredWarriors)
+            {
+                var leaguePlayer = new LeaguePlayer
+                {
+                    LeagueId = league.Id,
+                    WarriorId = player.Id
+                };
+                _leaguePlayerDal.Insert(leaguePlayer);
+                result &= leaguePlayer.Id > 0;
+            }
+
+
             _leagueAttackDal.DeleteCurrentLeaguePlayers(league.Id);
             for (int i = 1; i <= 7; i++)
             {
@@ -130,5 +119,44 @@ namespace ClashBusiness
 
             return result;
         }
+
+        public List<Warrior> GetUnregisteredWarriors(List<Warrior> registeredWarriors)
+        {
+            if (_loadedClans == null) _loadedClans = new List<Clan>();
+
+            var allWarriors = _warriorDal.GetAll();
+            var registeredWarriorsId = registeredWarriors.Select(x => x.Id).ToList();
+            var unregisteredWarriors = allWarriors.Where(x => !registeredWarriorsId.Contains(x.Id)).ToList();
+            unregisteredWarriors.ForEach(FillWarriorClan);
+            return unregisteredWarriors;
+
+        }
+
+        private void FillWarriorClan(Warrior warrior)
+        {
+            var loadedClan = _loadedClans.SingleOrDefault(x => x.Id == warrior.ClanId);
+            if (loadedClan == null)
+            {
+                loadedClan = _clanDal.Get(warrior.ClanId);
+                _loadedClans.Add(loadedClan);
+            }
+
+            warrior.Clan = loadedClan;
+        }
+
+        private void FillWarrior(LeagueAttack attack)
+        {
+            var loadedWarrior = _loadedWarriors.SingleOrDefault(x => x.Id == attack.WarriorId);
+            if (loadedWarrior == null)
+            {
+                loadedWarrior = _warriorDal.Get(attack.WarriorId);
+                _loadedWarriors.Add(loadedWarrior);
+            }
+
+            attack.Warrior = loadedWarrior;
+            FillWarriorClan(attack.Warrior);
+        }
+
+
     }
 }

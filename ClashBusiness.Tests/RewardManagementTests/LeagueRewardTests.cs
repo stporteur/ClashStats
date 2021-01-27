@@ -261,6 +261,22 @@ namespace ClashBusiness.Tests.RewardManagementTests
         }
 
         [Test]
+        public void Should_not_score_reward_on_incoherent_attack_when_attack_is_not_done()
+        {
+            _options.ScoreIncoherentAttack = true;
+            _options.ScoreNoAttackDone = false;
+
+            _league.PlayersPerDay[1][0].Stars = 0;
+            _league.PlayersPerDay[1][0].IsCoherentAttack = false;
+            _league.PlayersPerDay[1][0].AttackDone = false;
+
+            var rewards = _rewardManagement.ComputeLeagueScore(_league);
+
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
+            Check.That(reward.Score).IsEqualTo(0);
+        }
+
+        [Test]
         public void Should_score_reward_on_incoherent_attack_when_all_days_are_over()
         {
             _options.ScoreIncoherentAttack = true;
@@ -303,6 +319,22 @@ namespace ClashBusiness.Tests.RewardManagementTests
 
             var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
             Check.That(reward.Score).IsEqualTo(-10);
+        }
+
+        [Test]
+        public void Should_not_score_reward_on_not_followed_strategy_when_attack_is_not_done()
+        {
+            _options.ScoreNotFollowedStrategy = true;
+            _options.ScoreNoAttackDone = false;
+
+            _league.PlayersPerDay[1][0].Stars = 0;
+            _league.PlayersPerDay[1][0].HasFollowedStrategy = false;
+            _league.PlayersPerDay[1][0].AttackDone = false;
+
+            var rewards = _rewardManagement.ComputeLeagueScore(_league);
+
+            var reward = rewards.Single(x => x.Warrior.Id == _league.PlayersPerDay[1][0].WarriorId);
+            Check.That(reward.Score).IsEqualTo(0);
         }
 
         [Test]

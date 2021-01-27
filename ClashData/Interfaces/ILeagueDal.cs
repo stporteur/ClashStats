@@ -1,12 +1,13 @@
 ﻿using ClashEntities;
 using System;
+using System.Collections.Generic;
 
 namespace ClashData
 {
     public interface ILeagueDal : ICrudActions<League>
     {
         League LoadCurrentLeague(int clanId);
-        int GetLeaguesCount(DateTime from);
+        List<League> GetLeagues(DateTime from, List<int> clanIds);
         int GetLeaguesCount(int warriorId);
     }
 }

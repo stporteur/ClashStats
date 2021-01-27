@@ -257,7 +257,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // gameParticipationPointsNumericUpDown
             // 
-            this.gameParticipationPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "GameParticipationPoints", true));
+            this.gameParticipationPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "GameParticipationPoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.gameParticipationPointsNumericUpDown.Location = new System.Drawing.Point(355, 120);
             this.gameParticipationPointsNumericUpDown.Name = "gameParticipationPointsNumericUpDown";
             this.gameParticipationPointsNumericUpDown.Size = new System.Drawing.Size(65, 20);
@@ -265,7 +265,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // leagueParticipationPointsNumericUpDown
             // 
-            this.leagueParticipationPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "LeagueParticipationPoints", true));
+            this.leagueParticipationPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "LeagueParticipationPoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.leagueParticipationPointsNumericUpDown.Location = new System.Drawing.Point(355, 307);
             this.leagueParticipationPointsNumericUpDown.Name = "leagueParticipationPointsNumericUpDown";
             this.leagueParticipationPointsNumericUpDown.Size = new System.Drawing.Size(65, 20);
@@ -273,7 +273,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // minimumGamePointsNumericUpDown
             // 
-            this.minimumGamePointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "MinimumGamePoints", true));
+            this.minimumGamePointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "MinimumGamePoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.minimumGamePointsNumericUpDown.Location = new System.Drawing.Point(355, 226);
             this.minimumGamePointsNumericUpDown.Name = "minimumGamePointsNumericUpDown";
             this.minimumGamePointsNumericUpDown.Size = new System.Drawing.Size(65, 20);
@@ -281,7 +281,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // minimumGamePointsThresholdNumericUpDown
             // 
-            this.minimumGamePointsThresholdNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "MinimumGamePointsThreshold", true));
+            this.minimumGamePointsThresholdNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "MinimumGamePointsThreshold", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.minimumGamePointsThresholdNumericUpDown.Location = new System.Drawing.Point(355, 200);
             this.minimumGamePointsThresholdNumericUpDown.Name = "minimumGamePointsThresholdNumericUpDown";
             this.minimumGamePointsThresholdNumericUpDown.Size = new System.Drawing.Size(65, 20);
@@ -289,7 +289,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreGameParticipationCheckBox
             // 
-            this.scoreGameParticipationCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreGameParticipation", true));
+            this.scoreGameParticipationCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreGameParticipation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreGameParticipationCheckBox.Location = new System.Drawing.Point(355, 90);
             this.scoreGameParticipationCheckBox.Name = "scoreGameParticipationCheckBox";
             this.scoreGameParticipationCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -298,7 +298,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreLeagueParticipationCheckBox
             // 
-            this.scoreLeagueParticipationCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreLeagueParticipation", true));
+            this.scoreLeagueParticipationCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreLeagueParticipation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreLeagueParticipationCheckBox.Location = new System.Drawing.Point(355, 277);
             this.scoreLeagueParticipationCheckBox.Name = "scoreLeagueParticipationCheckBox";
             this.scoreLeagueParticipationCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -307,7 +307,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreMinimumGamePointsCheckBox
             // 
-            this.scoreMinimumGamePointsCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreMinimumGamePoints", true));
+            this.scoreMinimumGamePointsCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreMinimumGamePoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreMinimumGamePointsCheckBox.Location = new System.Drawing.Point(355, 170);
             this.scoreMinimumGamePointsCheckBox.Name = "scoreMinimumGamePointsCheckBox";
             this.scoreMinimumGamePointsCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -316,7 +316,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreSeniorityCheckBox
             // 
-            this.scoreSeniorityCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreSeniority", true));
+            this.scoreSeniorityCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreSeniority", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreSeniorityCheckBox.Location = new System.Drawing.Point(355, 422);
             this.scoreSeniorityCheckBox.Name = "scoreSeniorityCheckBox";
             this.scoreSeniorityCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -325,7 +325,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreTownHallLevelCheckBox
             // 
-            this.scoreTownHallLevelCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreTownHallLevel", true));
+            this.scoreTownHallLevelCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreTownHallLevel", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreTownHallLevelCheckBox.Location = new System.Drawing.Point(945, 90);
             this.scoreTownHallLevelCheckBox.Name = "scoreTownHallLevelCheckBox";
             this.scoreTownHallLevelCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -334,7 +334,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreWarParticipationCheckBox
             // 
-            this.scoreWarParticipationCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreWarParticipation", true));
+            this.scoreWarParticipationCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreWarParticipation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreWarParticipationCheckBox.Location = new System.Drawing.Point(355, 354);
             this.scoreWarParticipationCheckBox.Name = "scoreWarParticipationCheckBox";
             this.scoreWarParticipationCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -343,7 +343,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // warParticipationPointsNumericUpDown
             // 
-            this.warParticipationPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "WarParticipationPoints", true));
+            this.warParticipationPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "WarParticipationPoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.warParticipationPointsNumericUpDown.Location = new System.Drawing.Point(355, 384);
             this.warParticipationPointsNumericUpDown.Name = "warParticipationPointsNumericUpDown";
             this.warParticipationPointsNumericUpDown.Size = new System.Drawing.Size(65, 20);

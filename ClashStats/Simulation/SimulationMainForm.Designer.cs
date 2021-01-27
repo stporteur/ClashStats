@@ -82,10 +82,6 @@ namespace ClashStats.Simulation
             this.leagueParticipationPointsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.scoreLeagueParticipationCheckBox = new System.Windows.Forms.CheckBox();
             this.rewardDataGridView = new System.Windows.Forms.DataGridView();
-            this.DetailsColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.scoreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warrioNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rewardBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPageLeague = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
@@ -94,36 +90,71 @@ namespace ClashStats.Simulation
             this.dayOneDataGridView = new System.Windows.Forms.DataGridView();
             this.Position = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.leagueIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dayOneBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dayTwoDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.leagueIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dayTwoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dayThreeDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorIdDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorNameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.leagueIdDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dayThreeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.dayFourDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorIdDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorNameDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.leagueIdDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dayFourBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.dayFiveDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorIdDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorNameDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorDataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.leagueIdDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dayFiveBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.daySixDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorIdDataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorNameDataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorDataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.leagueIdDataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.daySixBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.daySevenDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorIdDataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorNameDataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.warriorDataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.leagueIdDataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.daySevenBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPageWars = new System.Windows.Forms.TabPage();
             this.tabPageGames = new System.Windows.Forms.TabPage();
@@ -152,41 +183,9 @@ namespace ClashStats.Simulation
             this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn30 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn31 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.leagueIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.leagueIdDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorIdDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorNameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.leagueIdDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorIdDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorNameDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.leagueIdDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorIdDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorNameDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorDataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.leagueIdDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorIdDataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorNameDataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorDataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.leagueIdDataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorIdDataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorNameDataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.warriorDataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.leagueIdDataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailsColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.scoreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WarriorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             higherTownHallAttackMinimumStarsLabel = new System.Windows.Forms.Label();
             higherTownHallAttackPointsLabel = new System.Windows.Forms.Label();
             noAttackDonePointsLabel = new System.Windows.Forms.Label();
@@ -798,8 +797,7 @@ namespace ClashStats.Simulation
             this.rewardDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DetailsColumn,
             this.scoreDataGridViewTextBoxColumn,
-            this.warrioNameDataGridViewTextBoxColumn,
-            this.warriorDataGridViewTextBoxColumn});
+            this.WarriorName});
             this.rewardDataGridView.DataSource = this.rewardBindingSource;
             this.rewardDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rewardDataGridView.Location = new System.Drawing.Point(0, 0);
@@ -808,41 +806,6 @@ namespace ClashStats.Simulation
             this.rewardDataGridView.Size = new System.Drawing.Size(691, 692);
             this.rewardDataGridView.TabIndex = 0;
             this.rewardDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.rewardDataGridView_CellContentClick);
-            // 
-            // DetailsColumn
-            // 
-            this.DetailsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DetailsColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.DetailsColumn.HeaderText = "Détails";
-            this.DetailsColumn.Name = "DetailsColumn";
-            this.DetailsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DetailsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.DetailsColumn.Text = "...";
-            this.DetailsColumn.UseColumnTextForButtonValue = true;
-            this.DetailsColumn.Width = 64;
-            // 
-            // scoreDataGridViewTextBoxColumn
-            // 
-            this.scoreDataGridViewTextBoxColumn.DataPropertyName = "Score";
-            this.scoreDataGridViewTextBoxColumn.HeaderText = "Score";
-            this.scoreDataGridViewTextBoxColumn.Name = "scoreDataGridViewTextBoxColumn";
-            // 
-            // warrioNameDataGridViewTextBoxColumn
-            // 
-            this.warrioNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.warrioNameDataGridViewTextBoxColumn.DataPropertyName = "WarrioName";
-            this.warrioNameDataGridViewTextBoxColumn.HeaderText = "Guerrier";
-            this.warrioNameDataGridViewTextBoxColumn.Name = "warrioNameDataGridViewTextBoxColumn";
-            this.warrioNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // warriorDataGridViewTextBoxColumn
-            // 
-            this.warriorDataGridViewTextBoxColumn.DataPropertyName = "Warrior";
-            this.warriorDataGridViewTextBoxColumn.HeaderText = "Warrior";
-            this.warriorDataGridViewTextBoxColumn.Name = "warriorDataGridViewTextBoxColumn";
-            this.warriorDataGridViewTextBoxColumn.Visible = false;
             // 
             // rewardBindingSource
             // 
@@ -935,6 +898,37 @@ namespace ClashStats.Simulation
             this.playerNameColumn.Name = "playerNameColumn";
             this.playerNameColumn.ReadOnly = true;
             // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            // 
+            // warriorIdDataGridViewTextBoxColumn
+            // 
+            this.warriorIdDataGridViewTextBoxColumn.DataPropertyName = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn.HeaderText = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn.Name = "warriorIdDataGridViewTextBoxColumn";
+            // 
+            // warriorNameDataGridViewTextBoxColumn
+            // 
+            this.warriorNameDataGridViewTextBoxColumn.DataPropertyName = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn.HeaderText = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn.Name = "warriorNameDataGridViewTextBoxColumn";
+            this.warriorNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // warriorDataGridViewTextBoxColumn1
+            // 
+            this.warriorDataGridViewTextBoxColumn1.DataPropertyName = "Warrior";
+            this.warriorDataGridViewTextBoxColumn1.HeaderText = "Warrior";
+            this.warriorDataGridViewTextBoxColumn1.Name = "warriorDataGridViewTextBoxColumn1";
+            // 
+            // leagueIdDataGridViewTextBoxColumn
+            // 
+            this.leagueIdDataGridViewTextBoxColumn.DataPropertyName = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn.HeaderText = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn.Name = "leagueIdDataGridViewTextBoxColumn";
+            // 
             // dayOneBindingSource
             // 
             this.dayOneBindingSource.AllowNew = false;
@@ -988,6 +982,37 @@ namespace ClashStats.Simulation
             this.dataGridViewTextBoxColumn3.ReadOnly = true;
             this.dataGridViewTextBoxColumn3.Visible = false;
             // 
+            // idDataGridViewTextBoxColumn2
+            // 
+            this.idDataGridViewTextBoxColumn2.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn2.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
+            // 
+            // warriorIdDataGridViewTextBoxColumn1
+            // 
+            this.warriorIdDataGridViewTextBoxColumn1.DataPropertyName = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn1.HeaderText = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn1.Name = "warriorIdDataGridViewTextBoxColumn1";
+            // 
+            // warriorNameDataGridViewTextBoxColumn1
+            // 
+            this.warriorNameDataGridViewTextBoxColumn1.DataPropertyName = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn1.HeaderText = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn1.Name = "warriorNameDataGridViewTextBoxColumn1";
+            this.warriorNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // warriorDataGridViewTextBoxColumn2
+            // 
+            this.warriorDataGridViewTextBoxColumn2.DataPropertyName = "Warrior";
+            this.warriorDataGridViewTextBoxColumn2.HeaderText = "Warrior";
+            this.warriorDataGridViewTextBoxColumn2.Name = "warriorDataGridViewTextBoxColumn2";
+            // 
+            // leagueIdDataGridViewTextBoxColumn1
+            // 
+            this.leagueIdDataGridViewTextBoxColumn1.DataPropertyName = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn1.HeaderText = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn1.Name = "leagueIdDataGridViewTextBoxColumn1";
+            // 
             // dayTwoBindingSource
             // 
             this.dayTwoBindingSource.AllowNew = false;
@@ -1038,6 +1063,37 @@ namespace ClashStats.Simulation
             this.dataGridViewTextBoxColumn7.DataPropertyName = "Position";
             this.dataGridViewTextBoxColumn7.HeaderText = "Position";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // idDataGridViewTextBoxColumn3
+            // 
+            this.idDataGridViewTextBoxColumn3.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn3.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
+            // 
+            // warriorIdDataGridViewTextBoxColumn2
+            // 
+            this.warriorIdDataGridViewTextBoxColumn2.DataPropertyName = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn2.HeaderText = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn2.Name = "warriorIdDataGridViewTextBoxColumn2";
+            // 
+            // warriorNameDataGridViewTextBoxColumn2
+            // 
+            this.warriorNameDataGridViewTextBoxColumn2.DataPropertyName = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn2.HeaderText = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn2.Name = "warriorNameDataGridViewTextBoxColumn2";
+            this.warriorNameDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // warriorDataGridViewTextBoxColumn3
+            // 
+            this.warriorDataGridViewTextBoxColumn3.DataPropertyName = "Warrior";
+            this.warriorDataGridViewTextBoxColumn3.HeaderText = "Warrior";
+            this.warriorDataGridViewTextBoxColumn3.Name = "warriorDataGridViewTextBoxColumn3";
+            // 
+            // leagueIdDataGridViewTextBoxColumn2
+            // 
+            this.leagueIdDataGridViewTextBoxColumn2.DataPropertyName = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn2.HeaderText = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn2.Name = "leagueIdDataGridViewTextBoxColumn2";
             // 
             // dayThreeBindingSource
             // 
@@ -1094,6 +1150,37 @@ namespace ClashStats.Simulation
             this.dataGridViewTextBoxColumn11.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn11.Visible = false;
             // 
+            // idDataGridViewTextBoxColumn4
+            // 
+            this.idDataGridViewTextBoxColumn4.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn4.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn4.Name = "idDataGridViewTextBoxColumn4";
+            // 
+            // warriorIdDataGridViewTextBoxColumn3
+            // 
+            this.warriorIdDataGridViewTextBoxColumn3.DataPropertyName = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn3.HeaderText = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn3.Name = "warriorIdDataGridViewTextBoxColumn3";
+            // 
+            // warriorNameDataGridViewTextBoxColumn3
+            // 
+            this.warriorNameDataGridViewTextBoxColumn3.DataPropertyName = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn3.HeaderText = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn3.Name = "warriorNameDataGridViewTextBoxColumn3";
+            this.warriorNameDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // warriorDataGridViewTextBoxColumn4
+            // 
+            this.warriorDataGridViewTextBoxColumn4.DataPropertyName = "Warrior";
+            this.warriorDataGridViewTextBoxColumn4.HeaderText = "Warrior";
+            this.warriorDataGridViewTextBoxColumn4.Name = "warriorDataGridViewTextBoxColumn4";
+            // 
+            // leagueIdDataGridViewTextBoxColumn3
+            // 
+            this.leagueIdDataGridViewTextBoxColumn3.DataPropertyName = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn3.HeaderText = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn3.Name = "leagueIdDataGridViewTextBoxColumn3";
+            // 
             // dayFourBindingSource
             // 
             this.dayFourBindingSource.AllowNew = false;
@@ -1147,6 +1234,37 @@ namespace ClashStats.Simulation
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             this.dataGridViewTextBoxColumn15.ReadOnly = true;
             this.dataGridViewTextBoxColumn15.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // idDataGridViewTextBoxColumn5
+            // 
+            this.idDataGridViewTextBoxColumn5.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn5.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn5.Name = "idDataGridViewTextBoxColumn5";
+            // 
+            // warriorIdDataGridViewTextBoxColumn4
+            // 
+            this.warriorIdDataGridViewTextBoxColumn4.DataPropertyName = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn4.HeaderText = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn4.Name = "warriorIdDataGridViewTextBoxColumn4";
+            // 
+            // warriorNameDataGridViewTextBoxColumn4
+            // 
+            this.warriorNameDataGridViewTextBoxColumn4.DataPropertyName = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn4.HeaderText = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn4.Name = "warriorNameDataGridViewTextBoxColumn4";
+            this.warriorNameDataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // warriorDataGridViewTextBoxColumn5
+            // 
+            this.warriorDataGridViewTextBoxColumn5.DataPropertyName = "Warrior";
+            this.warriorDataGridViewTextBoxColumn5.HeaderText = "Warrior";
+            this.warriorDataGridViewTextBoxColumn5.Name = "warriorDataGridViewTextBoxColumn5";
+            // 
+            // leagueIdDataGridViewTextBoxColumn4
+            // 
+            this.leagueIdDataGridViewTextBoxColumn4.DataPropertyName = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn4.HeaderText = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn4.Name = "leagueIdDataGridViewTextBoxColumn4";
             // 
             // dayFiveBindingSource
             // 
@@ -1203,6 +1321,37 @@ namespace ClashStats.Simulation
             this.dataGridViewTextBoxColumn19.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn19.Visible = false;
             // 
+            // idDataGridViewTextBoxColumn6
+            // 
+            this.idDataGridViewTextBoxColumn6.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn6.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn6.Name = "idDataGridViewTextBoxColumn6";
+            // 
+            // warriorIdDataGridViewTextBoxColumn5
+            // 
+            this.warriorIdDataGridViewTextBoxColumn5.DataPropertyName = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn5.HeaderText = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn5.Name = "warriorIdDataGridViewTextBoxColumn5";
+            // 
+            // warriorNameDataGridViewTextBoxColumn5
+            // 
+            this.warriorNameDataGridViewTextBoxColumn5.DataPropertyName = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn5.HeaderText = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn5.Name = "warriorNameDataGridViewTextBoxColumn5";
+            this.warriorNameDataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // warriorDataGridViewTextBoxColumn6
+            // 
+            this.warriorDataGridViewTextBoxColumn6.DataPropertyName = "Warrior";
+            this.warriorDataGridViewTextBoxColumn6.HeaderText = "Warrior";
+            this.warriorDataGridViewTextBoxColumn6.Name = "warriorDataGridViewTextBoxColumn6";
+            // 
+            // leagueIdDataGridViewTextBoxColumn5
+            // 
+            this.leagueIdDataGridViewTextBoxColumn5.DataPropertyName = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn5.HeaderText = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn5.Name = "leagueIdDataGridViewTextBoxColumn5";
+            // 
             // daySixBindingSource
             // 
             this.daySixBindingSource.AllowNew = false;
@@ -1256,6 +1405,37 @@ namespace ClashStats.Simulation
             this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
             this.dataGridViewTextBoxColumn23.ReadOnly = true;
             this.dataGridViewTextBoxColumn23.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // idDataGridViewTextBoxColumn7
+            // 
+            this.idDataGridViewTextBoxColumn7.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn7.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn7.Name = "idDataGridViewTextBoxColumn7";
+            // 
+            // warriorIdDataGridViewTextBoxColumn6
+            // 
+            this.warriorIdDataGridViewTextBoxColumn6.DataPropertyName = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn6.HeaderText = "WarriorId";
+            this.warriorIdDataGridViewTextBoxColumn6.Name = "warriorIdDataGridViewTextBoxColumn6";
+            // 
+            // warriorNameDataGridViewTextBoxColumn6
+            // 
+            this.warriorNameDataGridViewTextBoxColumn6.DataPropertyName = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn6.HeaderText = "WarriorName";
+            this.warriorNameDataGridViewTextBoxColumn6.Name = "warriorNameDataGridViewTextBoxColumn6";
+            this.warriorNameDataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // warriorDataGridViewTextBoxColumn7
+            // 
+            this.warriorDataGridViewTextBoxColumn7.DataPropertyName = "Warrior";
+            this.warriorDataGridViewTextBoxColumn7.HeaderText = "Warrior";
+            this.warriorDataGridViewTextBoxColumn7.Name = "warriorDataGridViewTextBoxColumn7";
+            // 
+            // leagueIdDataGridViewTextBoxColumn6
+            // 
+            this.leagueIdDataGridViewTextBoxColumn6.DataPropertyName = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn6.HeaderText = "LeagueId";
+            this.leagueIdDataGridViewTextBoxColumn6.Name = "leagueIdDataGridViewTextBoxColumn6";
             // 
             // daySevenBindingSource
             // 
@@ -1500,222 +1680,33 @@ namespace ClashStats.Simulation
             this.dataGridViewTextBoxColumn31.ReadOnly = true;
             this.dataGridViewTextBoxColumn31.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            // 
-            // warriorIdDataGridViewTextBoxColumn
-            // 
-            this.warriorIdDataGridViewTextBoxColumn.DataPropertyName = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn.HeaderText = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn.Name = "warriorIdDataGridViewTextBoxColumn";
-            // 
-            // warriorNameDataGridViewTextBoxColumn
-            // 
-            this.warriorNameDataGridViewTextBoxColumn.DataPropertyName = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn.HeaderText = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn.Name = "warriorNameDataGridViewTextBoxColumn";
-            this.warriorNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // warriorDataGridViewTextBoxColumn1
-            // 
-            this.warriorDataGridViewTextBoxColumn1.DataPropertyName = "Warrior";
-            this.warriorDataGridViewTextBoxColumn1.HeaderText = "Warrior";
-            this.warriorDataGridViewTextBoxColumn1.Name = "warriorDataGridViewTextBoxColumn1";
-            // 
-            // leagueIdDataGridViewTextBoxColumn
-            // 
-            this.leagueIdDataGridViewTextBoxColumn.DataPropertyName = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn.HeaderText = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn.Name = "leagueIdDataGridViewTextBoxColumn";
-            // 
-            // idDataGridViewTextBoxColumn2
-            // 
-            this.idDataGridViewTextBoxColumn2.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn2.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
-            // 
-            // warriorIdDataGridViewTextBoxColumn1
-            // 
-            this.warriorIdDataGridViewTextBoxColumn1.DataPropertyName = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn1.HeaderText = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn1.Name = "warriorIdDataGridViewTextBoxColumn1";
-            // 
-            // warriorNameDataGridViewTextBoxColumn1
-            // 
-            this.warriorNameDataGridViewTextBoxColumn1.DataPropertyName = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn1.HeaderText = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn1.Name = "warriorNameDataGridViewTextBoxColumn1";
-            this.warriorNameDataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // warriorDataGridViewTextBoxColumn2
-            // 
-            this.warriorDataGridViewTextBoxColumn2.DataPropertyName = "Warrior";
-            this.warriorDataGridViewTextBoxColumn2.HeaderText = "Warrior";
-            this.warriorDataGridViewTextBoxColumn2.Name = "warriorDataGridViewTextBoxColumn2";
-            // 
-            // leagueIdDataGridViewTextBoxColumn1
-            // 
-            this.leagueIdDataGridViewTextBoxColumn1.DataPropertyName = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn1.HeaderText = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn1.Name = "leagueIdDataGridViewTextBoxColumn1";
-            // 
-            // idDataGridViewTextBoxColumn3
-            // 
-            this.idDataGridViewTextBoxColumn3.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn3.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
-            // 
-            // warriorIdDataGridViewTextBoxColumn2
-            // 
-            this.warriorIdDataGridViewTextBoxColumn2.DataPropertyName = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn2.HeaderText = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn2.Name = "warriorIdDataGridViewTextBoxColumn2";
-            // 
-            // warriorNameDataGridViewTextBoxColumn2
-            // 
-            this.warriorNameDataGridViewTextBoxColumn2.DataPropertyName = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn2.HeaderText = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn2.Name = "warriorNameDataGridViewTextBoxColumn2";
-            this.warriorNameDataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // warriorDataGridViewTextBoxColumn3
-            // 
-            this.warriorDataGridViewTextBoxColumn3.DataPropertyName = "Warrior";
-            this.warriorDataGridViewTextBoxColumn3.HeaderText = "Warrior";
-            this.warriorDataGridViewTextBoxColumn3.Name = "warriorDataGridViewTextBoxColumn3";
-            // 
-            // leagueIdDataGridViewTextBoxColumn2
-            // 
-            this.leagueIdDataGridViewTextBoxColumn2.DataPropertyName = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn2.HeaderText = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn2.Name = "leagueIdDataGridViewTextBoxColumn2";
-            // 
-            // idDataGridViewTextBoxColumn4
-            // 
-            this.idDataGridViewTextBoxColumn4.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn4.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn4.Name = "idDataGridViewTextBoxColumn4";
-            // 
-            // warriorIdDataGridViewTextBoxColumn3
-            // 
-            this.warriorIdDataGridViewTextBoxColumn3.DataPropertyName = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn3.HeaderText = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn3.Name = "warriorIdDataGridViewTextBoxColumn3";
-            // 
-            // warriorNameDataGridViewTextBoxColumn3
-            // 
-            this.warriorNameDataGridViewTextBoxColumn3.DataPropertyName = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn3.HeaderText = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn3.Name = "warriorNameDataGridViewTextBoxColumn3";
-            this.warriorNameDataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // warriorDataGridViewTextBoxColumn4
-            // 
-            this.warriorDataGridViewTextBoxColumn4.DataPropertyName = "Warrior";
-            this.warriorDataGridViewTextBoxColumn4.HeaderText = "Warrior";
-            this.warriorDataGridViewTextBoxColumn4.Name = "warriorDataGridViewTextBoxColumn4";
-            // 
-            // leagueIdDataGridViewTextBoxColumn3
-            // 
-            this.leagueIdDataGridViewTextBoxColumn3.DataPropertyName = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn3.HeaderText = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn3.Name = "leagueIdDataGridViewTextBoxColumn3";
-            // 
-            // idDataGridViewTextBoxColumn5
-            // 
-            this.idDataGridViewTextBoxColumn5.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn5.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn5.Name = "idDataGridViewTextBoxColumn5";
-            // 
-            // warriorIdDataGridViewTextBoxColumn4
-            // 
-            this.warriorIdDataGridViewTextBoxColumn4.DataPropertyName = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn4.HeaderText = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn4.Name = "warriorIdDataGridViewTextBoxColumn4";
-            // 
-            // warriorNameDataGridViewTextBoxColumn4
-            // 
-            this.warriorNameDataGridViewTextBoxColumn4.DataPropertyName = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn4.HeaderText = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn4.Name = "warriorNameDataGridViewTextBoxColumn4";
-            this.warriorNameDataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // warriorDataGridViewTextBoxColumn5
-            // 
-            this.warriorDataGridViewTextBoxColumn5.DataPropertyName = "Warrior";
-            this.warriorDataGridViewTextBoxColumn5.HeaderText = "Warrior";
-            this.warriorDataGridViewTextBoxColumn5.Name = "warriorDataGridViewTextBoxColumn5";
-            // 
-            // leagueIdDataGridViewTextBoxColumn4
-            // 
-            this.leagueIdDataGridViewTextBoxColumn4.DataPropertyName = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn4.HeaderText = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn4.Name = "leagueIdDataGridViewTextBoxColumn4";
-            // 
-            // idDataGridViewTextBoxColumn6
-            // 
-            this.idDataGridViewTextBoxColumn6.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn6.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn6.Name = "idDataGridViewTextBoxColumn6";
-            // 
-            // warriorIdDataGridViewTextBoxColumn5
-            // 
-            this.warriorIdDataGridViewTextBoxColumn5.DataPropertyName = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn5.HeaderText = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn5.Name = "warriorIdDataGridViewTextBoxColumn5";
-            // 
-            // warriorNameDataGridViewTextBoxColumn5
-            // 
-            this.warriorNameDataGridViewTextBoxColumn5.DataPropertyName = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn5.HeaderText = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn5.Name = "warriorNameDataGridViewTextBoxColumn5";
-            this.warriorNameDataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // warriorDataGridViewTextBoxColumn6
-            // 
-            this.warriorDataGridViewTextBoxColumn6.DataPropertyName = "Warrior";
-            this.warriorDataGridViewTextBoxColumn6.HeaderText = "Warrior";
-            this.warriorDataGridViewTextBoxColumn6.Name = "warriorDataGridViewTextBoxColumn6";
-            // 
-            // leagueIdDataGridViewTextBoxColumn5
-            // 
-            this.leagueIdDataGridViewTextBoxColumn5.DataPropertyName = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn5.HeaderText = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn5.Name = "leagueIdDataGridViewTextBoxColumn5";
-            // 
-            // idDataGridViewTextBoxColumn7
-            // 
-            this.idDataGridViewTextBoxColumn7.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn7.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn7.Name = "idDataGridViewTextBoxColumn7";
-            // 
-            // warriorIdDataGridViewTextBoxColumn6
-            // 
-            this.warriorIdDataGridViewTextBoxColumn6.DataPropertyName = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn6.HeaderText = "WarriorId";
-            this.warriorIdDataGridViewTextBoxColumn6.Name = "warriorIdDataGridViewTextBoxColumn6";
-            // 
-            // warriorNameDataGridViewTextBoxColumn6
-            // 
-            this.warriorNameDataGridViewTextBoxColumn6.DataPropertyName = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn6.HeaderText = "WarriorName";
-            this.warriorNameDataGridViewTextBoxColumn6.Name = "warriorNameDataGridViewTextBoxColumn6";
-            this.warriorNameDataGridViewTextBoxColumn6.ReadOnly = true;
-            // 
-            // warriorDataGridViewTextBoxColumn7
-            // 
-            this.warriorDataGridViewTextBoxColumn7.DataPropertyName = "Warrior";
-            this.warriorDataGridViewTextBoxColumn7.HeaderText = "Warrior";
-            this.warriorDataGridViewTextBoxColumn7.Name = "warriorDataGridViewTextBoxColumn7";
-            // 
-            // leagueIdDataGridViewTextBoxColumn6
-            // 
-            this.leagueIdDataGridViewTextBoxColumn6.DataPropertyName = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn6.HeaderText = "LeagueId";
-            this.leagueIdDataGridViewTextBoxColumn6.Name = "leagueIdDataGridViewTextBoxColumn6";
+            // DetailsColumn
+            // 
+            this.DetailsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DetailsColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.DetailsColumn.HeaderText = "Détails";
+            this.DetailsColumn.Name = "DetailsColumn";
+            this.DetailsColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DetailsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.DetailsColumn.Text = "...";
+            this.DetailsColumn.UseColumnTextForButtonValue = true;
+            this.DetailsColumn.Width = 64;
+            // 
+            // scoreDataGridViewTextBoxColumn
+            // 
+            this.scoreDataGridViewTextBoxColumn.DataPropertyName = "Score";
+            this.scoreDataGridViewTextBoxColumn.HeaderText = "Score";
+            this.scoreDataGridViewTextBoxColumn.Name = "scoreDataGridViewTextBoxColumn";
+            // 
+            // WarriorName
+            // 
+            this.WarriorName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.WarriorName.DataPropertyName = "WarriorName";
+            this.WarriorName.HeaderText = "Guerrier";
+            this.WarriorName.Name = "WarriorName";
+            this.WarriorName.ReadOnly = true;
             // 
             // SimulationMainForm
             // 
@@ -1881,10 +1872,7 @@ namespace ClashStats.Simulation
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn29;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn30;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn31;
-        private System.Windows.Forms.DataGridViewButtonColumn DetailsColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn scoreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn warrioNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn warriorDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn5;
@@ -1979,6 +1967,9 @@ namespace ClashStats.Simulation
         private System.Windows.Forms.DataGridViewTextBoxColumn warriorNameDataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn warriorDataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn leagueIdDataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewButtonColumn DetailsColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn scoreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WarriorName;
     }
 }
 

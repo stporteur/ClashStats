@@ -58,6 +58,12 @@ namespace ClashStats.LetsPlay
             downPlayerDay6ToolStripMenuItem.Click += downPlayerDayToolStripMenuItem_Click;
             downPlayerDay7ToolStripMenuItem.Click += downPlayerDayToolStripMenuItem_Click;
 
+            copyPreviousDayToolStripMenuItem.Click += copyPreviousDayToolStripMenuItem_Click;
+            copyPreviousDayToolStripMenuItem1.Click += copyPreviousDayToolStripMenuItem_Click;
+            copyPreviousDayToolStripMenuItem2.Click += copyPreviousDayToolStripMenuItem_Click;
+            copyPreviousDayToolStripMenuItem3.Click += copyPreviousDayToolStripMenuItem_Click;
+            copyPreviousDayToolStripMenuItem4.Click += copyPreviousDayToolStripMenuItem_Click;
+            copyPreviousDayToolStripMenuItem5.Click += copyPreviousDayToolStripMenuItem_Click;
         }
 
         private void InitGrids()
@@ -73,7 +79,7 @@ namespace ClashStats.LetsPlay
                 {7, day7DataGridView }
             };
 
-            foreach(var grid in _gridsByDay.Values)
+            foreach (var grid in _gridsByDay.Values)
             {
                 grid.CellEndEdit += dataGridView_CellEndEdit;
                 grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -113,7 +119,7 @@ namespace ClashStats.LetsPlay
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            AddPlayerToDay(playersTabControl.SelectedIndex + 1);
+            AddPlayerToDay(GetCurrentDay());
         }
 
         private void AddPlayerToDay(int day)
@@ -122,7 +128,7 @@ namespace ClashStats.LetsPlay
             {
                 var warrior = playersDataGridView.SelectedRows[0].DataBoundItem as Warrior;
 
-                if(_league.PlayersPerDay[day].Count() == _league.LeagueSize)
+                if (_league.PlayersPerDay[day].Count() == _league.LeagueSize)
                 {
                     var warriors = _league.PlayersPerDay[day].Select(x => x.Warrior).ToList();
                     using (var warriorSelectionForm = new WarriorSelectionForm(warriors))
@@ -152,12 +158,12 @@ namespace ClashStats.LetsPlay
 
         private void playersTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FillAvailablePlayerList(playersTabControl.SelectedIndex + 1);
+            FillAvailablePlayerList(GetCurrentDay());
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(_leagueManagement.UpdateLeague(_league))
+            if (_leagueManagement.UpdateLeague(_league))
             {
                 MessageBox.Show("Sauvegarde réussie", "Sauvegarde", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -171,19 +177,21 @@ namespace ClashStats.LetsPlay
         private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             var dataGridView = sender as DataGridView;
-            if(dataGridView.Columns[e.ColumnIndex].DataPropertyName == "Stars")
+            if (dataGridView.Columns[e.ColumnIndex].DataPropertyName == "Stars")
             {
                 var attack = dataGridView.Rows[e.RowIndex].DataBoundItem as LeagueAttack;
-                if(attack.AttackDone == false && attack.Stars > 0)
+                if (attack.AttackDone == false && attack.Stars > 0)
                 {
                     attack.AttackDone = true;
+                    attack.HasFollowedStrategy = true;
+                    attack.IsCoherentAttack = true;
                 }
             }
         }
 
         private void upPlayerDayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var day = playersTabControl.SelectedIndex + 1;
+            var day = GetCurrentDay();
 
             if (_gridsByDay[day].SelectedRows.Count == 1)
             {
@@ -191,16 +199,23 @@ namespace ClashStats.LetsPlay
                 if (playerIndex > 0)
                 {
                     var attackToMove = _league.PlayersPerDay[day][playerIndex];
+                    _league.PlayersPerDay[day][playerIndex].Position--;
                     _league.PlayersPerDay[day].RemoveAt(playerIndex);
                     _league.PlayersPerDay[day].Insert(playerIndex - 1, attackToMove);
+                    _league.PlayersPerDay[day][playerIndex].Position++;
                     _bindingsByDay[day].ResetBindings(false);
+                    foreach (DataGridViewRow row in _gridsByDay[day].SelectedRows)
+                    {
+                        row.Selected = false;
+                    }
+                    _gridsByDay[day].Rows[playerIndex - 1].Selected = true;
                 }
             }
         }
 
         private void downPlayerDayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var day = playersTabControl.SelectedIndex + 1;
+            var day = GetCurrentDay();
 
             if (_gridsByDay[day].SelectedRows.Count == 1)
             {
@@ -208,10 +223,64 @@ namespace ClashStats.LetsPlay
                 if (playerIndex < _league.LeagueSize - 1)
                 {
                     var attackToMove = _league.PlayersPerDay[day][playerIndex];
+                    _league.PlayersPerDay[day][playerIndex].Position++;
                     _league.PlayersPerDay[day].RemoveAt(playerIndex);
                     _league.PlayersPerDay[day].Insert(playerIndex + 1, attackToMove);
+                    _league.PlayersPerDay[day][playerIndex].Position--;
                     _bindingsByDay[day].ResetBindings(false);
+                    foreach(DataGridViewRow row in _gridsByDay[day].SelectedRows)
+                    {
+                        row.Selected = false;
+                    }
+                    _gridsByDay[day].Rows[playerIndex + 1].Selected = true;
                 }
+            }
+        }
+
+        private void copyPreviousDayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var day = GetCurrentDay();
+
+            if (_gridsByDay[day].Rows.Count == 0)
+            {
+                var players = _league.PlayersPerDay[day - 1].Select(x => new LeagueAttack
+                {
+                    LeagueId = x.LeagueId,
+                    Day = day,
+                    WarriorId = x.WarriorId,
+                    Warrior = x.Warrior,
+                    Position = x.Position,
+                    CurrentThLevel = x.CurrentThLevel
+                }).ToList();
+                _league.PlayersPerDay[day].AddRange(players);
+                _bindingsByDay[day].ResetBindings(false);
+                FillAvailablePlayerList(day);
+            }
+        }
+
+        private int GetCurrentDay()
+        {
+            return playersTabControl.SelectedIndex + 1;
+        }
+
+        private void btnAddPlayer_Click(object sender, EventArgs e)
+        {
+            var unregisteredWarriors = _leagueManagement.GetUnregisteredWarriors(_league.Players);
+            using (var warriorSelectionForm = new WarriorSelectionForm(unregisteredWarriors))
+            {
+                var result = warriorSelectionForm.ShowDialog();
+                if (result == DialogResult.Cancel) return;
+
+                _league.Players.Add(warriorSelectionForm.SelectedWarrior);
+                FillAvailablePlayerList(GetCurrentDay());
+            }
+        }
+
+        private void closeLeagueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var closeLeagueForm = new RewardAndCloseLeagueForm(_league))
+            {
+                closeLeagueForm.ShowDialog();
             }
         }
     }

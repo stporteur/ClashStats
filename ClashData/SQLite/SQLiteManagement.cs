@@ -59,6 +59,17 @@ namespace ClashData.SQLite
             return command.ExecuteNonQuery();
         }
 
+        public int Count(string sqlCommand)
+        {
+            return _sqliteConnection.QuerySingle<int>(sqlCommand);
+        }
+
+        public int Count(string sqlCommand, object parameters)
+        {
+            return _sqliteConnection.QuerySingle<int>(sqlCommand, parameters);
+        }
+
+        #region CRUD
         public T Get<T>(int id) where T : class
         {
             return _sqliteConnection.Get<T>(id);
@@ -69,6 +80,11 @@ namespace ClashData.SQLite
             return _sqliteConnection.Query<T>(query).FirstOrDefault();
         }
 
+        public T Get<T>(string query, object parameters) where T : class
+        {
+            return _sqliteConnection.Query<T>(query, parameters).FirstOrDefault();
+        }
+
         public IEnumerable<T> GetAll<T>() where T : class
         {
             return _sqliteConnection.GetAll<T>();
@@ -77,6 +93,11 @@ namespace ClashData.SQLite
         public IEnumerable<T> GetAll<T>(string query) where T : class
         {
             return _sqliteConnection.Query<T>(query);
+        }
+
+        public IEnumerable<T> GetAll<T>(string query, object parameters) where T : class
+        {
+            return _sqliteConnection.Query<T>(query, parameters);
         }
 
         public bool Update<T>(T item) where T : class
@@ -92,7 +113,8 @@ namespace ClashData.SQLite
         public bool Delete<T>(T item) where T : class
         {
             return _sqliteConnection.Delete(item);
-        }
+        } 
+        #endregion
 
         private void InitializeApplicationSettings()
         {
@@ -108,6 +130,7 @@ namespace ClashData.SQLite
             return _databaseSettings.Single(x => x.SettingName == settingName).SettingValue;
         }
 
+        #region Dispose
         public void Dispose()
         {
             Dispose(true);
@@ -129,6 +152,7 @@ namespace ClashData.SQLite
         ~SQLiteManagement()
         {
             Dispose(false);
-        }
+        } 
+        #endregion
     }
 }

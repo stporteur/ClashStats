@@ -13,10 +13,14 @@ namespace ClashData.SQLite
         int ExecuteNonQueryScript(string sqlCommand);
         T Get<T>(int id) where T : class;
         T Get<T>(string query) where T : class;
+        T Get<T>(string query, object parameters) where T : class;
         IEnumerable<T> GetAll<T>() where T : class;
         IEnumerable<T> GetAll<T>(string query) where T : class;
         void InitializeDatabaseAccess();
         int Insert<T>(T item) where T : class;
+        IEnumerable<T> GetAll<T>(string sql, object parameters) where T : class;
         bool Update<T>(T item) where T : class;
+        int Count(string sqlCommand);
+        int Count(string sqlCommand, object parameters);
     }
 }

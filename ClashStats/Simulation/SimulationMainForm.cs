@@ -357,7 +357,13 @@ namespace ClashStats.Simulation
         {
             foreach (var warrior in _warriors)
             {
-                _leagueWarDal.GetLeaguesCount(warrior.ArrivalDate).Returns(warrior.TotalNumberOfLeagues);
+                var leagues = new List<League>();
+                for(int i = 0; i < warrior.TotalNumberOfLeagues; i++)
+                {
+                    leagues.Add(new League { LeagueDate = warrior.ArrivalDate.AddDays(i + 1) });
+                }
+
+                _leagueWarDal.GetLeagues(warrior.ArrivalDate, new List<int> { warrior.ClanId }).Returns(leagues);
                 _leagueWarDal.GetLeaguesCount(warrior.Id).Returns(warrior.ParticipateToLeagues);
 
                 _clanWarDal.GetWarsCount(warrior.ArrivalDate).Returns(warrior.TotalNumberOfWars);

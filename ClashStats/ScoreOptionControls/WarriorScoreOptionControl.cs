@@ -20,7 +20,6 @@ namespace ClashStats.ScoreOptionControls
         public WarriorScoreOptionControl()
         {
             InitializeComponent();
-            _optionsLoader = AutofacFactory.Instance.GetInstance<IScoreOptionsManagement>();
 
             gdvTownHallMaturityColumn.DataSource = EnumHelper.ToList(typeof(TownHallLevelMaturities));
             gdvTownHallMaturityColumn.DisplayMember = "Value";
@@ -61,6 +60,7 @@ namespace ClashStats.ScoreOptionControls
 
         private void WarriorScoreOptionControl_Load(object sender, EventArgs e)
         {
+            _optionsLoader = AutofacFactory.Instance.GetInstance<IScoreOptionsManagement>();
             warriorScoreOptionsBindingSource.DataSource = _optionsLoader.LoadWarriorScoreOptions();
         }
 

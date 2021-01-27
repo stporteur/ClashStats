@@ -3,7 +3,7 @@
     public interface IAbstractReward
     {
         int Score { get; set; }
-        string WarrioName { get; }
+        string WarriorName { get; }
         Warrior Warrior { get; set; }
     }
 }

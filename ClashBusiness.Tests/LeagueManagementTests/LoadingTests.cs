@@ -179,5 +179,37 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                 }
             }
         }
+
+        [Test]
+        public void Should_return_all_warriors_when_registered_warrior_list_is_empty()
+        {
+            var resgisteredWarriors = new List<Warrior>();
+
+            var allWarriors = new List<Warrior> { new Warrior { Id = 1 }, new Warrior { Id = 2 } };
+            _warriorDal.GetAll().Returns(allWarriors);
+            _clanDal.Get(Arg.Any<int>()).Returns(new Clan());
+
+            var result = _leagueManagement.GetUnregisteredWarriors(resgisteredWarriors);
+            Check.That(result).HasSize(allWarriors.Count);
+            Check.That(result).ContainsExactly(allWarriors);
+        }
+
+        [Test]
+        public void Should_return_not_registered_warriors()
+        {
+            var registeredWarrior = new Warrior { Id = 1 };
+            var resgisteredWarriors = new List<Warrior> { registeredWarrior };
+
+            var notRegisteredWarrior1 = new Warrior { Id = 2 };
+            var notRegisteredWarrior2 = new Warrior { Id = 3 };
+            var allWarriors = new List<Warrior> { registeredWarrior, notRegisteredWarrior1, notRegisteredWarrior2 };
+            _warriorDal.GetAll().Returns(allWarriors);
+            _clanDal.Get(Arg.Any<int>()).Returns(new Clan());
+
+            var result = _leagueManagement.GetUnregisteredWarriors(resgisteredWarriors);
+            Check.That(result).HasSize(2);
+            Check.That(result).Contains(notRegisteredWarrior1);
+            Check.That(result).Contains(notRegisteredWarrior2);
+        }
     }
 }

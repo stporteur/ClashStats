@@ -19,7 +19,7 @@ namespace ClashData
 
         public List<LeagueAttack> LoadCurrentLeaguePlayersOfDay(int leagueId, int day)
         {
-            return _iSQLiteManagement.GetAll<LeagueAttack>($"SELECT * FROM LeagueAttacks WHERE LeagueId = {leagueId} and Day = {day}").ToList();
+            return _iSQLiteManagement.GetAll<LeagueAttack>($"SELECT * FROM LeagueAttacks WHERE LeagueId = {leagueId} and Day = {day} ORDER BY Position").ToList();
         }
     }
 }

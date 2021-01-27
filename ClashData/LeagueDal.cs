@@ -1,6 +1,8 @@
 ﻿using ClashData.SQLite;
 using ClashEntities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ClashData
 {
@@ -10,19 +12,26 @@ namespace ClashData
         {
         }
 
-        public int GetLeaguesCount(DateTime from)
+        public List<League> GetLeagues(DateTime from, List<int> clanIds)
         {
-            throw new NotImplementedException();
+            string sql = "SELECT * FROM Leagues WHERE LeagueDate >= @from AND ClanId IN @clanIds";
+            var parameters = new
+            {
+                from = from,
+                clanIds = new[] { 1, 2, 3, 4, 5 }
+            };
+            return _iSQLiteManagement.GetAll<League>(sql, parameters).ToList();
         }
 
         public int GetLeaguesCount(int warriorId)
         {
-            throw new NotImplementedException();
+            string sql = "SELECT COUNT(DISTINCT l.Id) FROM Leagues l INNER JOIN LeagueAttacks la ON l.Id = la.LeagueId WHERE la.WarriorId = @warriorId";
+            return _iSQLiteManagement.Count(sql, new { warriorId = warriorId });
         }
 
         public League LoadCurrentLeague(int clanId)
         {
-            return _iSQLiteManagement.Get<League>($"SELECT * FROM Leagues WHERE ClanId = {clanId} ORDER BY LeagueDate DESC LIMIT 1");
+            return _iSQLiteManagement.Get<League>($"SELECT * FROM Leagues WHERE ClanId = @clanId ORDER BY LeagueDate DESC LIMIT 1", new { clanId = clanId });
         }
     }
 }

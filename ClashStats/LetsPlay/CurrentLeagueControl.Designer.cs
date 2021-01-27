@@ -73,6 +73,7 @@ namespace ClashStats.LetsPlay
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playersDay2BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
+            this.copyPreviousDayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.upPlayerDay2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downPlayerDay2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -88,6 +89,7 @@ namespace ClashStats.LetsPlay
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playersDay3BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip3 = new System.Windows.Forms.MenuStrip();
+            this.copyPreviousDayToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.upPlayerDay3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downPlayerDay3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -103,6 +105,7 @@ namespace ClashStats.LetsPlay
             this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playersDay4BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip4 = new System.Windows.Forms.MenuStrip();
+            this.copyPreviousDayToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.upPlayerDay4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downPlayerDay4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -118,6 +121,7 @@ namespace ClashStats.LetsPlay
             this.dataGridViewTextBoxColumn29 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playersDay5BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip5 = new System.Windows.Forms.MenuStrip();
+            this.copyPreviousDayToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.upPlayerDay5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downPlayerDay5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage6 = new System.Windows.Forms.TabPage();
@@ -133,6 +137,7 @@ namespace ClashStats.LetsPlay
             this.dataGridViewTextBoxColumn35 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playersDay6BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip6 = new System.Windows.Forms.MenuStrip();
+            this.copyPreviousDayToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.upPlayerDay6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downPlayerDay6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage7 = new System.Windows.Forms.TabPage();
@@ -148,6 +153,7 @@ namespace ClashStats.LetsPlay
             this.dataGridViewTextBoxColumn40 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playersDay7BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip7 = new System.Windows.Forms.MenuStrip();
+            this.copyPreviousDayToolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.upPlayerDay7ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downPlayerDay7ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
@@ -156,6 +162,8 @@ namespace ClashStats.LetsPlay
             this.menuStrip8 = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeLeagueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAddPlayer = new System.Windows.Forms.Button();
             clanIdLabel = new System.Windows.Forms.Label();
             leagueDateLabel = new System.Windows.Forms.Label();
             positionLabel = new System.Windows.Forms.Label();
@@ -247,7 +255,7 @@ namespace ClashStats.LetsPlay
             // 
             // leagueDateDateTimePicker
             // 
-            this.leagueDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueBindingSource, "LeagueDate", true));
+            this.leagueDateDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueBindingSource, "LeagueDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.leagueDateDateTimePicker.Location = new System.Drawing.Point(110, 68);
             this.leagueDateDateTimePicker.Name = "leagueDateDateTimePicker";
             this.leagueDateDateTimePicker.Size = new System.Drawing.Size(200, 20);
@@ -255,7 +263,7 @@ namespace ClashStats.LetsPlay
             // 
             // positionNumericUpDown
             // 
-            this.positionNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueBindingSource, "Position", true));
+            this.positionNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueBindingSource, "Position", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.positionNumericUpDown.Location = new System.Drawing.Point(110, 94);
             this.positionNumericUpDown.Name = "positionNumericUpDown";
             this.positionNumericUpDown.Size = new System.Drawing.Size(88, 20);
@@ -645,6 +653,7 @@ namespace ClashStats.LetsPlay
             // menuStrip2
             // 
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyPreviousDayToolStripMenuItem,
             this.upPlayerDay2ToolStripMenuItem,
             this.downPlayerDay2ToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(3, 3);
@@ -652,6 +661,12 @@ namespace ClashStats.LetsPlay
             this.menuStrip2.Size = new System.Drawing.Size(754, 24);
             this.menuStrip2.TabIndex = 0;
             this.menuStrip2.Text = "menuStrip2";
+            // 
+            // copyPreviousDayToolStripMenuItem
+            // 
+            this.copyPreviousDayToolStripMenuItem.Name = "copyPreviousDayToolStripMenuItem";
+            this.copyPreviousDayToolStripMenuItem.Size = new System.Drawing.Size(97, 20);
+            this.copyPreviousDayToolStripMenuItem.Text = "Copier Joueurs";
             // 
             // upPlayerDay2ToolStripMenuItem
             // 
@@ -811,6 +826,7 @@ namespace ClashStats.LetsPlay
             // menuStrip3
             // 
             this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyPreviousDayToolStripMenuItem1,
             this.upPlayerDay3ToolStripMenuItem,
             this.downPlayerDay3ToolStripMenuItem});
             this.menuStrip3.Location = new System.Drawing.Point(3, 3);
@@ -818,6 +834,12 @@ namespace ClashStats.LetsPlay
             this.menuStrip3.Size = new System.Drawing.Size(754, 24);
             this.menuStrip3.TabIndex = 0;
             this.menuStrip3.Text = "menuStrip3";
+            // 
+            // copyPreviousDayToolStripMenuItem1
+            // 
+            this.copyPreviousDayToolStripMenuItem1.Name = "copyPreviousDayToolStripMenuItem1";
+            this.copyPreviousDayToolStripMenuItem1.Size = new System.Drawing.Size(97, 20);
+            this.copyPreviousDayToolStripMenuItem1.Text = "Copier Joueurs";
             // 
             // upPlayerDay3ToolStripMenuItem
             // 
@@ -977,6 +999,7 @@ namespace ClashStats.LetsPlay
             // menuStrip4
             // 
             this.menuStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyPreviousDayToolStripMenuItem2,
             this.upPlayerDay4ToolStripMenuItem,
             this.downPlayerDay4ToolStripMenuItem});
             this.menuStrip4.Location = new System.Drawing.Point(3, 3);
@@ -984,6 +1007,12 @@ namespace ClashStats.LetsPlay
             this.menuStrip4.Size = new System.Drawing.Size(754, 24);
             this.menuStrip4.TabIndex = 0;
             this.menuStrip4.Text = "menuStrip4";
+            // 
+            // copyPreviousDayToolStripMenuItem2
+            // 
+            this.copyPreviousDayToolStripMenuItem2.Name = "copyPreviousDayToolStripMenuItem2";
+            this.copyPreviousDayToolStripMenuItem2.Size = new System.Drawing.Size(97, 20);
+            this.copyPreviousDayToolStripMenuItem2.Text = "Copier Joueurs";
             // 
             // upPlayerDay4ToolStripMenuItem
             // 
@@ -1143,6 +1172,7 @@ namespace ClashStats.LetsPlay
             // menuStrip5
             // 
             this.menuStrip5.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyPreviousDayToolStripMenuItem3,
             this.upPlayerDay5ToolStripMenuItem,
             this.downPlayerDay5ToolStripMenuItem});
             this.menuStrip5.Location = new System.Drawing.Point(3, 3);
@@ -1150,6 +1180,12 @@ namespace ClashStats.LetsPlay
             this.menuStrip5.Size = new System.Drawing.Size(754, 24);
             this.menuStrip5.TabIndex = 0;
             this.menuStrip5.Text = "menuStrip5";
+            // 
+            // copyPreviousDayToolStripMenuItem3
+            // 
+            this.copyPreviousDayToolStripMenuItem3.Name = "copyPreviousDayToolStripMenuItem3";
+            this.copyPreviousDayToolStripMenuItem3.Size = new System.Drawing.Size(97, 20);
+            this.copyPreviousDayToolStripMenuItem3.Text = "Copier Joueurs";
             // 
             // upPlayerDay5ToolStripMenuItem
             // 
@@ -1309,6 +1345,7 @@ namespace ClashStats.LetsPlay
             // menuStrip6
             // 
             this.menuStrip6.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyPreviousDayToolStripMenuItem4,
             this.upPlayerDay6ToolStripMenuItem,
             this.downPlayerDay6ToolStripMenuItem});
             this.menuStrip6.Location = new System.Drawing.Point(3, 3);
@@ -1316,6 +1353,12 @@ namespace ClashStats.LetsPlay
             this.menuStrip6.Size = new System.Drawing.Size(754, 24);
             this.menuStrip6.TabIndex = 0;
             this.menuStrip6.Text = "menuStrip6";
+            // 
+            // copyPreviousDayToolStripMenuItem4
+            // 
+            this.copyPreviousDayToolStripMenuItem4.Name = "copyPreviousDayToolStripMenuItem4";
+            this.copyPreviousDayToolStripMenuItem4.Size = new System.Drawing.Size(97, 20);
+            this.copyPreviousDayToolStripMenuItem4.Text = "Copier Joueurs";
             // 
             // upPlayerDay6ToolStripMenuItem
             // 
@@ -1475,6 +1518,7 @@ namespace ClashStats.LetsPlay
             // menuStrip7
             // 
             this.menuStrip7.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyPreviousDayToolStripMenuItem5,
             this.upPlayerDay7ToolStripMenuItem,
             this.downPlayerDay7ToolStripMenuItem});
             this.menuStrip7.Location = new System.Drawing.Point(3, 3);
@@ -1482,6 +1526,12 @@ namespace ClashStats.LetsPlay
             this.menuStrip7.Size = new System.Drawing.Size(754, 24);
             this.menuStrip7.TabIndex = 0;
             this.menuStrip7.Text = "menuStrip7";
+            // 
+            // copyPreviousDayToolStripMenuItem5
+            // 
+            this.copyPreviousDayToolStripMenuItem5.Name = "copyPreviousDayToolStripMenuItem5";
+            this.copyPreviousDayToolStripMenuItem5.Size = new System.Drawing.Size(97, 20);
+            this.copyPreviousDayToolStripMenuItem5.Text = "Copier Joueurs";
             // 
             // upPlayerDay7ToolStripMenuItem
             // 
@@ -1527,7 +1577,8 @@ namespace ClashStats.LetsPlay
             // 
             this.menuStrip8.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem,
-            this.cancelToolStripMenuItem});
+            this.cancelToolStripMenuItem,
+            this.closeLeagueToolStripMenuItem});
             this.menuStrip8.Location = new System.Drawing.Point(0, 0);
             this.menuStrip8.Name = "menuStrip8";
             this.menuStrip8.Size = new System.Drawing.Size(1152, 24);
@@ -1550,10 +1601,28 @@ namespace ClashStats.LetsPlay
             this.cancelToolStripMenuItem.Text = "Annuler";
             this.cancelToolStripMenuItem.Click += new System.EventHandler(this.cancelToolStripMenuItem_Click);
             // 
+            // closeLeagueToolStripMenuItem
+            // 
+            this.closeLeagueToolStripMenuItem.Name = "closeLeagueToolStripMenuItem";
+            this.closeLeagueToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.closeLeagueToolStripMenuItem.Text = "Clore la ligue";
+            this.closeLeagueToolStripMenuItem.Click += new System.EventHandler(this.closeLeagueToolStripMenuItem_Click);
+            // 
+            // btnAddPlayer
+            // 
+            this.btnAddPlayer.Location = new System.Drawing.Point(148, 131);
+            this.btnAddPlayer.Name = "btnAddPlayer";
+            this.btnAddPlayer.Size = new System.Drawing.Size(37, 23);
+            this.btnAddPlayer.TabIndex = 13;
+            this.btnAddPlayer.Text = "+";
+            this.btnAddPlayer.UseVisualStyleBackColor = true;
+            this.btnAddPlayer.Click += new System.EventHandler(this.btnAddPlayer_Click);
+            // 
             // CurrentLeagueControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnAddPlayer);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.label1);
@@ -1749,5 +1818,13 @@ namespace ClashStats.LetsPlay
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn27;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn28;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn40;
+        private System.Windows.Forms.ToolStripMenuItem copyPreviousDayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem copyPreviousDayToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem copyPreviousDayToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem copyPreviousDayToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem copyPreviousDayToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem copyPreviousDayToolStripMenuItem5;
+        private System.Windows.Forms.Button btnAddPlayer;
+        private System.Windows.Forms.ToolStripMenuItem closeLeagueToolStripMenuItem;
     }
 }

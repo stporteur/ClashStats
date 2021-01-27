@@ -7,9 +7,9 @@ namespace ClashBusiness.Rewards
 {
     public class RewardManagement : IRewardManagement
     {
-        private readonly List<IScoreRewardManagement> _scoreRewardManagers;
+        private readonly IEnumerable<IScoreRewardManagement> _scoreRewardManagers;
 
-        public RewardManagement(List<IScoreRewardManagement> scoreRewardManagers)
+        public RewardManagement(IEnumerable<IScoreRewardManagement> scoreRewardManagers)
         {
             _scoreRewardManagers = scoreRewardManagers;
         }

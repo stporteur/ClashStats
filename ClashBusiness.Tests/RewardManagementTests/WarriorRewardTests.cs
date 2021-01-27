@@ -80,7 +80,12 @@ namespace ClashBusiness.Tests.RewardManagementTests
             _clanWarDal.GetWarsCount(Arg.Any<DateTime>()).Returns(10);
 
             _leagueWarDal = Substitute.For<ILeagueDal>();
-            _leagueWarDal.GetLeaguesCount(Arg.Any<DateTime>()).Returns(10);
+            var leagues = new List<League>();
+            for (int i = 0; i < 10; i++)
+            {
+                leagues.Add(new League { Id = i + 1, LeagueDate = DateTime.Today.AddMonths(-(i + 1)) });
+            }
+            _leagueWarDal.GetLeagues(Arg.Any<DateTime>(), Arg.Any<List<int>>()).Returns(leagues);
 
             _gameDal = Substitute.For<IGameDal>();
             _gameDal.GetGamesCount(Arg.Any<DateTime>()).Returns(10);

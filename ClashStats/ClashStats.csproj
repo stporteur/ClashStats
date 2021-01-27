@@ -12,10 +12,13 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <PublishUrl>publish\</PublishUrl>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>\\MYBOOKWORLD\clashstats\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
@@ -24,11 +27,9 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,6 +49,18 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>22DF276428CEAE70C45062129ED2707441FBD5CB</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>ClashStats_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
@@ -115,6 +128,12 @@
     </Compile>
     <Compile Include="LetsPlay\CurrentLeagueControl.Designer.cs">
       <DependentUpon>CurrentLeagueControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LetsPlay\RewardAndCloseLeagueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LetsPlay\RewardAndCloseLeagueForm.Designer.cs">
+      <DependentUpon>RewardAndCloseLeagueForm.cs</DependentUpon>
     </Compile>
     <Compile Include="LetsPlay\StartLeagueControl.cs">
       <SubType>UserControl</SubType>
@@ -204,6 +223,9 @@
     <EmbeddedResource Include="LetsPlay\CurrentLeagueControl.resx">
       <DependentUpon>CurrentLeagueControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LetsPlay\RewardAndCloseLeagueForm.resx">
+      <DependentUpon>RewardAndCloseLeagueForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LetsPlay\StartLeagueControl.resx">
       <DependentUpon>StartLeagueControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,6 +275,7 @@
     <EmbeddedResource Include="Simulation\TownhallLevelParameters.resx">
       <DependentUpon>TownhallLevelParameters.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClashStats_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ClashEntities.AbstractAttack.datasource" />
     <None Include="Properties\DataSources\ClashEntities.ApplicationSetting.datasource" />

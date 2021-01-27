@@ -43,6 +43,7 @@ namespace ClashStats.ScoreOptionControls
             System.Windows.Forms.Label scoreNotFollowedStrategyLabel;
             System.Windows.Forms.Label scoreStarResultsLabel;
             this.failedWarFaultPointsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.leagueScoreOptionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.higherTownHallAttackMinimumStarsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.higherTownHallAttackPointsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.incoherentAttackPointsNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -56,7 +57,6 @@ namespace ClashStats.ScoreOptionControls
             this.scoreStarResultsCheckBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.leagueScoreOptionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,13 +73,13 @@ namespace ClashStats.ScoreOptionControls
             scoreNotFollowedStrategyLabel = new System.Windows.Forms.Label();
             scoreStarResultsLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.failedWarFaultPointsNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leagueScoreOptionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.higherTownHallAttackMinimumStarsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.higherTownHallAttackPointsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.incoherentAttackPointsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noAttackDonePointsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.notFollowedStrategyPointsNumericUpDown)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leagueScoreOptionsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // failedWarFaultPointsLabel
@@ -192,15 +192,19 @@ namespace ClashStats.ScoreOptionControls
             // 
             // failedWarFaultPointsNumericUpDown
             // 
-            this.failedWarFaultPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "FailedWarFaultPoints", true));
+            this.failedWarFaultPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "FailedWarFaultPoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.failedWarFaultPointsNumericUpDown.Location = new System.Drawing.Point(324, 350);
             this.failedWarFaultPointsNumericUpDown.Name = "failedWarFaultPointsNumericUpDown";
             this.failedWarFaultPointsNumericUpDown.Size = new System.Drawing.Size(65, 20);
             this.failedWarFaultPointsNumericUpDown.TabIndex = 2;
             // 
+            // leagueScoreOptionsBindingSource
+            // 
+            this.leagueScoreOptionsBindingSource.DataSource = typeof(ClashEntities.ScoreOptions.LeagueScoreOptions);
+            // 
             // higherTownHallAttackMinimumStarsNumericUpDown
             // 
-            this.higherTownHallAttackMinimumStarsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "HigherTownHallAttackMinimumStars", true));
+            this.higherTownHallAttackMinimumStarsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "HigherTownHallAttackMinimumStars", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.higherTownHallAttackMinimumStarsNumericUpDown.Location = new System.Drawing.Point(324, 164);
             this.higherTownHallAttackMinimumStarsNumericUpDown.Name = "higherTownHallAttackMinimumStarsNumericUpDown";
             this.higherTownHallAttackMinimumStarsNumericUpDown.Size = new System.Drawing.Size(65, 20);
@@ -208,7 +212,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // higherTownHallAttackPointsNumericUpDown
             // 
-            this.higherTownHallAttackPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "HigherTownHallAttackPoints", true));
+            this.higherTownHallAttackPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "HigherTownHallAttackPoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.higherTownHallAttackPointsNumericUpDown.Location = new System.Drawing.Point(324, 190);
             this.higherTownHallAttackPointsNumericUpDown.Name = "higherTownHallAttackPointsNumericUpDown";
             this.higherTownHallAttackPointsNumericUpDown.Size = new System.Drawing.Size(65, 20);
@@ -216,7 +220,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // incoherentAttackPointsNumericUpDown
             // 
-            this.incoherentAttackPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "IncoherentAttackPoints", true));
+            this.incoherentAttackPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "IncoherentAttackPoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.incoherentAttackPointsNumericUpDown.Location = new System.Drawing.Point(324, 434);
             this.incoherentAttackPointsNumericUpDown.Name = "incoherentAttackPointsNumericUpDown";
             this.incoherentAttackPointsNumericUpDown.Size = new System.Drawing.Size(65, 20);
@@ -224,7 +228,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // noAttackDonePointsNumericUpDown
             // 
-            this.noAttackDonePointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "NoAttackDonePoints", true));
+            this.noAttackDonePointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "NoAttackDonePoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.noAttackDonePointsNumericUpDown.Location = new System.Drawing.Point(324, 270);
             this.noAttackDonePointsNumericUpDown.Name = "noAttackDonePointsNumericUpDown";
             this.noAttackDonePointsNumericUpDown.Size = new System.Drawing.Size(65, 20);
@@ -232,7 +236,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // notFollowedStrategyPointsNumericUpDown
             // 
-            this.notFollowedStrategyPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "NotFollowedStrategyPoints", true));
+            this.notFollowedStrategyPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.leagueScoreOptionsBindingSource, "NotFollowedStrategyPoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.notFollowedStrategyPointsNumericUpDown.Location = new System.Drawing.Point(324, 516);
             this.notFollowedStrategyPointsNumericUpDown.Name = "notFollowedStrategyPointsNumericUpDown";
             this.notFollowedStrategyPointsNumericUpDown.Size = new System.Drawing.Size(65, 20);
@@ -240,7 +244,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreFailedWarFaultCheckBox
             // 
-            this.scoreFailedWarFaultCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreFailedWarFault", true));
+            this.scoreFailedWarFaultCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreFailedWarFault", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreFailedWarFaultCheckBox.Location = new System.Drawing.Point(324, 322);
             this.scoreFailedWarFaultCheckBox.Name = "scoreFailedWarFaultCheckBox";
             this.scoreFailedWarFaultCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -249,7 +253,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreHigherTownHallVillageAttackCheckBox
             // 
-            this.scoreHigherTownHallVillageAttackCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreHigherTownHallVillageAttack", true));
+            this.scoreHigherTownHallVillageAttackCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreHigherTownHallVillageAttack", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreHigherTownHallVillageAttackCheckBox.Location = new System.Drawing.Point(324, 136);
             this.scoreHigherTownHallVillageAttackCheckBox.Name = "scoreHigherTownHallVillageAttackCheckBox";
             this.scoreHigherTownHallVillageAttackCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -258,7 +262,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreIncoherentAttackCheckBox
             // 
-            this.scoreIncoherentAttackCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreIncoherentAttack", true));
+            this.scoreIncoherentAttackCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreIncoherentAttack", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreIncoherentAttackCheckBox.Location = new System.Drawing.Point(324, 404);
             this.scoreIncoherentAttackCheckBox.Name = "scoreIncoherentAttackCheckBox";
             this.scoreIncoherentAttackCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -267,7 +271,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreNoAttackDoneCheckBox
             // 
-            this.scoreNoAttackDoneCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreNoAttackDone", true));
+            this.scoreNoAttackDoneCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreNoAttackDone", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreNoAttackDoneCheckBox.Location = new System.Drawing.Point(324, 240);
             this.scoreNoAttackDoneCheckBox.Name = "scoreNoAttackDoneCheckBox";
             this.scoreNoAttackDoneCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -276,7 +280,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreNotFollowedStrategyCheckBox
             // 
-            this.scoreNotFollowedStrategyCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreNotFollowedStrategy", true));
+            this.scoreNotFollowedStrategyCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreNotFollowedStrategy", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreNotFollowedStrategyCheckBox.Location = new System.Drawing.Point(324, 486);
             this.scoreNotFollowedStrategyCheckBox.Name = "scoreNotFollowedStrategyCheckBox";
             this.scoreNotFollowedStrategyCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -285,7 +289,7 @@ namespace ClashStats.ScoreOptionControls
             // 
             // scoreStarResultsCheckBox
             // 
-            this.scoreStarResultsCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreStarResults", true));
+            this.scoreStarResultsCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.leagueScoreOptionsBindingSource, "ScoreStarResults", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.scoreStarResultsCheckBox.Location = new System.Drawing.Point(324, 88);
             this.scoreStarResultsCheckBox.Name = "scoreStarResultsCheckBox";
             this.scoreStarResultsCheckBox.Size = new System.Drawing.Size(120, 24);
@@ -313,10 +317,6 @@ namespace ClashStats.ScoreOptionControls
             this.menuStrip1.Size = new System.Drawing.Size(972, 24);
             this.menuStrip1.TabIndex = 27;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // leagueScoreOptionsBindingSource
-            // 
-            this.leagueScoreOptionsBindingSource.DataSource = typeof(ClashEntities.ScoreOptions.LeagueScoreOptions);
             // 
             // saveToolStripMenuItem
             // 
@@ -376,6 +376,7 @@ namespace ClashStats.ScoreOptionControls
             this.Size = new System.Drawing.Size(972, 608);
             this.Load += new System.EventHandler(this.LeagueScoreOptionControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.failedWarFaultPointsNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.leagueScoreOptionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.higherTownHallAttackMinimumStarsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.higherTownHallAttackPointsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.incoherentAttackPointsNumericUpDown)).EndInit();
@@ -383,7 +384,6 @@ namespace ClashStats.ScoreOptionControls
             ((System.ComponentModel.ISupportInitialize)(this.notFollowedStrategyPointsNumericUpDown)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.leagueScoreOptionsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

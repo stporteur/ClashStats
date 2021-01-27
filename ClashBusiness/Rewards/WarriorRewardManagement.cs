@@ -16,6 +16,7 @@ namespace ClashBusiness.Rewards
         private readonly IWarDal _clanWarDal;
         private readonly IGameDal _gameDal;
         private readonly IGameWarriorDal _gameWarriorDal;
+        private List<int> _clanIds;
 
         public WarriorRewardManagement(IScoreOptionsManagement scoreOptionsLoader, ILeagueDal leagueWarDal, IWarDal clanWarDal, IGameWarriorDal gameWarriorDal, IGameDal gameDal)
         {
@@ -26,11 +27,17 @@ namespace ClashBusiness.Rewards
             _scoreOptionsLoader = scoreOptionsLoader;
         }
 
-        public List<IAbstractReward> ComputeLeagueScore(League leagueWar)
+        public List<IAbstractReward> ComputeLeagueScore(League league)
         {
-            var rewards = ComputeWarriorsScore(leagueWar, _scoreOptionsLoader.LoadWarriorScoreOptions());
+            InitializeClans(league);
+            var rewards = ComputeWarriorsScore(league, _scoreOptionsLoader.LoadWarriorScoreOptions());
 
             return rewards.Cast<IAbstractReward>().ToList();
+        }
+
+        private void InitializeClans(League league)
+        {
+            _clanIds = league.Players.Select(x => x.ClanId).Distinct().ToList();
         }
 
         private List<WarriorReward> ComputeWarriorsScore(League leagueWar, WarriorScoreOptions options)
@@ -72,7 +79,9 @@ namespace ClashBusiness.Rewards
 
         private void SetIndividualScoreWithLeagueParticipation(WarriorReward reward, WarriorScoreOptions options)
         {
-            int leaguesCount = _leagueWarDal.GetLeaguesCount(reward.Warrior.ArrivalDate);
+            var arrivalDate = reward.Warrior.ArrivalDate;
+            var leaguesCount = _leagueWarDal.GetLeagues(arrivalDate, _clanIds).Select(x => new DateTime(x.LeagueDate.Year, x.LeagueDate.Month, 1)).Distinct().Count();
+
             int warriorParticipation = _leagueWarDal.GetLeaguesCount(reward.Warrior.Id);
 
             var ratio = (double)warriorParticipation / leaguesCount;

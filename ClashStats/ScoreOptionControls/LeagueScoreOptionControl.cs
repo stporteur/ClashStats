@@ -9,22 +9,22 @@ namespace ClashStats.ScoreOptionControls
 {
     public partial class LeagueScoreOptionControl : UserControl
     {
+        private LeagueScoreOptions _options;
         private IScoreOptionsManagement _optionsLoader;
         public LeagueScoreOptionControl()
         {
             InitializeComponent();
-            _optionsLoader = AutofacFactory.Instance.GetInstance<IScoreOptionsManagement>();
         }
 
         private void LeagueScoreOptionControl_Load(object sender, EventArgs e)
         {
-            leagueScoreOptionsBindingSource.DataSource = _optionsLoader.LoadLeagueScoreOptions();
+            _optionsLoader = AutofacFactory.Instance.GetInstance<IScoreOptionsManagement>();
+            leagueScoreOptionsBindingSource.DataSource = _options = _optionsLoader.LoadLeagueScoreOptions();
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var options = leagueScoreOptionsBindingSource.DataSource as LeagueScoreOptions;
-            var result = _optionsLoader.SaveLeagueScoreOptions(options);
+            var result = _optionsLoader.SaveLeagueScoreOptions(_options);
             if (result)
             {
                 MessageBox.Show("Sauvegarde réussie.", "Sauvegarde", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -37,7 +37,7 @@ namespace ClashStats.ScoreOptionControls
 
         private void cancelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            leagueScoreOptionsBindingSource.DataSource = _optionsLoader.LoadLeagueScoreOptions();
+            leagueScoreOptionsBindingSource.DataSource = _options = _optionsLoader.LoadLeagueScoreOptions();
         }
 
         private void helpToolStripMenuItem_Click(object sender, EventArgs e)
