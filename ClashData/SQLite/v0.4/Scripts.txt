@@ -5,7 +5,7 @@ Leagues.sql
 LeaguePlayers.sql
 LeagueAttacks.sql
 Games.sql
-GamePlayers.sql
+GameWarriors.sql
 Wars.sql
 WarPlayers.sql
 WarAttacks.sql

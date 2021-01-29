@@ -116,6 +116,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomControls\ComboboxEnum\EnumHelper.cs" />
+    <Compile Include="CustomControls\DataGridViewRating\DataGridView3StarsRatingCell.cs" />
+    <Compile Include="CustomControls\DataGridViewRating\DataGridViewRatingCell.cs" />
+    <Compile Include="CustomControls\DataGridViewRating\DataGridView3StarsRatingColumn.cs" />
+    <Compile Include="CustomControls\DataGridViewRating\DataGridViewRatingColumn.cs" />
     <Compile Include="CustomControls\Tools\User32\User32.cs" />
     <Compile Include="LetsPlay\ClanSelectionForm.cs">
       <SubType>Form</SubType>
@@ -123,22 +127,36 @@
     <Compile Include="LetsPlay\ClanSelectionForm.Designer.cs">
       <DependentUpon>ClanSelectionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LetsPlay\CurrentLeagueControl.cs">
+    <Compile Include="LetsPlay\ClashEventArgs.cs" />
+    <Compile Include="LetsPlay\Games\CurrentGameControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LetsPlay\CurrentLeagueControl.Designer.cs">
+    <Compile Include="LetsPlay\Games\CurrentGameControl.Designer.cs">
+      <DependentUpon>CurrentGameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LetsPlay\IClashEventControl.cs" />
+    <Compile Include="LetsPlay\Games\StartGameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LetsPlay\Games\StartGameControl.Designer.cs">
+      <DependentUpon>StartGameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LetsPlay\Leagues\CurrentLeagueControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LetsPlay\Leagues\CurrentLeagueControl.Designer.cs">
       <DependentUpon>CurrentLeagueControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="LetsPlay\RewardAndCloseLeagueForm.cs">
+    <Compile Include="LetsPlay\Leagues\RewardAndCloseLeagueForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LetsPlay\RewardAndCloseLeagueForm.Designer.cs">
+    <Compile Include="LetsPlay\Leagues\RewardAndCloseLeagueForm.Designer.cs">
       <DependentUpon>RewardAndCloseLeagueForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="LetsPlay\StartLeagueControl.cs">
+    <Compile Include="LetsPlay\Leagues\StartLeagueControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LetsPlay\StartLeagueControl.Designer.cs">
+    <Compile Include="LetsPlay\Leagues\StartLeagueControl.Designer.cs">
       <DependentUpon>StartLeagueControl.cs</DependentUpon>
     </Compile>
     <Compile Include="LetsPlay\WarriorSelectionForm.cs">
@@ -146,6 +164,18 @@
     </Compile>
     <Compile Include="LetsPlay\WarriorSelectionForm.Designer.cs">
       <DependentUpon>WarriorSelectionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LetsPlay\Wars\CurrentWarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LetsPlay\Wars\CurrentWarControl.Designer.cs">
+      <DependentUpon>CurrentWarControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LetsPlay\Wars\StartWarControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LetsPlay\Wars\StartWarControl.Designer.cs">
+      <DependentUpon>StartWarControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -220,17 +250,29 @@
     <EmbeddedResource Include="LetsPlay\ClanSelectionForm.resx">
       <DependentUpon>ClanSelectionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LetsPlay\CurrentLeagueControl.resx">
+    <EmbeddedResource Include="LetsPlay\Games\CurrentGameControl.resx">
+      <DependentUpon>CurrentGameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LetsPlay\Games\StartGameControl.resx">
+      <DependentUpon>StartGameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LetsPlay\Leagues\CurrentLeagueControl.resx">
       <DependentUpon>CurrentLeagueControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LetsPlay\RewardAndCloseLeagueForm.resx">
+    <EmbeddedResource Include="LetsPlay\Leagues\RewardAndCloseLeagueForm.resx">
       <DependentUpon>RewardAndCloseLeagueForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LetsPlay\StartLeagueControl.resx">
+    <EmbeddedResource Include="LetsPlay\Leagues\StartLeagueControl.resx">
       <DependentUpon>StartLeagueControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LetsPlay\WarriorSelectionForm.resx">
       <DependentUpon>WarriorSelectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LetsPlay\Wars\CurrentWarControl.resx">
+      <DependentUpon>CurrentWarControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LetsPlay\Wars\StartWarControl.resx">
+      <DependentUpon>StartWarControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -301,6 +343,7 @@
     <None Include="Properties\DataSources\ClashEntities.WarAttack.datasource" />
     <None Include="Properties\DataSources\ClashEntities.WarPlayer.datasource" />
     <None Include="Properties\DataSources\ClashEntities.Warrior.datasource" />
+    <None Include="Properties\DataSources\ClashStats.LetsPlay.Wars.CurrentWarControl+WarriorSummary.datasource" />
     <None Include="Properties\DataSources\ClashStats.Simulation.SimulationWarrior.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -317,6 +360,26 @@
     <None Include="Resources\Help-icon.png" />
     <None Include="Resources\help.ico" />
     <None Include="Resources\help.png" />
+    <None Include="Resources\star0.png" />
+    <None Include="Resources\star1.png" />
+    <None Include="Resources\star2.png" />
+    <None Include="Resources\star3.png" />
+    <None Include="Resources\star4.png" />
+    <None Include="Resources\star5.png" />
+    <None Include="Resources\starhot0.png" />
+    <None Include="Resources\starhot1.png" />
+    <None Include="Resources\starhot2.png" />
+    <None Include="Resources\starhot3.png" />
+    <None Include="Resources\starhot4.png" />
+    <None Include="Resources\starhot5.png" />
+    <None Include="Resources\3star2.png" />
+    <None Include="Resources\3star3.png" />
+    <None Include="Resources\3starhot0.png" />
+    <None Include="Resources\3starhot1.png" />
+    <None Include="Resources\3starhot2.png" />
+    <None Include="Resources\3starhot3.png" />
+    <None Include="Resources\3star0.png" />
+    <None Include="Resources\3star1.png" />
     <Content Include="Simulation\SimulationHelp.rtf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -353,6 +416,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

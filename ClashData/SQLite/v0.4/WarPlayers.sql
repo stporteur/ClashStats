@@ -8,5 +8,7 @@
 	FailedWarFault BOOLEAN NULL,
 	FOREIGN KEY(WarId) REFERENCES Wars(Id),
 	FOREIGN KEY(WarriorId) REFERENCES Warriors(Id),
+	FOREIGN KEY(FirstAttackId) REFERENCES WarAttacks(Id),
+	FOREIGN KEY(SecondAttackId) REFERENCES WarAttacks(Id),
 	UNIQUE(WarId, WarriorId)
 )

@@ -31,6 +31,7 @@ namespace ClashStats
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.executeScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scoreOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +55,6 @@ namespace ClashStats
             this.latestGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.allGamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.containerPanel = new System.Windows.Forms.Panel();
-            this.executeScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +80,13 @@ namespace ClashStats
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.fileToolStripMenuItem.Text = "&Fichiers";
+            // 
+            // executeScriptToolStripMenuItem
+            // 
+            this.executeScriptToolStripMenuItem.Name = "executeScriptToolStripMenuItem";
+            this.executeScriptToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.executeScriptToolStripMenuItem.Text = "Executer un script de mise à jour";
+            this.executeScriptToolStripMenuItem.Click += new System.EventHandler(this.executeScriptToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -167,7 +174,7 @@ namespace ClashStats
             this.latestLeagueToolStripMenuItem,
             this.allLeaguesToolStripMenuItem});
             this.leaguesToolStripMenuItem.Name = "leaguesToolStripMenuItem";
-            this.leaguesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.leaguesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.leaguesToolStripMenuItem.Text = "Les ligues";
             // 
             // startNewLeagueToolStripMenuItem
@@ -198,21 +205,22 @@ namespace ClashStats
             this.latestWarToolStripMenuItem,
             this.allWarsToolStripMenuItem});
             this.warToolStripMenuItem.Name = "warToolStripMenuItem";
-            this.warToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.warToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.warToolStripMenuItem.Text = "Les GDC";
-            this.warToolStripMenuItem.Visible = false;
             // 
             // startNewWarToolStripMenuItem
             // 
             this.startNewWarToolStripMenuItem.Name = "startNewWarToolStripMenuItem";
             this.startNewWarToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.startNewWarToolStripMenuItem.Text = "Commencer une GDC";
+            this.startNewWarToolStripMenuItem.Click += new System.EventHandler(this.startNewWarToolStripMenuItem_Click);
             // 
             // latestWarToolStripMenuItem
             // 
             this.latestWarToolStripMenuItem.Name = "latestWarToolStripMenuItem";
             this.latestWarToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.latestWarToolStripMenuItem.Text = "Voir la dernière GDC";
+            this.latestWarToolStripMenuItem.Click += new System.EventHandler(this.latestWarToolStripMenuItem_Click);
             // 
             // allWarsToolStripMenuItem
             // 
@@ -227,21 +235,22 @@ namespace ClashStats
             this.latestGamesToolStripMenuItem,
             this.allGamesToolStripMenuItem});
             this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
-            this.gameToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
+            this.gameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gameToolStripMenuItem.Text = "Les Jeux";
-            this.gameToolStripMenuItem.Visible = false;
             // 
             // startGamesToolStripMenuItem
             // 
             this.startGamesToolStripMenuItem.Name = "startGamesToolStripMenuItem";
             this.startGamesToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.startGamesToolStripMenuItem.Text = "Commencer des jeux";
+            this.startGamesToolStripMenuItem.Click += new System.EventHandler(this.startGamesToolStripMenuItem_Click);
             // 
             // latestGamesToolStripMenuItem
             // 
             this.latestGamesToolStripMenuItem.Name = "latestGamesToolStripMenuItem";
             this.latestGamesToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.latestGamesToolStripMenuItem.Text = "Voir les derniers jeux";
+            this.latestGamesToolStripMenuItem.Click += new System.EventHandler(this.latestGamesToolStripMenuItem_Click);
             // 
             // allGamesToolStripMenuItem
             // 
@@ -256,13 +265,6 @@ namespace ClashStats
             this.containerPanel.Name = "containerPanel";
             this.containerPanel.Size = new System.Drawing.Size(983, 560);
             this.containerPanel.TabIndex = 1;
-            // 
-            // executeScriptToolStripMenuItem
-            // 
-            this.executeScriptToolStripMenuItem.Name = "executeScriptToolStripMenuItem";
-            this.executeScriptToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
-            this.executeScriptToolStripMenuItem.Text = "Executer un script de mise à jour";
-            this.executeScriptToolStripMenuItem.Click += new System.EventHandler(this.executeScriptToolStripMenuItem_Click);
             // 
             // MainForm
             // 

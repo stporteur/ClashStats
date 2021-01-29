@@ -2,27 +2,33 @@
 using ClashEntities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClashStats.LetsPlay
+namespace ClashStats.LetsPlay.Games
 {
-    public partial class StartLeagueControl : UserControl
+    public partial class StartGameControl : UserControl, IClashEventControl
     {
         private readonly Clan _clan;
 
-        public StartLeagueControl(Clan clan)
+        public event EventHandler<ClashEventArgs> GoToNextScreen;
+
+        public StartGameControl(Clan clan)
         {
             InitializeComponent();
             _clan = clan;
         }
 
-        private void StartLeagueControl_Load(object sender, EventArgs e)
+        private void StartGameControl_Load(object sender, EventArgs e)
         {
             var clans = AutofacFactory.Instance.GetInstance<IClanManagement>().GetClans().OrderBy(x => x.Name).ToList();
             clans.ForEach(x => clansCheckedListBox.Items.Add(x, _clan.Id == x.Id));
-            leagueDateDateTimePicker.Value = DateTime.Today;
+            gamesDateDateTimePicker.Value = DateTime.Today;
         }
 
         private void btnLoadPlayers_Click(object sender, EventArgs e)
@@ -78,9 +84,6 @@ namespace ClashStats.LetsPlay
                     }
                 }
                 playersToMove.ForEach(x => availableCheckedListBox.Items.Remove(x));
-
-                var nbRequiredPlayers = rbLeagueSize15.Checked ? 15 : 30;
-                lblWarning.Visible = selectedCheckedListBox.Items.Count < nbRequiredPlayers;
             }
         }
 
@@ -99,42 +102,32 @@ namespace ClashStats.LetsPlay
                     }
                 }
                 playersToMove.ForEach(x => selectedCheckedListBox.Items.Remove(x));
-
-                var nbRequiredPlayers = rbLeagueSize15.Checked ? 15 : 30;
-                lblWarning.Visible = selectedCheckedListBox.Items.Count < nbRequiredPlayers;
             }
         }
 
         private void btnLaunch_Click(object sender, EventArgs e)
         {
-            if(lblWarning.Visible)
+            var game = new Game();
+            game.Clan = _clan;
+            game.ClanId = _clan.Id;
+            game.GamesDate = gamesDateDateTimePicker.Value;
+
+            var players = new List<GameWarrior>();
+            foreach (var selectedPlayer in selectedCheckedListBox.Items)
             {
-                MessageBox.Show("Bien tenté mais tu n'as pas le nombre de joueurs requis :)", "Toujours aussi nul", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                var player = selectedPlayer as Warrior;
+                if (player != null)
+                {
+                    players.Add(new GameWarrior { WarriorId = player.Id });
+                }
             }
-            else
+            game.Players = players;
+
+            var gamesManagement = AutofacFactory.Instance.GetInstance<IGameManagement>();
+            if (gamesManagement.RegisterNewGames(game))
             {
-                var newLeague = new League();
-                newLeague.Clan = _clan;
-                newLeague.ClanId = _clan.Id;
-                newLeague.LeagueDate = leagueDateDateTimePicker.Value;
-                newLeague.LeagueSize = rbLeagueSize15.Checked ? 15 : 30;
-
-                var players = new List<Warrior>();
-                foreach (var selectedPlayer in selectedCheckedListBox.Items)
-                {
-                    var player = selectedPlayer as Warrior;
-                    if (player != null)
-                    {
-                        players.Add(player);
-                    }
-                }
-                newLeague.Players = players;
-
-                var leagueManagement = AutofacFactory.Instance.GetInstance<ILeagueManagement>();
-                if(leagueManagement.RegisterNewLeague(newLeague))
-                {
-                    MessageBox.Show("Sauvegarde réussie", "Sauvegarde", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("Sauvegarde réussie", "Sauvegarde", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                GoToNextScreen(this, new ClashEventArgs("Jeux de Clan démarrés. Veux-tu les ouvrir ?", typeof(CurrentGameControl), _clan));
             }
         }
     }

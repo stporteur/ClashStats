@@ -7,9 +7,9 @@ namespace ClashEntities
     {
         public int Id { get; set; }
         public int GameId { get; set; }
-        public Game Game { get; set; }
         public int WarriorId { get; set; }
-        public Warrior Warrior { get; set; }
+        [Write(false)] public Warrior Warrior { get; set; }
+        [Write(false)] public string WarriorName { get; set; }
         public int Score { get; set; }
     }
 }

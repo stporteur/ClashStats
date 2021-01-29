@@ -1,2 +1,3 @@
-﻿LeaguesInit.sql
+﻿NewPlayersInit.sql
+LeaguesInit.sql
 UpdateScoreOptions.sql

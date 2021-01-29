@@ -105,7 +105,7 @@ namespace ClashBusiness.Rewards
 
         private void SetIndividualScoreWithGameParticipation(WarriorReward reward, WarriorScoreOptions options)
         {
-            int gamesCount = _gameDal.GetGamesCount(reward.Warrior.ArrivalDate);
+            var gamesCount = _gameDal.GetGames(reward.Warrior.ArrivalDate, _clanIds).Select(x => new DateTime(x.GamesDate.Year, x.GamesDate.Month, 1)).Distinct().Count();
             int warriorParticipation = _gameWarriorDal.GetGames(reward.Warrior.Id).Count;
 
             double ratio = 0;
@@ -126,9 +126,9 @@ namespace ClashBusiness.Rewards
             var succeedeedGames = warriorGames.Count(x => x.Score >= options.MinimumGamePointsThreshold);
 
             double ratio = 0;
-            if(succeedeedGames != 0)
+            if (succeedeedGames != 0)
             {
-               ratio = (double)succeedeedGames / warriorGames.Count;
+                ratio = (double)succeedeedGames / warriorGames.Count;
             }
 
             reward.SucceedeedGameRatio = ratio;
@@ -154,7 +154,7 @@ namespace ClashBusiness.Rewards
             var today = DateTime.Today;
             var arrival = reward.Warrior.ArrivalDate;
             var warriorSeniority = ((today.Year - arrival.Year) * 12) + today.Month - arrival.Month;
-            if((today - arrival).TotalDays < 31)
+            if ((today - arrival).TotalDays < 31)
             {
                 warriorSeniority = 0;
             }

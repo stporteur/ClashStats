@@ -2,6 +2,7 @@
 using ClashEntities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ClashData
 {
@@ -13,7 +14,7 @@ namespace ClashData
 
         public List<WarAttack> LoadCurrentWarAttacks(int warId)
         {
-            throw new NotImplementedException();
+            return _iSQLiteManagement.GetAll<WarAttack>($"SELECT * FROM WarAttacks WHERE WarId = {warId}").ToList();
         }
     }
 }

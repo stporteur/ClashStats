@@ -10,9 +10,9 @@ namespace ClashData
         {
         }
 
-        public War LoadCurrentWar()
+        public War LoadCurrentWar(int clanId)
         {
-            throw new NotImplementedException();
+            return _iSQLiteManagement.Get<War>($"SELECT * FROM Wars WHERE ClanId = @clanId ORDER BY WarDate DESC LIMIT 1", new { clanId = clanId });
         }
 
         public int GetWarsCount(DateTime from)

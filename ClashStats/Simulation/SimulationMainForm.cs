@@ -360,7 +360,7 @@ namespace ClashStats.Simulation
                 var leagues = new List<League>();
                 for(int i = 0; i < warrior.TotalNumberOfLeagues; i++)
                 {
-                    leagues.Add(new League { LeagueDate = warrior.ArrivalDate.AddDays(i + 1) });
+                    leagues.Add(new League { LeagueDate = warrior.ArrivalDate.AddMonths(-(i + 1)) });
                 }
 
                 _leagueWarDal.GetLeagues(warrior.ArrivalDate, new List<int> { warrior.ClanId }).Returns(leagues);
@@ -369,9 +369,14 @@ namespace ClashStats.Simulation
                 _clanWarDal.GetWarsCount(warrior.ArrivalDate).Returns(warrior.TotalNumberOfWars);
                 _clanWarDal.GetWarsCount(warrior.Id).Returns(warrior.ParticipateToWars);
 
-                _gameDal.GetGamesCount(warrior.ArrivalDate).Returns(warrior.TotalNumberOfGames);
-                var games = GenerateGamesForWarrior(warrior);
-                _gameWarriorDal.GetGames(warrior.Id).Returns(games);
+                var games = new List<Game>();
+                for (int i = 0; i < warrior.TotalNumberOfGames; i++)
+                {
+                    games.Add(new Game { GamesDate = warrior.ArrivalDate.AddMonths(-(i + 1)) });
+                }
+                _gameDal.GetGames(warrior.ArrivalDate, new List<int> { warrior.ClanId }).Returns(games);
+                var warriorGames = GenerateGamesForWarrior(warrior);
+                _gameWarriorDal.GetGames(warrior.Id).Returns(warriorGames);
             }
         }
 

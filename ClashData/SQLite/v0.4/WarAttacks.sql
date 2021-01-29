@@ -1,8 +1,8 @@
 ﻿CREATE TABLE IF NOT EXISTS WarAttacks (
 	Id INTEGER PRIMARY KEY,
 	WarId INTEGER NOT NULL,
+	WarPlayerId INTEGER NOT NULL,
 	AttackNumber INTEGER NOT NULL,
-	WarriorId INTEGER NOT NULL,
 	IsOpeningAttack BOOLEAN NULL,
 	CurrentThLevel INTEGER NOT NULL,
 	AttackedThLevel INTEGER NULL,
@@ -12,6 +12,6 @@
 	HasFollowedStrategy BOOLEAN NULL,
 	Comment VARCHAR(150) NULL, 
 	FOREIGN KEY(WarId) REFERENCES Wars(Id),
-	FOREIGN KEY(WarriorId) REFERENCES Warriors(Id),
-	UNIQUE(WarId, AttackNumber, WarriorId)
+	FOREIGN KEY(WarPlayerId) REFERENCES WarPlayers(Id),
+	UNIQUE(WarId, AttackNumber, WarPlayerId)
 )

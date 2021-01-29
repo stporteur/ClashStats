@@ -1,5 +1,6 @@
 ﻿using ClashBusiness;
 using ClashEntities;
+using ClashStats.LetsPlay.Games;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,9 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClashStats.LetsPlay
+namespace ClashStats.LetsPlay.Leagues
 {
-    public partial class CurrentLeagueControl : UserControl
+    public partial class CurrentLeagueControl : UserControl, IClashEventControl
     {
         private ILeagueManagement _leagueManagement;
         private readonly Clan _clan;
@@ -20,6 +21,8 @@ namespace ClashStats.LetsPlay
         private List<Warrior> _availablePlayers;
         private readonly Dictionary<int, BindingSource> _bindingsByDay;
         private Dictionary<int, DataGridView> _gridsByDay;
+
+        public event EventHandler<ClashEventArgs> GoToNextScreen;
 
         public CurrentLeagueControl(Clan clan)
         {
@@ -95,13 +98,21 @@ namespace ClashStats.LetsPlay
 
         private void SetupLeague()
         {
-            leagueBindingSource.DataSource = _league = _leagueManagement.LoadCurrentLeague(_clan.Id);
-            clanIdComboBox.SelectedValue = _league.ClanId;
-
-            FillAvailablePlayerList(1);
-            for (int i = 1; i <= 7; i++)
+            _league = _leagueManagement.LoadCurrentLeague(_clan.Id);
+            if (_league == null)
             {
-                FillDayPlayers(i);
+                GoToNextScreen(this, new ClashEventArgs("Aucune Ligue de Clan en cours. Veux-tu en démarrer une nouvelle ?", typeof(StartLeagueControl), _clan));
+            }
+            else
+            {
+                leagueBindingSource.DataSource = _league;
+                clanIdComboBox.SelectedValue = _league.ClanId;
+
+                FillAvailablePlayerList(1);
+                for (int i = 1; i <= 7; i++)
+                {
+                    FillDayPlayers(i);
+                }
             }
         }
 
@@ -149,9 +160,8 @@ namespace ClashStats.LetsPlay
                     CurrentThLevel = warrior.TownHallLevel,
                     Position = _league.PlayersPerDay[day].Count + 1
                 });
-                _availablePlayers.Remove(warrior);
+                FillAvailablePlayerList(day);
 
-                playersBindingSource.ResetBindings(false);
                 _bindingsByDay[day].ResetBindings(false);
             }
         }
@@ -228,7 +238,7 @@ namespace ClashStats.LetsPlay
                     _league.PlayersPerDay[day].Insert(playerIndex + 1, attackToMove);
                     _league.PlayersPerDay[day][playerIndex].Position--;
                     _bindingsByDay[day].ResetBindings(false);
-                    foreach(DataGridViewRow row in _gridsByDay[day].SelectedRows)
+                    foreach (DataGridViewRow row in _gridsByDay[day].SelectedRows)
                     {
                         row.Selected = false;
                     }

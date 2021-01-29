@@ -1,5 +1,5 @@
 ﻿
-namespace ClashStats.LetsPlay
+namespace ClashStats.LetsPlay.Leagues
 {
     partial class StartLeagueControl
     {
@@ -33,8 +33,8 @@ namespace ClashStats.LetsPlay
             this.label1 = new System.Windows.Forms.Label();
             this.btnLoadPlayers = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbLeagueSize15 = new System.Windows.Forms.RadioButton();
             this.rbLeagueSize30 = new System.Windows.Forms.RadioButton();
+            this.rbLeagueSize15 = new System.Windows.Forms.RadioButton();
             this.availableCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -86,6 +86,16 @@ namespace ClashStats.LetsPlay
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Taille de la ligue";
             // 
+            // rbLeagueSize30
+            // 
+            this.rbLeagueSize30.AutoSize = true;
+            this.rbLeagueSize30.Location = new System.Drawing.Point(146, 19);
+            this.rbLeagueSize30.Name = "rbLeagueSize30";
+            this.rbLeagueSize30.Size = new System.Drawing.Size(60, 17);
+            this.rbLeagueSize30.TabIndex = 1;
+            this.rbLeagueSize30.Text = "30 x 30";
+            this.rbLeagueSize30.UseVisualStyleBackColor = true;
+            // 
             // rbLeagueSize15
             // 
             this.rbLeagueSize15.AutoSize = true;
@@ -98,18 +108,10 @@ namespace ClashStats.LetsPlay
             this.rbLeagueSize15.Text = "15 x 15";
             this.rbLeagueSize15.UseVisualStyleBackColor = true;
             // 
-            // rbLeagueSize30
-            // 
-            this.rbLeagueSize30.AutoSize = true;
-            this.rbLeagueSize30.Location = new System.Drawing.Point(146, 19);
-            this.rbLeagueSize30.Name = "rbLeagueSize30";
-            this.rbLeagueSize30.Size = new System.Drawing.Size(60, 17);
-            this.rbLeagueSize30.TabIndex = 1;
-            this.rbLeagueSize30.Text = "30 x 30";
-            this.rbLeagueSize30.UseVisualStyleBackColor = true;
-            // 
             // availableCheckedListBox
             // 
+            this.availableCheckedListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.availableCheckedListBox.FormattingEnabled = true;
             this.availableCheckedListBox.Location = new System.Drawing.Point(29, 280);
             this.availableCheckedListBox.Name = "availableCheckedListBox";
@@ -136,6 +138,8 @@ namespace ClashStats.LetsPlay
             // 
             // selectedCheckedListBox
             // 
+            this.selectedCheckedListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.selectedCheckedListBox.FormattingEnabled = true;
             this.selectedCheckedListBox.Location = new System.Drawing.Point(487, 280);
             this.selectedCheckedListBox.Name = "selectedCheckedListBox";
@@ -174,6 +178,7 @@ namespace ClashStats.LetsPlay
             // 
             // btnLaunch
             // 
+            this.btnLaunch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLaunch.Location = new System.Drawing.Point(268, 694);
             this.btnLaunch.Name = "btnLaunch";
             this.btnLaunch.Size = new System.Drawing.Size(286, 71);

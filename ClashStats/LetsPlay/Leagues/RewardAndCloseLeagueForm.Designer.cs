@@ -1,5 +1,5 @@
 ﻿
-namespace ClashStats.LetsPlay
+namespace ClashStats.LetsPlay.Leagues
 {
     partial class RewardAndCloseLeagueForm
     {

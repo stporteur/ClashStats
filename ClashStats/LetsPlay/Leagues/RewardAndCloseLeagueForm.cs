@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClashStats.LetsPlay
+namespace ClashStats.LetsPlay.Leagues
 {
     public partial class RewardAndCloseLeagueForm : Form
     {

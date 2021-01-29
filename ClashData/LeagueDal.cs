@@ -18,7 +18,7 @@ namespace ClashData
             var parameters = new
             {
                 from = from,
-                clanIds = new[] { 1, 2, 3, 4, 5 }
+                clanIds = clanIds.ToArray()
             };
             return _iSQLiteManagement.GetAll<League>(sql, parameters).ToList();
         }

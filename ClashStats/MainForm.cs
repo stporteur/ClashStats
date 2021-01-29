@@ -1,9 +1,13 @@
 ﻿using ClashBusiness;
 using ClashStats.LetsPlay;
+using ClashStats.LetsPlay.Games;
+using ClashStats.LetsPlay.Leagues;
+using ClashStats.LetsPlay.Wars;
 using ClashStats.Organization;
 using ClashStats.ScoreOptionControls;
 using ClashStats.Simulation;
 using System;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace ClashStats
@@ -44,6 +48,28 @@ namespace ClashStats
             this.Text = $"{FormName} - {name}";
         }
 
+        private void AddContainerPanel(IClashEventControl userControlWithLoadingEvent, string name)
+        {
+            CleanContainerPanel();
+            userControlWithLoadingEvent.GoToNextScreen += UserControlWithLoadingEvent_GoToNextScreen;
+
+            var userControl = userControlWithLoadingEvent as UserControl;
+            containerPanel.Controls.Add(userControl);
+            userControl.Dock = DockStyle.Fill;
+            userControl.AutoScroll = true;
+            this.Text = $"{FormName} - {name}";
+        }
+
+        private void UserControlWithLoadingEvent_GoToNextScreen(object sender, ClashEventArgs e)
+        {
+            CleanContainerPanel();
+            if(MessageBox.Show(e.Message, "Aller à l'écran suivant ?", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                Object[] args = { e.SelectedClan };
+                AddContainerPanel(Activator.CreateInstance(e.EventUserControlType, args) as IClashEventControl, string.Empty);
+            }
+        }
+
         private void CleanContainerPanel()
         {
             if(containerPanel.Controls.Count > 0)
@@ -80,7 +106,8 @@ namespace ClashStats
             {
                 if(clanSelection.ShowDialog() == DialogResult.OK)
                 {
-                    AddContainerPanel(new StartLeagueControl(clanSelection.SelectedClan), "Enregistrer une nouvelle ligue");
+                    IClashEventControl userControl = new StartLeagueControl(clanSelection.SelectedClan);
+                    AddContainerPanel(userControl, "Enregistrer une nouvelle ligue");
                 }
             }
 
@@ -92,7 +119,8 @@ namespace ClashStats
             {
                 if (clanSelection.ShowDialog() == DialogResult.OK)
                 {
-                    AddContainerPanel(new CurrentLeagueControl(clanSelection.SelectedClan), "Mettre à jour la ligue en cours");
+                    IClashEventControl userControl = new CurrentLeagueControl(clanSelection.SelectedClan);
+                    AddContainerPanel(userControl, "Mettre à jour la ligue en cours");
                 }
             }
         }
@@ -104,6 +132,54 @@ namespace ClashStats
                 if (fileSelection.ShowDialog() == DialogResult.OK)
                 {
                     AutofacFactory.Instance.GetInstance<IApplicationManagement>().ExecuteScript(fileSelection.File);
+                }
+            }
+        }
+
+        private void startGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var clanSelection = new ClanSelectionForm())
+            {
+                if (clanSelection.ShowDialog() == DialogResult.OK)
+                {
+                    IClashEventControl userControl = new StartGameControl(clanSelection.SelectedClan);
+                    AddContainerPanel(userControl, "Commencer de nouveaux jeux");
+                }
+            }
+        }
+
+        private void latestGamesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var clanSelection = new ClanSelectionForm())
+            {
+                if (clanSelection.ShowDialog() == DialogResult.OK)
+                {
+                    IClashEventControl userControl = new CurrentGameControl(clanSelection.SelectedClan);
+                    AddContainerPanel(userControl, "Mettre à jour les jeux en cours");
+                }
+            }
+        }
+
+        private void latestWarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var clanSelection = new ClanSelectionForm())
+            {
+                if (clanSelection.ShowDialog() == DialogResult.OK)
+                {
+                    IClashEventControl userControl = new CurrentWarControl(clanSelection.SelectedClan);
+                    AddContainerPanel(userControl, "Mettre à jour la guerre en cours");
+                }
+            }
+        }
+
+        private void startNewWarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var clanSelection = new ClanSelectionForm())
+            {
+                if (clanSelection.ShowDialog() == DialogResult.OK)
+                {
+                    IClashEventControl userControl = new StartWarControl(clanSelection.SelectedClan);
+                    AddContainerPanel(userControl, "Commencer une nouvelle guerre");
                 }
             }
         }

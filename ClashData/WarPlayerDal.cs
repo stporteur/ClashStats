@@ -1,7 +1,7 @@
 ﻿using ClashData.SQLite;
 using ClashEntities;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ClashData
 {
@@ -11,9 +11,9 @@ namespace ClashData
         {
         }
 
-        public List<WarPlayer> LoadCurrentWarPlayers(int clanWarId)
+        public List<WarPlayer> LoadCurrentWarPlayers(int warId)
         {
-            throw new NotImplementedException();
+            return _iSQLiteManagement.GetAll<WarPlayer>($"SELECT * FROM WarPlayers WHERE WarId = {warId} ORDER BY Position").ToList();
         }
     }
 }

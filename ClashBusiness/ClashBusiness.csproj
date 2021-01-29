@@ -69,8 +69,11 @@
     <Compile Include="ApplicationManagement.cs" />
     <Compile Include="AutofacFactory.cs" />
     <Compile Include="IApplicationManagement.cs" />
+    <Compile Include="IGameManagement.cs" />
     <Compile Include="ILeagueManagement.cs" />
+    <Compile Include="IWarManagement.cs" />
     <Compile Include="IWarriorManagement.cs" />
+    <Compile Include="GameManagement.cs" />
     <Compile Include="WarriorManagement.cs" />
     <Compile Include="Exceptions\UnkownClanException.cs" />
     <Compile Include="IClanManagement.cs" />

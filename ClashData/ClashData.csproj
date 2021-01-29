@@ -281,7 +281,7 @@
     <Content Include="SQLite\v0.4\LeagueAttacks.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="SQLite\v0.4\GamePlayers.sql">
+    <Content Include="SQLite\v0.4\GameWarriors.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLite\v0.4\LeaguePlayers.sql">
@@ -300,6 +300,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLite\v0.4\Warriors.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SQLite\v0.5\NewPlayersInit.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SQLite\v0.5\UpdateScoreOptions.sql">

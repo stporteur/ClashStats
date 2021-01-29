@@ -9,13 +9,14 @@ namespace ClashEntities
     {
         public int Id { get; set; }
         public int ClanId { get; set; }
-        public Clan Clan { get; set; }
+        [Write(false)] public Clan Clan { get; set; }
+        public int WarSize { get; set; }
         public DateTime WarDate { get; set; }
         public int OurStars { get; set; }
         public double OurPercent { get; set; }
         public int TheirStars { get; set; }
         public double TheirPercent { get; set; }
-        public bool IsWin
+        [Write(false)] public bool IsWin
         { 
             get
             {
@@ -23,7 +24,7 @@ namespace ClashEntities
             } 
         }
 
-        public List<WarPlayer> Players { get; set; }
+        [Write(false)] public List<WarPlayer> Players { get; set; }
 
     }
 }
