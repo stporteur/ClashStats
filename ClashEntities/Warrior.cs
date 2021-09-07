@@ -12,6 +12,8 @@ namespace ClashEntities
         public int TownHallLevel { get; set; }
         public TownHallLevelMaturities TownHallLevelMaturity { get; set; }
         public int ClanId { get; set; }
+        public bool IsActive { get; set; }
+        public bool WantsBonus { get; set; }
         [Write(false)] public Clan Clan { get; set; }
         [Write(false)] public string ClanName { get { return Clan.Name; } }
         public DateTime ArrivalDate { get; set; } = DateTime.Today;

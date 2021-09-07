@@ -23,9 +23,21 @@ namespace ClashData
             return _iSQLiteManagement.GetAll<Game>(sql, parameters).ToList();
         }
 
-        public Game LoadCurrentGame(int clanId)
+        public Game GetCurrentGame(int clanId)
         {
             return _iSQLiteManagement.Get<Game>($"SELECT * FROM Games WHERE ClanId = @clanId ORDER BY GamesDate DESC LIMIT 1", new { clanId = clanId });
+        }
+
+        public Game GetGame(string clanHash, DateTime gamesDate)
+        {
+            string sql = "SELECT g.* FROM Games g INNER JOIN Clans c on g.ClanId = c.Id WHERE g.GamesDate = @gamesDate AND c.Hash = @clanHash";
+            var parameters = new
+            {
+                gamesDate = gamesDate,
+                clanHash = clanHash
+            };
+
+            return _iSQLiteManagement.Get<Game>(sql, parameters);
         }
     }
 }

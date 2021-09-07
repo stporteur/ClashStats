@@ -62,6 +62,10 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>com.supercell.clashofclans.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
@@ -134,6 +138,12 @@
     <Compile Include="LetsPlay\Games\CurrentGameControl.Designer.cs">
       <DependentUpon>CurrentGameControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="LetsPlay\Games\GameView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LetsPlay\Games\GameView.Designer.cs">
+      <DependentUpon>GameView.cs</DependentUpon>
+    </Compile>
     <Compile Include="LetsPlay\IClashEventControl.cs" />
     <Compile Include="LetsPlay\Games\StartGameControl.cs">
       <SubType>UserControl</SubType>
@@ -183,6 +193,30 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Management\ExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\ExportForm.Designer.cs">
+      <DependentUpon>ExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Management\GameMergeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Management\GameMergeControl.Designer.cs">
+      <DependentUpon>GameMergeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Management\ImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\ImportForm.Designer.cs">
+      <DependentUpon>ImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Management\SelectScriptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Management\SelectScriptForm.Designer.cs">
+      <DependentUpon>SelectScriptForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Organization\ClansControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -206,12 +240,6 @@
     </Compile>
     <Compile Include="ScoreOptionControls\WarriorScoreOptionControl.Designer.cs">
       <DependentUpon>WarriorScoreOptionControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SelectScriptForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SelectScriptForm.Designer.cs">
-      <DependentUpon>SelectScriptForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Simulation\ScoreDetails.cs">
       <SubType>Form</SubType>
@@ -253,6 +281,9 @@
     <EmbeddedResource Include="LetsPlay\Games\CurrentGameControl.resx">
       <DependentUpon>CurrentGameControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LetsPlay\Games\GameView.resx">
+      <DependentUpon>GameView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LetsPlay\Games\StartGameControl.resx">
       <DependentUpon>StartGameControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -277,6 +308,18 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Management\ExportForm.resx">
+      <DependentUpon>ExportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\GameMergeControl.resx">
+      <DependentUpon>GameMergeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\ImportForm.resx">
+      <DependentUpon>ImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Management\SelectScriptForm.resx">
+      <DependentUpon>SelectScriptForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Organization\ClansControl.resx">
       <DependentUpon>ClansControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -288,9 +331,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ScoreOptionControls\WarriorScoreOptionControl.resx">
       <DependentUpon>WarriorScoreOptionControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SelectScriptForm.resx">
-      <DependentUpon>SelectScriptForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Simulation\ScoreDetails.resx">
       <DependentUpon>ScoreDetails.cs</DependentUpon>
@@ -380,6 +420,10 @@
     <None Include="Resources\3starhot3.png" />
     <None Include="Resources\3star0.png" />
     <None Include="Resources\3star1.png" />
+    <Content Include="ClashStat.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="com.supercell.clashofclans.ico" />
     <Content Include="Simulation\SimulationHelp.rtf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

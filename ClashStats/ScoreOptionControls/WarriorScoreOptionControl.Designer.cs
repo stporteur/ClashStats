@@ -41,12 +41,15 @@ namespace ClashStats.ScoreOptionControls
             System.Windows.Forms.Label scoreTownHallLevelLabel;
             System.Windows.Forms.Label scoreWarParticipationLabel;
             System.Windows.Forms.Label warParticipationPointsLabel;
+            System.Windows.Forms.Label scoreSnippedGameLabel;
+            System.Windows.Forms.Label snippedGamePointsLabel;
+            System.Windows.Forms.Label label2;
+            System.Windows.Forms.Label label3;
             this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.warriorScoreOptionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gameParticipationPointsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.leagueParticipationPointsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.minimumGamePointsNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -61,23 +64,28 @@ namespace ClashStats.ScoreOptionControls
             this.seniorityPointsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.seniorityPointsDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
-            this.dataGridViewTextBoxColumn3 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
-            this.dataGridViewTextBoxColumn4 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.deleteSeniorityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reorderSeniorityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.townHallLevelPointsDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvTownHallLevelColumn = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
-            this.gdvTownHallMaturityColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
             this.townHallLevelPointsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip3 = new System.Windows.Forms.MenuStrip();
             this.deleteThLevelBonusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reorderTownHallLevelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scoreSnippedGameCheckBox = new System.Windows.Forms.CheckBox();
+            this.snippedGamePointsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.warriorScoreOptionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTownHallLevelColumn = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
+            this.gdvTownHallMaturityColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
+            this.dataGridViewTextBoxColumn3 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
+            this.dataGridViewTextBoxColumn4 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
             gameParticipationPointsLabel = new System.Windows.Forms.Label();
             leagueParticipationPointsLabel = new System.Windows.Forms.Label();
             minimumGamePointsLabel = new System.Windows.Forms.Label();
@@ -89,8 +97,11 @@ namespace ClashStats.ScoreOptionControls
             scoreTownHallLevelLabel = new System.Windows.Forms.Label();
             scoreWarParticipationLabel = new System.Windows.Forms.Label();
             warParticipationPointsLabel = new System.Windows.Forms.Label();
+            scoreSnippedGameLabel = new System.Windows.Forms.Label();
+            snippedGamePointsLabel = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.warriorScoreOptionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameParticipationPointsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leagueParticipationPointsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimumGamePointsNumericUpDown)).BeginInit();
@@ -104,6 +115,9 @@ namespace ClashStats.ScoreOptionControls
             ((System.ComponentModel.ISupportInitialize)(this.townHallLevelPointsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.townHallLevelPointsBindingSource)).BeginInit();
             this.menuStrip3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.snippedGamePointsNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.warriorScoreOptionsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // gameParticipationPointsLabel
@@ -118,7 +132,7 @@ namespace ClashStats.ScoreOptionControls
             // leagueParticipationPointsLabel
             // 
             leagueParticipationPointsLabel.AutoSize = true;
-            leagueParticipationPointsLabel.Location = new System.Drawing.Point(34, 307);
+            leagueParticipationPointsLabel.Location = new System.Drawing.Point(34, 355);
             leagueParticipationPointsLabel.Name = "leagueParticipationPointsLabel";
             leagueParticipationPointsLabel.Size = new System.Drawing.Size(89, 13);
             leagueParticipationPointsLabel.TabIndex = 32;
@@ -154,7 +168,7 @@ namespace ClashStats.ScoreOptionControls
             // scoreLeagueParticipationLabel
             // 
             scoreLeagueParticipationLabel.AutoSize = true;
-            scoreLeagueParticipationLabel.Location = new System.Drawing.Point(34, 282);
+            scoreLeagueParticipationLabel.Location = new System.Drawing.Point(34, 328);
             scoreLeagueParticipationLabel.Name = "scoreLeagueParticipationLabel";
             scoreLeagueParticipationLabel.Size = new System.Drawing.Size(219, 13);
             scoreLeagueParticipationLabel.TabIndex = 40;
@@ -172,7 +186,7 @@ namespace ClashStats.ScoreOptionControls
             // scoreSeniorityLabel
             // 
             scoreSeniorityLabel.AutoSize = true;
-            scoreSeniorityLabel.Location = new System.Drawing.Point(34, 427);
+            scoreSeniorityLabel.Location = new System.Drawing.Point(34, 560);
             scoreSeniorityLabel.Name = "scoreSeniorityLabel";
             scoreSeniorityLabel.Size = new System.Drawing.Size(205, 13);
             scoreSeniorityLabel.TabIndex = 44;
@@ -190,7 +204,7 @@ namespace ClashStats.ScoreOptionControls
             // scoreWarParticipationLabel
             // 
             scoreWarParticipationLabel.AutoSize = true;
-            scoreWarParticipationLabel.Location = new System.Drawing.Point(34, 359);
+            scoreWarParticipationLabel.Location = new System.Drawing.Point(34, 405);
             scoreWarParticipationLabel.Name = "scoreWarParticipationLabel";
             scoreWarParticipationLabel.Size = new System.Drawing.Size(215, 13);
             scoreWarParticipationLabel.TabIndex = 48;
@@ -199,11 +213,29 @@ namespace ClashStats.ScoreOptionControls
             // warParticipationPointsLabel
             // 
             warParticipationPointsLabel.AutoSize = true;
-            warParticipationPointsLabel.Location = new System.Drawing.Point(34, 384);
+            warParticipationPointsLabel.Location = new System.Drawing.Point(34, 432);
             warParticipationPointsLabel.Name = "warParticipationPointsLabel";
             warParticipationPointsLabel.Size = new System.Drawing.Size(89, 13);
             warParticipationPointsLabel.TabIndex = 50;
             warParticipationPointsLabel.Text = "Bonus maximum :";
+            // 
+            // scoreSnippedGameLabel
+            // 
+            scoreSnippedGameLabel.AutoSize = true;
+            scoreSnippedGameLabel.Location = new System.Drawing.Point(34, 257);
+            scoreSnippedGameLabel.Name = "scoreSnippedGameLabel";
+            scoreSnippedGameLabel.Size = new System.Drawing.Size(177, 13);
+            scoreSnippedGameLabel.TabIndex = 53;
+            scoreSnippedGameLabel.Text = "Calculer le malus des jeux non faits :";
+            // 
+            // snippedGamePointsLabel
+            // 
+            snippedGamePointsLabel.AutoSize = true;
+            snippedGamePointsLabel.Location = new System.Drawing.Point(34, 284);
+            snippedGamePointsLabel.Name = "snippedGamePointsLabel";
+            snippedGamePointsLabel.Size = new System.Drawing.Size(87, 13);
+            snippedGamePointsLabel.TabIndex = 54;
+            snippedGamePointsLabel.Text = "Malus maximum :";
             // 
             // label1
             // 
@@ -251,10 +283,6 @@ namespace ClashStats.ScoreOptionControls
             this.helpToolStripMenuItem.Text = "Aide";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
             // 
-            // warriorScoreOptionsBindingSource
-            // 
-            this.warriorScoreOptionsBindingSource.DataSource = typeof(ClashEntities.ScoreOptions.WarriorScoreOptions);
-            // 
             // gameParticipationPointsNumericUpDown
             // 
             this.gameParticipationPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "GameParticipationPoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -266,7 +294,7 @@ namespace ClashStats.ScoreOptionControls
             // leagueParticipationPointsNumericUpDown
             // 
             this.leagueParticipationPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "LeagueParticipationPoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.leagueParticipationPointsNumericUpDown.Location = new System.Drawing.Point(355, 307);
+            this.leagueParticipationPointsNumericUpDown.Location = new System.Drawing.Point(355, 353);
             this.leagueParticipationPointsNumericUpDown.Name = "leagueParticipationPointsNumericUpDown";
             this.leagueParticipationPointsNumericUpDown.Size = new System.Drawing.Size(65, 20);
             this.leagueParticipationPointsNumericUpDown.TabIndex = 33;
@@ -299,7 +327,7 @@ namespace ClashStats.ScoreOptionControls
             // scoreLeagueParticipationCheckBox
             // 
             this.scoreLeagueParticipationCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreLeagueParticipation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.scoreLeagueParticipationCheckBox.Location = new System.Drawing.Point(355, 277);
+            this.scoreLeagueParticipationCheckBox.Location = new System.Drawing.Point(355, 323);
             this.scoreLeagueParticipationCheckBox.Name = "scoreLeagueParticipationCheckBox";
             this.scoreLeagueParticipationCheckBox.Size = new System.Drawing.Size(120, 24);
             this.scoreLeagueParticipationCheckBox.TabIndex = 41;
@@ -317,7 +345,7 @@ namespace ClashStats.ScoreOptionControls
             // scoreSeniorityCheckBox
             // 
             this.scoreSeniorityCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreSeniority", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.scoreSeniorityCheckBox.Location = new System.Drawing.Point(355, 422);
+            this.scoreSeniorityCheckBox.Location = new System.Drawing.Point(355, 555);
             this.scoreSeniorityCheckBox.Name = "scoreSeniorityCheckBox";
             this.scoreSeniorityCheckBox.Size = new System.Drawing.Size(120, 24);
             this.scoreSeniorityCheckBox.TabIndex = 45;
@@ -335,7 +363,7 @@ namespace ClashStats.ScoreOptionControls
             // scoreWarParticipationCheckBox
             // 
             this.scoreWarParticipationCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreWarParticipation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.scoreWarParticipationCheckBox.Location = new System.Drawing.Point(355, 354);
+            this.scoreWarParticipationCheckBox.Location = new System.Drawing.Point(355, 400);
             this.scoreWarParticipationCheckBox.Name = "scoreWarParticipationCheckBox";
             this.scoreWarParticipationCheckBox.Size = new System.Drawing.Size(120, 24);
             this.scoreWarParticipationCheckBox.TabIndex = 49;
@@ -344,7 +372,7 @@ namespace ClashStats.ScoreOptionControls
             // warParticipationPointsNumericUpDown
             // 
             this.warParticipationPointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "WarParticipationPoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.warParticipationPointsNumericUpDown.Location = new System.Drawing.Point(355, 384);
+            this.warParticipationPointsNumericUpDown.Location = new System.Drawing.Point(355, 430);
             this.warParticipationPointsNumericUpDown.Name = "warParticipationPointsNumericUpDown";
             this.warParticipationPointsNumericUpDown.Size = new System.Drawing.Size(65, 20);
             this.warParticipationPointsNumericUpDown.TabIndex = 51;
@@ -359,9 +387,9 @@ namespace ClashStats.ScoreOptionControls
             // 
             this.panel1.Controls.Add(this.seniorityPointsDataGridView);
             this.panel1.Controls.Add(this.menuStrip2);
-            this.panel1.Location = new System.Drawing.Point(37, 452);
+            this.panel1.Location = new System.Drawing.Point(37, 585);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(332, 200);
+            this.panel1.Size = new System.Drawing.Size(332, 256);
             this.panel1.TabIndex = 52;
             // 
             // seniorityPointsDataGridView
@@ -377,50 +405,8 @@ namespace ClashStats.ScoreOptionControls
             this.seniorityPointsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.seniorityPointsDataGridView.Location = new System.Drawing.Point(0, 24);
             this.seniorityPointsDataGridView.Name = "seniorityPointsDataGridView";
-            this.seniorityPointsDataGridView.Size = new System.Drawing.Size(332, 176);
+            this.seniorityPointsDataGridView.Size = new System.Drawing.Size(332, 232);
             this.seniorityPointsDataGridView.TabIndex = 51;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "MinimumMonth";
-            this.dataGridViewTextBoxColumn2.DecimalPlaces = 0;
-            this.dataGridViewTextBoxColumn2.DefaultValue = 0;
-            this.dataGridViewTextBoxColumn2.HeaderText = "De (en mois)";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn2.Width = 91;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "MaximumMonth";
-            this.dataGridViewTextBoxColumn3.DecimalPlaces = 0;
-            this.dataGridViewTextBoxColumn3.DefaultValue = 0;
-            this.dataGridViewTextBoxColumn3.HeaderText = "A (en mois)";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn3.Width = 84;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Bonus";
-            this.dataGridViewTextBoxColumn4.DecimalPlaces = 0;
-            this.dataGridViewTextBoxColumn4.DefaultValue = 0;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Bonus";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // menuStrip2
             // 
@@ -453,7 +439,7 @@ namespace ClashStats.ScoreOptionControls
             this.panel2.Controls.Add(this.menuStrip3);
             this.panel2.Location = new System.Drawing.Point(627, 120);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(332, 532);
+            this.panel2.Size = new System.Drawing.Size(332, 726);
             this.panel2.TabIndex = 53;
             // 
             // townHallLevelPointsDataGridView
@@ -469,8 +455,94 @@ namespace ClashStats.ScoreOptionControls
             this.townHallLevelPointsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.townHallLevelPointsDataGridView.Location = new System.Drawing.Point(0, 24);
             this.townHallLevelPointsDataGridView.Name = "townHallLevelPointsDataGridView";
-            this.townHallLevelPointsDataGridView.Size = new System.Drawing.Size(332, 508);
+            this.townHallLevelPointsDataGridView.Size = new System.Drawing.Size(332, 702);
             this.townHallLevelPointsDataGridView.TabIndex = 1;
+            // 
+            // townHallLevelPointsBindingSource
+            // 
+            this.townHallLevelPointsBindingSource.DataMember = "TownHallLevelPoints";
+            this.townHallLevelPointsBindingSource.DataSource = this.warriorScoreOptionsBindingSource;
+            // 
+            // menuStrip3
+            // 
+            this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteThLevelBonusToolStripMenuItem,
+            this.reorderTownHallLevelToolStripMenuItem});
+            this.menuStrip3.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip3.Name = "menuStrip3";
+            this.menuStrip3.Size = new System.Drawing.Size(332, 24);
+            this.menuStrip3.TabIndex = 0;
+            this.menuStrip3.Text = "menuStrip3";
+            // 
+            // deleteThLevelBonusToolStripMenuItem
+            // 
+            this.deleteThLevelBonusToolStripMenuItem.Name = "deleteThLevelBonusToolStripMenuItem";
+            this.deleteThLevelBonusToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.deleteThLevelBonusToolStripMenuItem.Text = "Supprimer";
+            this.deleteThLevelBonusToolStripMenuItem.Click += new System.EventHandler(this.deleteThLevelBonusToolStripMenuItem_Click);
+            // 
+            // reorderTownHallLevelToolStripMenuItem
+            // 
+            this.reorderTownHallLevelToolStripMenuItem.Name = "reorderTownHallLevelToolStripMenuItem";
+            this.reorderTownHallLevelToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
+            this.reorderTownHallLevelToolStripMenuItem.Text = "Réordonner";
+            this.reorderTownHallLevelToolStripMenuItem.Click += new System.EventHandler(this.reorderTownHallLevelToolStripMenuItem_Click);
+            // 
+            // scoreSnippedGameCheckBox
+            // 
+            this.scoreSnippedGameCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreSnippedGame", true));
+            this.scoreSnippedGameCheckBox.Location = new System.Drawing.Point(355, 252);
+            this.scoreSnippedGameCheckBox.Name = "scoreSnippedGameCheckBox";
+            this.scoreSnippedGameCheckBox.Size = new System.Drawing.Size(120, 24);
+            this.scoreSnippedGameCheckBox.TabIndex = 54;
+            this.scoreSnippedGameCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // snippedGamePointsNumericUpDown
+            // 
+            this.snippedGamePointsNumericUpDown.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "SnippedGamePoints", true));
+            this.snippedGamePointsNumericUpDown.Location = new System.Drawing.Point(355, 282);
+            this.snippedGamePointsNumericUpDown.Name = "snippedGamePointsNumericUpDown";
+            this.snippedGamePointsNumericUpDown.Size = new System.Drawing.Size(65, 20);
+            this.snippedGamePointsNumericUpDown.TabIndex = 55;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new System.Drawing.Point(34, 506);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(171, 13);
+            label2.TabIndex = 57;
+            label2.Text = "Bonus par mois sans récompense :";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.warriorScoreOptionsBindingSource, "LastLeagueBonusPoints", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown1.Location = new System.Drawing.Point(355, 504);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(65, 20);
+            this.numericUpDown1.TabIndex = 59;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new System.Drawing.Point(34, 479);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(253, 13);
+            label3.TabIndex = 56;
+            label3.Text = "Calculer le bonus de dernière récompense obtenue :";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreLastLeagueBonus", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox1.Location = new System.Drawing.Point(355, 474);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(120, 24);
+            this.checkBox1.TabIndex = 58;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // warriorScoreOptionsBindingSource
+            // 
+            this.warriorScoreOptionsBindingSource.DataSource = typeof(ClashEntities.ScoreOptions.WarriorScoreOptions);
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -517,40 +589,60 @@ namespace ClashStats.ScoreOptionControls
             this.dataGridViewTextBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewTextBoxColumn8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // townHallLevelPointsBindingSource
+            // dataGridViewTextBoxColumn1
             // 
-            this.townHallLevelPointsBindingSource.DataMember = "TownHallLevelPoints";
-            this.townHallLevelPointsBindingSource.DataSource = this.warriorScoreOptionsBindingSource;
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
             // 
-            // menuStrip3
+            // dataGridViewTextBoxColumn2
             // 
-            this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteThLevelBonusToolStripMenuItem,
-            this.reorderTownHallLevelToolStripMenuItem});
-            this.menuStrip3.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip3.Name = "menuStrip3";
-            this.menuStrip3.Size = new System.Drawing.Size(332, 24);
-            this.menuStrip3.TabIndex = 0;
-            this.menuStrip3.Text = "menuStrip3";
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "MinimumMonth";
+            this.dataGridViewTextBoxColumn2.DecimalPlaces = 0;
+            this.dataGridViewTextBoxColumn2.DefaultValue = 0;
+            this.dataGridViewTextBoxColumn2.HeaderText = "De (en mois)";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn2.Width = 91;
             // 
-            // deleteThLevelBonusToolStripMenuItem
+            // dataGridViewTextBoxColumn3
             // 
-            this.deleteThLevelBonusToolStripMenuItem.Name = "deleteThLevelBonusToolStripMenuItem";
-            this.deleteThLevelBonusToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
-            this.deleteThLevelBonusToolStripMenuItem.Text = "Supprimer";
-            this.deleteThLevelBonusToolStripMenuItem.Click += new System.EventHandler(this.deleteThLevelBonusToolStripMenuItem_Click);
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "MaximumMonth";
+            this.dataGridViewTextBoxColumn3.DecimalPlaces = 0;
+            this.dataGridViewTextBoxColumn3.DefaultValue = 0;
+            this.dataGridViewTextBoxColumn3.HeaderText = "A (en mois)";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn3.Width = 84;
             // 
-            // reorderTownHallLevelToolStripMenuItem
+            // dataGridViewTextBoxColumn4
             // 
-            this.reorderTownHallLevelToolStripMenuItem.Name = "reorderTownHallLevelToolStripMenuItem";
-            this.reorderTownHallLevelToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
-            this.reorderTownHallLevelToolStripMenuItem.Text = "Réordonner";
-            this.reorderTownHallLevelToolStripMenuItem.Click += new System.EventHandler(this.reorderTownHallLevelToolStripMenuItem_Click);
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Bonus";
+            this.dataGridViewTextBoxColumn4.DecimalPlaces = 0;
+            this.dataGridViewTextBoxColumn4.DefaultValue = 0;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Bonus";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // WarriorScoreOptionControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(label2);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(label3);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(snippedGamePointsLabel);
+            this.Controls.Add(this.snippedGamePointsNumericUpDown);
+            this.Controls.Add(scoreSnippedGameLabel);
+            this.Controls.Add(this.scoreSnippedGameCheckBox);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(gameParticipationPointsLabel);
@@ -578,11 +670,10 @@ namespace ClashStats.ScoreOptionControls
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
             this.Name = "WarriorScoreOptionControl";
-            this.Size = new System.Drawing.Size(1128, 690);
+            this.Size = new System.Drawing.Size(1128, 870);
             this.Load += new System.EventHandler(this.WarriorScoreOptionControl_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.warriorScoreOptionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gameParticipationPointsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leagueParticipationPointsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimumGamePointsNumericUpDown)).EndInit();
@@ -600,6 +691,9 @@ namespace ClashStats.ScoreOptionControls
             ((System.ComponentModel.ISupportInitialize)(this.townHallLevelPointsBindingSource)).EndInit();
             this.menuStrip3.ResumeLayout(false);
             this.menuStrip3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.snippedGamePointsNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.warriorScoreOptionsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -644,5 +738,9 @@ namespace ClashStats.ScoreOptionControls
         private CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.ToolStripMenuItem reorderSeniorityToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reorderTownHallLevelToolStripMenuItem;
+        private System.Windows.Forms.CheckBox scoreSnippedGameCheckBox;
+        private System.Windows.Forms.NumericUpDown snippedGamePointsNumericUpDown;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

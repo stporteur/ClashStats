@@ -16,15 +16,23 @@ namespace ClashBusiness.Rewards
         private readonly IWarDal _clanWarDal;
         private readonly IGameDal _gameDal;
         private readonly IGameWarriorDal _gameWarriorDal;
+        private readonly ILeagueBonusDal _leagueBonusDal;
         private List<int> _clanIds;
 
-        public WarriorRewardManagement(IScoreOptionsManagement scoreOptionsLoader, ILeagueDal leagueWarDal, IWarDal clanWarDal, IGameWarriorDal gameWarriorDal, IGameDal gameDal)
+        public WarriorRewardManagement(
+            IScoreOptionsManagement scoreOptionsLoader,
+            ILeagueDal leagueWarDal,
+            IWarDal clanWarDal,
+            IGameWarriorDal gameWarriorDal,
+            IGameDal gameDal,
+            ILeagueBonusDal leagueBonusDal)
         {
             _leagueWarDal = leagueWarDal;
             _clanWarDal = clanWarDal;
             _gameWarriorDal = gameWarriorDal;
             _gameDal = gameDal;
             _scoreOptionsLoader = scoreOptionsLoader;
+            _leagueBonusDal = leagueBonusDal;
         }
 
         public List<IAbstractReward> ComputeLeagueScore(League league)
@@ -48,9 +56,11 @@ namespace ClashBusiness.Rewards
             SetIndividualScores(SetIndividualScoreWithWarParticipation, options.ScoreWarParticipation, rewards, options);
             SetIndividualScores(SetIndividualScoreWithGameParticipation, options.ScoreGameParticipation, rewards, options);
             SetIndividualScores(SetIndividualScoreWithGameThreshold, options.ScoreMinimumGamePoints, rewards, options);
+            SetIndividualScores(SetIndividualScoreWithSnippedGame, options.ScoreSnippedGame, rewards, options);
             SetIndividualScores(SetIndividualScoreWithTownhallLevel, options.ScoreTownHallLevel, rewards, options);
             SetIndividualScores(SetIndividualScoreWithSeniority, options.ScoreSeniority, rewards, options);
-
+            SetIndividualScores(SetIndividualScoreWithLastLeagueBonus, options.ScoreLastLeagueBonus, rewards, options);
+            
             return rewards.OrderByDescending(x => x.Score).ToList();
         }
 
@@ -60,7 +70,7 @@ namespace ClashBusiness.Rewards
 
             foreach (var player in warriors)
             {
-                rewards.Add(new WarriorReward { Warrior = player, Score = 0 });
+                rewards.Add(new WarriorReward { Warrior = player, WarriorId = player.Id, Score = 0 });
             }
 
             return rewards;
@@ -84,7 +94,11 @@ namespace ClashBusiness.Rewards
 
             int warriorParticipation = _leagueWarDal.GetLeaguesCount(reward.Warrior.Id);
 
-            var ratio = (double)warriorParticipation / leaguesCount;
+            double ratio = 0;
+            if (warriorParticipation != 0)
+            {
+                ratio = (double)warriorParticipation / leaguesCount;
+            }
 
             reward.LeagueParticipationRatio = ratio;
             reward.LeagueParticipationScore = (int)(ratio * (double)options.LeagueParticipationPoints);
@@ -93,10 +107,17 @@ namespace ClashBusiness.Rewards
 
         private void SetIndividualScoreWithWarParticipation(WarriorReward reward, WarriorScoreOptions options)
         {
-            int warsCount = _clanWarDal.GetWarsCount(reward.Warrior.ArrivalDate);
-            int warriorParticipation = _clanWarDal.GetWarsCount(reward.Warrior.Id);
+            int warsCount = _clanWarDal.GetWarsCount(reward.Warrior.ArrivalDate, reward.Warrior.ClanId);
+            var warriorParticipation = _clanWarDal.GetWars(reward.Warrior.Id);
+            int warriorParticipationCount = warriorParticipation.Count();
 
-            var ratio = (double)warriorParticipation / warsCount;
+            double ratio = 0;
+            if (warriorParticipationCount != 0)
+            {
+                ratio = (double)warriorParticipationCount / warsCount;
+            }
+
+            if (ratio > 1) ratio = 1;
 
             reward.WarParticipationRatio = ratio;
             reward.WarParticipationScore = (int)(ratio * (double)options.WarParticipationPoints);
@@ -117,6 +138,23 @@ namespace ClashBusiness.Rewards
             reward.GameParticipationRatio = ratio;
             reward.GameParticipationScore = (int)(ratio * (double)options.GameParticipationPoints);
             reward.Score += reward.GameParticipationScore;
+        }
+
+        private void SetIndividualScoreWithSnippedGame(WarriorReward reward, WarriorScoreOptions options)
+        {
+            var warriorGames = _gameWarriorDal.GetGames(reward.Warrior.Id);
+
+            var snippedGames = warriorGames.Count(x => x.Score < options.MinimumGamePointsThreshold);
+
+            double ratio = 0;
+            if (snippedGames != 0)
+            {
+                ratio = (double)snippedGames / warriorGames.Count;
+            }
+
+            reward.SnippedGameRatio = ratio;
+            reward.SnippedGameScore = (int)(ratio * (double)options.SnippedGamePoints);
+            reward.Score -= reward.SnippedGameScore;
         }
 
         private void SetIndividualScoreWithGameThreshold(WarriorReward reward, WarriorScoreOptions options)
@@ -163,6 +201,28 @@ namespace ClashBusiness.Rewards
 
             reward.SeniorityScore = matchingReward.Bonus;
             reward.Score += reward.SeniorityScore;
+        }
+
+        private void SetIndividualScoreWithLastLeagueBonus(WarriorReward reward, WarriorScoreOptions options)
+        {
+            var today = DateTime.Today;
+            var lastBonusDate = _leagueBonusDal.GetLastBonus(reward.WarriorId);
+            if (!lastBonusDate.HasValue)
+            {
+                lastBonusDate = reward.Warrior.ArrivalDate;
+            }
+
+            var lastBonusInMonths = ((today.Year - lastBonusDate.Value.Year) * 12) + today.Month - lastBonusDate.Value.Month;
+            if ((today - lastBonusDate.Value).TotalDays < 30)
+            {
+                lastBonusInMonths = 0;
+            }
+
+            var bonusScore = lastBonusInMonths * options.LastLeagueBonusPoints;
+
+            reward.LastBonusInMonth = lastBonusInMonths;
+            reward.LastBonusScore = bonusScore;
+            reward.Score += reward.LastBonusScore;
         }
     }
 }

@@ -16,18 +16,26 @@ insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', '
 insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'ScoreMinimumGamePoints', 'true');
 insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'MinimumGamePoints', '100');
 insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'MinimumGamePointsThreshold', '1000');
+insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'ScoreSnippedGame', 'true');
+insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'SnippedGamePoints', '100');
 insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'ScoreLeagueParticipation', 'true');
 insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'LeagueParticipationPoints', '100');
 insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'ScoreWarParticipation', 'true');
 insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'WarParticipationPoints', '100');
 insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'ScoreSeniority', 'true');
 insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'ScoreTownHallLevel', 'true');
+insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'ScoreLastLeagueBonus', 'true');
+insert into ScoreOptions (ScoreType, ScoreName, ScoreValue) values ('WARRIOR', 'LastLeagueBonusPoints', '50');
 
 insert into SeniorityScoreOptions (MinimumMonth, MaximumMonth, Bonus) values (0, 1, 20);
 insert into SeniorityScoreOptions (MinimumMonth, MaximumMonth, Bonus) values (2, 6, 30);
 insert into SeniorityScoreOptions (MinimumMonth, MaximumMonth, Bonus) values (6, 12, 40);
 insert into SeniorityScoreOptions (MinimumMonth, MaximumMonth, Bonus) values (12, 120, 10);
 
+insert into TownHallLevelScoreOptions (TownHallLevel, Maturity, Bonus) values (14, 0, 5);
+insert into TownHallLevelScoreOptions (TownHallLevel, Maturity, Bonus) values (14, 1, 50);
+insert into TownHallLevelScoreOptions (TownHallLevel, Maturity, Bonus) values (14, 2, 30);
+insert into TownHallLevelScoreOptions (TownHallLevel, Maturity, Bonus) values (14, 3, 0);
 insert into TownHallLevelScoreOptions (TownHallLevel, Maturity, Bonus) values (13, 0, 5);
 insert into TownHallLevelScoreOptions (TownHallLevel, Maturity, Bonus) values (13, 1, 50);
 insert into TownHallLevelScoreOptions (TownHallLevel, Maturity, Bonus) values (13, 2, 30);
@@ -64,3 +72,10 @@ insert into TownHallLevelScoreOptions (TownHallLevel, Maturity, Bonus) values (5
 insert into TownHallLevelScoreOptions (TownHallLevel, Maturity, Bonus) values (5, 1, 95);
 insert into TownHallLevelScoreOptions (TownHallLevel, Maturity, Bonus) values (5, 2, 75);
 insert into TownHallLevelScoreOptions (TownHallLevel, Maturity, Bonus) values (5, 3, 20);
+
+
+INSERT INTO ApplicationSettings (Id, SettingName, SettingValue) VALUES (1, 'ClashOfStatsClanLink', 'https://www.clashofstats.com/clans/{0}');
+INSERT INTO ApplicationSettings (Id, SettingName, SettingValue) VALUES (2, 'ClashOfStatsPlayerLink', 'https://www.clashofstats.com/players/{0}');
+INSERT INTO ApplicationSettings (Id, SettingName, SettingValue) VALUES (3, 'ClashSpotClanLink', 'https://clashspot.net/fr/clan/{0}/view/home-village');
+INSERT INTO ApplicationSettings (Id, SettingName, SettingValue) VALUES (4, 'ClashSpotPlayerLink', 'https://clashspot.net/fr/player/{0}/view/home-village');
+INSERT INTO ApplicationSettings (Id, SettingName, SettingValue) VALUES (5, 'TownHallMax', '14');

@@ -8,7 +8,6 @@
         public int HigherTownHallAttackMinimumStars { get; set; }
         public int HigherTownHallAttackPoints { get; set; }
 
-
         public bool ScoreNoAttackDone { get; set; }
         public int NoAttackDonePoints { get; set; }
 

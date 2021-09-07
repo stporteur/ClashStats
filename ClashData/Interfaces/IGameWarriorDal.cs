@@ -6,7 +6,7 @@ namespace ClashData
     public interface IGameWarriorDal : ICrudActions<GameWarrior>
     {
         List<GameWarrior> GetGames(int warriorId);
-        List<GameWarrior> LoadCurrentGameWarriors(int gameId);
-        bool DeleteCurrentGamePlayers(int id);
+        List<GameWarrior> LoadGameWarriors(int gameId);
+        bool DeleteGamePlayers(int id);
     }
 }

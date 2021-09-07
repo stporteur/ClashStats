@@ -3,6 +3,7 @@ using ClashStats.LetsPlay;
 using ClashStats.LetsPlay.Games;
 using ClashStats.LetsPlay.Leagues;
 using ClashStats.LetsPlay.Wars;
+using ClashStats.Management;
 using ClashStats.Organization;
 using ClashStats.ScoreOptionControls;
 using ClashStats.Simulation;
@@ -131,7 +132,14 @@ namespace ClashStats
             {
                 if (fileSelection.ShowDialog() == DialogResult.OK)
                 {
-                    AutofacFactory.Instance.GetInstance<IApplicationManagement>().ExecuteScript(fileSelection.File);
+                    if(AutofacFactory.Instance.GetInstance<IApplicationManagement>().ExecuteScript(fileSelection.File))
+                    {
+                        MessageBox.Show("Données chargées", "Mise à jour de la base de données", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Une erreur est survenue lors du chargement des données dans la base", "Mise à jour de la base de données", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -180,6 +188,32 @@ namespace ClashStats
                 {
                     IClashEventControl userControl = new StartWarControl(clanSelection.SelectedClan);
                     AddContainerPanel(userControl, "Commencer une nouvelle guerre");
+                }
+            }
+        }
+
+        private void exportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var exportForm = new ExportForm())
+            {
+                exportForm.ShowDialog();
+            }
+        }
+
+        private void importToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var importForm = new ImportForm())
+            {
+                if (importForm.ShowDialog() == DialogResult.OK)
+                {
+                    switch(importForm.ImportType)
+                    {
+                        case "Game":
+                            var mergeControl = new GameMergeControl();
+                            AddContainerPanel(mergeControl, "Fusionner les jeux");
+                            mergeControl.LoadGame(importForm.Games[0]);
+                            break;
+                    }
                 }
             }
         }

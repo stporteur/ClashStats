@@ -44,10 +44,10 @@ namespace ClashStats.LetsPlay.Games
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameWarriorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.playersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gameWarriorDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
-            this.playersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             gamesDateLabel = new System.Windows.Forms.Label();
             gamesEndedLabel = new System.Windows.Forms.Label();
             clanIdLabel = new System.Windows.Forms.Label();
@@ -55,8 +55,8 @@ namespace ClashStats.LetsPlay.Games
             ((System.ComponentModel.ISupportInitialize)(this.clanBindingSource)).BeginInit();
             this.menuStrip8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gameWarriorBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gameWarriorDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gameWarriorDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // gamesDateLabel
@@ -176,6 +176,11 @@ namespace ClashStats.LetsPlay.Games
             this.gameWarriorBindingSource.AllowNew = false;
             this.gameWarriorBindingSource.DataSource = this.playersBindingSource;
             // 
+            // playersBindingSource
+            // 
+            this.playersBindingSource.DataMember = "Players";
+            this.playersBindingSource.DataSource = this.gameBindingSource;
+            // 
             // gameWarriorDataGridView
             // 
             this.gameWarriorDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -216,11 +221,6 @@ namespace ClashStats.LetsPlay.Games
             this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewTextBoxColumn6.Width = 60;
             // 
-            // playersBindingSource
-            // 
-            this.playersBindingSource.DataMember = "Players";
-            this.playersBindingSource.DataSource = this.gameBindingSource;
-            // 
             // CurrentGameControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,8 +243,8 @@ namespace ClashStats.LetsPlay.Games
             this.menuStrip8.ResumeLayout(false);
             this.menuStrip8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gameWarriorBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gameWarriorDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gameWarriorDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

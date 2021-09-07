@@ -36,19 +36,21 @@ namespace ClashStats.Organization
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.warriorDataGridView = new System.Windows.Forms.DataGridView();
-            this.clanBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.warriorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewDateTimePickerColumn1 = new ClashStats.CustomControls.DataGridViewDateTimePicker.DataGridViewDateTimePickerColumn();
-            this.dataGridViewNumericUpDownColumn1 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.clanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn8 = new ClashStats.CustomControls.DataGridViewDateTimePicker.DataGridViewDateTimePickerColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
             this.dgvMaturityColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.WantsBonus = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ClashOfStatsLink = new System.Windows.Forms.DataGridViewLinkColumn();
             this.ClashSpotLink = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.warriorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewDateTimePickerColumn1 = new ClashStats.CustomControls.DataGridViewDateTimePicker.DataGridViewDateTimePickerColumn();
+            this.dataGridViewNumericUpDownColumn1 = new ClashStats.CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.warriorDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clanBindingSource)).BeginInit();
@@ -64,7 +66,8 @@ namespace ClashStats.Organization
             this.deleteToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(744, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1116, 26);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -99,29 +102,138 @@ namespace ClashStats.Organization
             // 
             // warriorDataGridView
             // 
+            this.warriorDataGridView.AllowUserToOrderColumns = true;
             this.warriorDataGridView.AutoGenerateColumns = false;
             this.warriorDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.warriorDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
+            this.IsActive,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dgvMaturityColumn,
+            this.WantsBonus,
             this.ClashOfStatsLink,
             this.ClashSpotLink});
             this.warriorDataGridView.DataSource = this.warriorBindingSource;
             this.warriorDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.warriorDataGridView.Location = new System.Drawing.Point(0, 24);
+            this.warriorDataGridView.Location = new System.Drawing.Point(0, 26);
+            this.warriorDataGridView.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.warriorDataGridView.Name = "warriorDataGridView";
-            this.warriorDataGridView.Size = new System.Drawing.Size(744, 578);
+            this.warriorDataGridView.Size = new System.Drawing.Size(1116, 900);
             this.warriorDataGridView.TabIndex = 4;
             this.warriorDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.warriorDataGridView_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // IsActive
+            // 
+            this.IsActive.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.IsActive.DataPropertyName = "IsActive";
+            this.IsActive.HeaderText = "IsActive";
+            this.IsActive.Name = "IsActive";
+            this.IsActive.Width = 71;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "ClanId";
+            this.dataGridViewTextBoxColumn6.DataSource = this.clanBindingSource;
+            this.dataGridViewTextBoxColumn6.DisplayMember = "Name";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Clan";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn6.ValueMember = "Id";
             // 
             // clanBindingSource
             // 
             this.clanBindingSource.DataSource = typeof(ClashEntities.Clan);
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "ArrivalDate";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Date arrivée";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn8.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nom";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Hash";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Hash";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 72;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "TownHallLevel";
+            this.dataGridViewTextBoxColumn4.DecimalPlaces = 0;
+            this.dataGridViewTextBoxColumn4.HeaderText = "HDV";
+            this.dataGridViewTextBoxColumn4.Maximum = new decimal(new int[] {
+            13,
+            0,
+            0,
+            0});
+            this.dataGridViewTextBoxColumn4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn4.Width = 69;
+            // 
+            // dgvMaturityColumn
+            // 
+            this.dgvMaturityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvMaturityColumn.DataPropertyName = "TownHallLevelMaturity";
+            this.dgvMaturityColumn.HeaderText = "Maturité HDV";
+            this.dgvMaturityColumn.Name = "dgvMaturityColumn";
+            this.dgvMaturityColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMaturityColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dgvMaturityColumn.Width = 120;
+            // 
+            // WantsBonus
+            // 
+            this.WantsBonus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.WantsBonus.DataPropertyName = "WantsBonus";
+            this.WantsBonus.HeaderText = "Bonus de ligue";
+            this.WantsBonus.Name = "WantsBonus";
+            this.WantsBonus.Width = 78;
+            // 
+            // ClashOfStatsLink
+            // 
+            this.ClashOfStatsLink.HeaderText = "Clash Of Stats";
+            this.ClashOfStatsLink.Name = "ClashOfStatsLink";
+            this.ClashOfStatsLink.ReadOnly = true;
+            this.ClashOfStatsLink.Text = "Go to...";
+            this.ClashOfStatsLink.UseColumnTextForLinkValue = true;
+            // 
+            // ClashSpotLink
+            // 
+            this.ClashSpotLink.HeaderText = "Clash Spot";
+            this.ClashSpotLink.Name = "ClashSpotLink";
+            this.ClashSpotLink.ReadOnly = true;
+            this.ClashSpotLink.Text = "Go to...";
+            this.ClashSpotLink.UseColumnTextForLinkValue = true;
             // 
             // warriorBindingSource
             // 
@@ -145,103 +257,15 @@ namespace ClashStats.Organization
             this.dataGridViewNumericUpDownColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewNumericUpDownColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "ClanId";
-            this.dataGridViewTextBoxColumn6.DataSource = this.clanBindingSource;
-            this.dataGridViewTextBoxColumn6.DisplayMember = "Name";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Clan";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn6.ValueMember = "Id";
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "ArrivalDate";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Date arrivée";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn8.Width = 90;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Nom";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Hash";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Hash";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 57;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "TownHallLevel";
-            this.dataGridViewTextBoxColumn4.DecimalPlaces = 0;
-            this.dataGridViewTextBoxColumn4.HeaderText = "HDV";
-            this.dataGridViewTextBoxColumn4.Maximum = new decimal(new int[] {
-            13,
-            0,
-            0,
-            0});
-            this.dataGridViewTextBoxColumn4.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn4.Width = 55;
-            // 
-            // dgvMaturityColumn
-            // 
-            this.dgvMaturityColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dgvMaturityColumn.DataPropertyName = "TownHallLevelMaturity";
-            this.dgvMaturityColumn.HeaderText = "Maturité HDV";
-            this.dgvMaturityColumn.Name = "dgvMaturityColumn";
-            this.dgvMaturityColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMaturityColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dgvMaturityColumn.Width = 96;
-            // 
-            // ClashOfStatsLink
-            // 
-            this.ClashOfStatsLink.HeaderText = "Clash Of Stats";
-            this.ClashOfStatsLink.Name = "ClashOfStatsLink";
-            this.ClashOfStatsLink.ReadOnly = true;
-            this.ClashOfStatsLink.Text = "Go to...";
-            this.ClashOfStatsLink.UseColumnTextForLinkValue = true;
-            // 
-            // ClashSpotLink
-            // 
-            this.ClashSpotLink.HeaderText = "Clash Spot";
-            this.ClashSpotLink.Name = "ClashSpotLink";
-            this.ClashSpotLink.ReadOnly = true;
-            this.ClashSpotLink.Text = "Go to...";
-            this.ClashSpotLink.UseColumnTextForLinkValue = true;
-            // 
             // WarriorsControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.warriorDataGridView);
             this.Controls.Add(this.menuStrip1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "WarriorsControl";
-            this.Size = new System.Drawing.Size(744, 602);
+            this.Size = new System.Drawing.Size(1116, 926);
             this.Load += new System.EventHandler(this.WarriorsControl_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -266,12 +290,14 @@ namespace ClashStats.Organization
         private CustomControls.DataGridViewDateTimePicker.DataGridViewDateTimePickerColumn dataGridViewDateTimePickerColumn1;
         private CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn dataGridViewNumericUpDownColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsActive;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn6;
         private CustomControls.DataGridViewDateTimePicker.DataGridViewDateTimePickerColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private CustomControls.DataGridViewNumericUpDown.DataGridViewNumericUpDownColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewComboBoxColumn dgvMaturityColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn WantsBonus;
         private System.Windows.Forms.DataGridViewLinkColumn ClashOfStatsLink;
         private System.Windows.Forms.DataGridViewLinkColumn ClashSpotLink;
     }

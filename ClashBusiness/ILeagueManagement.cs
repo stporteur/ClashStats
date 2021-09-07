@@ -9,5 +9,7 @@ namespace ClashBusiness
         bool RegisterNewLeague(League newLeague);
         bool UpdateLeague(League league);
         List<Warrior> GetUnregisteredWarriors(List<Warrior> registeredWarriors);
+        List<League> GetClanLeagues(int clanId);
+        List<League> LoadLeagues(List<int> leagueIdsToLoad);
     }
 }

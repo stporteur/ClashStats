@@ -50,8 +50,17 @@ namespace ClashStats.CustomControls.DataGridViewRating
             base.OnContentClick(e);
             int starNumber = GetStarFromMouse(this.DataGridView.GetCellDisplayRectangle(this.DataGridView.CurrentCellAddress.X, this.DataGridView.CurrentCellAddress.Y, false), this.DataGridView.PointToClient(Control.MousePosition));
 
-            if (starNumber != -1)
-                this.Value = starNumber;
+            try
+            {
+                if (starNumber != -1)
+                {
+                    this.Value = starNumber;
+                    this.DataGridView.EndEdit();
+                }
+            }
+            catch(ArgumentOutOfRangeException)
+            {
+            }
         }
 
         #region Invalidate cells when mouse moves or leaves the cell 

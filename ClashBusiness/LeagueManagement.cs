@@ -27,33 +27,30 @@ namespace ClashBusiness
             _leagueAttackDal = leagueAttackDal;
         }
 
-        public League LoadCurrentLeague(int clanId)
+        public List<League> LoadLeagues(List<int> leagueIdsToLoad)
         {
-            _loadedClans = new List<Clan>();
-            _loadedWarriors = new List<Warrior>();
-
-            var clan = _clanDal.Get(clanId);
-
-            if (clan == null)
+            var leagues = new List<League>();
+            foreach (var leagueId in leagueIdsToLoad)
             {
-                throw new UnkownClanException();
+                var league = _leagueDal.Get(leagueId);
+                LoadAdditionalLeagueData(league);
+                leagues.Add(league);
             }
 
-            _loadedClans.Add(clan);
+            return leagues;
+        }
 
-            var league = _leagueDal.LoadCurrentLeague(clan.Id);
-            if (league == null)
-            {
-                return null;
-            }
+        private void LoadAdditionalLeagueData(League league)
+        {
+            FillLeagueClan(league);
 
-            league.Players = _leaguePlayerDal.LoadCurrentLeaguePlayers(league.Id);
+            league.Players = _leaguePlayerDal.LoadLeaguePlayers(league.Id);
             league.Players.ForEach(x => FillWarriorClan(x));
 
             league.PlayersPerDay = new Dictionary<int, List<LeagueAttack>>();
             for (int i = 1; i <= 7; i++)
             {
-                var playersOfDay = _leagueAttackDal.LoadCurrentLeaguePlayersOfDay(league.Id, i);
+                var playersOfDay = _leagueAttackDal.LoadLeaguePlayersOfDay(league.Id, i);
                 if (playersOfDay == null)
                 {
                     playersOfDay = new List<LeagueAttack>();
@@ -61,6 +58,19 @@ namespace ClashBusiness
                 playersOfDay.ForEach(x => FillWarrior(x));
                 league.PlayersPerDay.Add(i, playersOfDay);
             }
+        }
+
+        public League LoadCurrentLeague(int clanId)
+        {
+            _loadedWarriors = new List<Warrior>();
+
+            var league = _leagueDal.LoadCurrentLeague(clanId);
+            if (league == null)
+            {
+                return null;
+            }
+
+            LoadAdditionalLeagueData(league);
 
             return league;
         }
@@ -89,7 +99,7 @@ namespace ClashBusiness
         {
             var result = _leagueDal.Update(league);
 
-            var registeredWarriorsId = _leaguePlayerDal.LoadCurrentLeaguePlayers(league.Id).Select(x => x.Id);
+            var registeredWarriorsId = _leaguePlayerDal.LoadLeaguePlayers(league.Id).Select(x => x.Id);
             var unregisteredWarriors = league.Players.Where(x => !registeredWarriorsId.Contains(x.Id)).ToList();
             foreach (var player in unregisteredWarriors)
             {
@@ -103,7 +113,7 @@ namespace ClashBusiness
             }
 
 
-            _leagueAttackDal.DeleteCurrentLeaguePlayers(league.Id);
+            _leagueAttackDal.DeleteLeaguePlayers(league.Id);
             for (int i = 1; i <= 7; i++)
             {
                 int position = 1;
@@ -122,8 +132,6 @@ namespace ClashBusiness
 
         public List<Warrior> GetUnregisteredWarriors(List<Warrior> registeredWarriors)
         {
-            if (_loadedClans == null) _loadedClans = new List<Clan>();
-
             var allWarriors = _warriorDal.GetAll();
             var registeredWarriorsId = registeredWarriors.Select(x => x.Id).ToList();
             var unregisteredWarriors = allWarriors.Where(x => !registeredWarriorsId.Contains(x.Id)).ToList();
@@ -132,20 +140,41 @@ namespace ClashBusiness
 
         }
 
-        private void FillWarriorClan(Warrior warrior)
+        private void FillLeagueClan(League league)
         {
-            var loadedClan = _loadedClans.SingleOrDefault(x => x.Id == warrior.ClanId);
+            var loadedClan = LoadClan(league.ClanId);
             if (loadedClan == null)
             {
-                loadedClan = _clanDal.Get(warrior.ClanId);
+                throw new UnknownClanException();
+            }
+
+            league.Clan = loadedClan;
+        }
+
+        private void FillWarriorClan(Warrior warrior)
+        {
+            Clan loadedClan = LoadClan(warrior.ClanId);
+            warrior.Clan = loadedClan;
+        }
+
+        private Clan LoadClan(int clanId)
+        {
+            if (_loadedClans == null) _loadedClans = new List<Clan>();
+
+            var loadedClan = _loadedClans.SingleOrDefault(x => x.Id == clanId);
+            if (loadedClan == null)
+            {
+                loadedClan = _clanDal.Get(clanId);
                 _loadedClans.Add(loadedClan);
             }
 
-            warrior.Clan = loadedClan;
+            return loadedClan;
         }
 
         private void FillWarrior(LeagueAttack attack)
         {
+            if (_loadedWarriors == null) _loadedWarriors = new List<Warrior>();
+
             var loadedWarrior = _loadedWarriors.SingleOrDefault(x => x.Id == attack.WarriorId);
             if (loadedWarrior == null)
             {
@@ -157,6 +186,9 @@ namespace ClashBusiness
             FillWarriorClan(attack.Warrior);
         }
 
-
+        public List<League> GetClanLeagues(int clanId)
+        {
+            return _leagueDal.GetAll().Where(x => x.ClanId == clanId).ToList();
+        }
     }
 }

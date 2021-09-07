@@ -5,6 +5,6 @@ namespace ClashData
 {
     public interface ILeaguePlayerDal : ICrudActions<LeaguePlayer>
     {
-        List<Warrior> LoadCurrentLeaguePlayers(int leagueId);
+        List<Warrior> LoadLeaguePlayers(int leagueId);
     }
 }

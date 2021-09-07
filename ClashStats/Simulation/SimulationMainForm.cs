@@ -29,6 +29,7 @@ namespace ClashStats.Simulation
         private List<IScoreRewardManagement> _scoreRewardManagements;
 
         private ILeagueDal _leagueWarDal;
+        private ILeagueBonusDal _leagueBonusDal;
         private IWarDal _clanWarDal;
         private IGameWarriorDal _gameWarriorDal;
         private IGameDal _gameDal;
@@ -61,6 +62,7 @@ namespace ClashStats.Simulation
             _scoreOptionsLoader.LoadWarriorScoreOptions().Returns(_warriorOptions);
 
             _leagueWarDal = Substitute.For<ILeagueDal>();
+            _leagueBonusDal = Substitute.For<ILeagueBonusDal>();
             _clanWarDal = Substitute.For<IWarDal>();
             _gameWarriorDal = Substitute.For<IGameWarriorDal>();
             _gameDal = Substitute.For<IGameDal>();
@@ -68,10 +70,10 @@ namespace ClashStats.Simulation
             _scoreRewardManagements = new List<IScoreRewardManagement>
             {
                 new LeagueRewardManagement(_scoreOptionsLoader),
-                new WarriorRewardManagement(_scoreOptionsLoader, _leagueWarDal, _clanWarDal, _gameWarriorDal, _gameDal)
+                new WarriorRewardManagement(_scoreOptionsLoader, _leagueWarDal, _clanWarDal, _gameWarriorDal, _gameDal, _leagueBonusDal)
             };
 
-            _rewardManagement = new RewardManagement(_scoreRewardManagements);
+            _rewardManagement = new RewardManagement(_scoreRewardManagements, Substitute.For<ILeagueBonusDal>());
         }
 
         private void InitializeLeagueOptions()
@@ -365,9 +367,15 @@ namespace ClashStats.Simulation
 
                 _leagueWarDal.GetLeagues(warrior.ArrivalDate, new List<int> { warrior.ClanId }).Returns(leagues);
                 _leagueWarDal.GetLeaguesCount(warrior.Id).Returns(warrior.ParticipateToLeagues);
+                
+                var wars = new List<War>();
+                for (int i = 0; i < warrior.TotalNumberOfWars; i++)
+                {
+                    wars.Add(new War { ClanId = warrior.ClanId });
+                }
 
-                _clanWarDal.GetWarsCount(warrior.ArrivalDate).Returns(warrior.TotalNumberOfWars);
-                _clanWarDal.GetWarsCount(warrior.Id).Returns(warrior.ParticipateToWars);
+                _clanWarDal.GetWarsCount(warrior.ArrivalDate, warrior.ClanId).Returns(warrior.TotalNumberOfWars);
+                _clanWarDal.GetWars(warrior.Id).Returns(wars);
 
                 var games = new List<Game>();
                 for (int i = 0; i < warrior.TotalNumberOfGames; i++)

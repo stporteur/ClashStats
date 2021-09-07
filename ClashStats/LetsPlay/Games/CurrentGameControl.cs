@@ -31,7 +31,7 @@ namespace ClashStats.LetsPlay.Games
             clanBindingSource.DataSource = AutofacFactory.Instance.GetInstance<IClanManagement>().GetClans();
             _gameManagement = AutofacFactory.Instance.GetInstance<IGameManagement>();
 
-            _game = _gameManagement.LoadCurrentGames(_clan.Id);
+            _game = _gameManagement.LoadCurrentGame(_clan.Id);
             if (_game == null)
             {
                 GoToNextScreen(this, new ClashEventArgs("Aucun Jeux de Clan en cours. Veux-tu en démarrer de nouveaux ?", typeof(StartGameControl), _clan));
@@ -62,7 +62,7 @@ namespace ClashStats.LetsPlay.Games
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_gameManagement.UpdateGames(_game))
+            if (_gameManagement.UpdateGame(_game))
             {
                 MessageBox.Show("Sauvegarde réussie", "Sauvegarde", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -70,7 +70,7 @@ namespace ClashStats.LetsPlay.Games
 
         private void cancelToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            gameBindingSource.DataSource = _game = _gameManagement.LoadCurrentGames(_clan.Id);
+            gameBindingSource.DataSource = _game = _gameManagement.LoadCurrentGame(_clan.Id);
         }
 
 

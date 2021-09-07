@@ -16,12 +16,12 @@ namespace ClashBusiness
 
         public List<Warrior> GetWarriors()
         {
-            return _warriorDal.GetAll().ToList();
+            return _warriorDal.GetAll().Where(x => x.IsActive).OrderBy(x=>x.ClanId).ThenBy(x=>x.Name).ToList();
         }
 
         public List<Warrior> GetWarriors(int clanId)
         {
-            return _warriorDal.GetAll().Where(x => x.ClanId == clanId).ToList();
+            return _warriorDal.GetAll().Where(x => x.IsActive && x.ClanId == clanId).ToList();
         }
 
         public bool SaveWarriors(List<Warrior> warriors)

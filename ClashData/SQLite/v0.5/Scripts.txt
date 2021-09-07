@@ -1,3 +1,0 @@
-﻿NewPlayersInit.sql
-LeaguesInit.sql
-UpdateScoreOptions.sql

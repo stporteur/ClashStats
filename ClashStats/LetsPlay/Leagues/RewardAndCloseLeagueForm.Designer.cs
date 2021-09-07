@@ -49,15 +49,12 @@ namespace ClashStats.LetsPlay.Leagues
             System.Windows.Forms.Label townhallLevelScoreLabel;
             System.Windows.Forms.Label warParticipationRatioLabel;
             System.Windows.Forms.Label label9;
+            System.Windows.Forms.Label lastLeagueBonusPointsLabel;
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.rewardDataGridView = new System.Windows.Forms.DataGridView();
             this.SelectedWarriorCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.WarriorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ClanName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rewardBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnReward = new System.Windows.Forms.Button();
             this.btnCompute = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -66,7 +63,6 @@ namespace ClashStats.LetsPlay.Leagues
             this.label15 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.gameParticipationPointsTextBox = new System.Windows.Forms.TextBox();
-            this.warriorScoreOptionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.leagueParticipationPointsTextBox = new System.Windows.Forms.TextBox();
             this.minimumGamePointsTextBox = new System.Windows.Forms.TextBox();
             this.minimumGamePointsThresholdTextBox = new System.Windows.Forms.TextBox();
@@ -80,7 +76,6 @@ namespace ClashStats.LetsPlay.Leagues
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.gameParticipationRatioTextBox = new System.Windows.Forms.TextBox();
-            this.warriorRewardBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.gameParticipationScoreTextBox = new System.Windows.Forms.TextBox();
             this.leagueParticipationRatioTextBox = new System.Windows.Forms.TextBox();
@@ -102,7 +97,6 @@ namespace ClashStats.LetsPlay.Leagues
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.failedWarFaultPointsTextBox = new System.Windows.Forms.TextBox();
-            this.leagueScoreOptionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.higherTownHallAttackMinimumStarsTextBox = new System.Windows.Forms.TextBox();
             this.higherTownHallAttackPointsTextBox = new System.Windows.Forms.TextBox();
             this.incoherentAttackPointsTextBox = new System.Windows.Forms.TextBox();
@@ -118,7 +112,6 @@ namespace ClashStats.LetsPlay.Leagues
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.totalStarsTextBox = new System.Windows.Forms.TextBox();
-            this.leagueRewardBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.totalHigherAttacksTextBox = new System.Windows.Forms.TextBox();
             this.attackNoDoneScoreTextBox = new System.Windows.Forms.TextBox();
             this.totalFailedWarFaultTextBox = new System.Windows.Forms.TextBox();
@@ -138,9 +131,22 @@ namespace ClashStats.LetsPlay.Leagues
             this.townHallLevelTextBox = new System.Windows.Forms.TextBox();
             this.tabPageLeagueScoreOptions = new System.Windows.Forms.TabPage();
             this.tabPageWarriorScoreOptions = new System.Windows.Forms.TabPage();
+            this.rewardBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.warriorScoreOptionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.warriorRewardBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.leagueScoreOptionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.leagueRewardBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WarriorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ClanName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.scoreLastLeagueBonusCheckBox = new System.Windows.Forms.CheckBox();
+            this.lastLeagueBonusPointsTextBox = new System.Windows.Forms.TextBox();
+            this.lastBonusInMonthTextBox = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.lastBonusScoreTextBox = new System.Windows.Forms.TextBox();
             scoreLabel = new System.Windows.Forms.Label();
             totalAttacksNotDoneLabel = new System.Windows.Forms.Label();
             totalFailedWarFaultLabel = new System.Windows.Forms.Label();
@@ -160,6 +166,7 @@ namespace ClashStats.LetsPlay.Leagues
             townhallLevelScoreLabel = new System.Windows.Forms.Label();
             warParticipationRatioLabel = new System.Windows.Forms.Label();
             label9 = new System.Windows.Forms.Label();
+            lastLeagueBonusPointsLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -167,11 +174,11 @@ namespace ClashStats.LetsPlay.Leagues
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rewardDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rewardBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rewardBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.warriorScoreOptionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.warriorRewardBindingSource)).BeginInit();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.leagueScoreOptionsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leagueRewardBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -306,11 +313,11 @@ namespace ClashStats.LetsPlay.Leagues
             // seniorityScoreLabel
             // 
             seniorityScoreLabel.AutoSize = true;
-            seniorityScoreLabel.Location = new System.Drawing.Point(136, 183);
+            seniorityScoreLabel.Location = new System.Drawing.Point(139, 183);
             seniorityScoreLabel.Name = "seniorityScoreLabel";
-            seniorityScoreLabel.Size = new System.Drawing.Size(57, 13);
+            seniorityScoreLabel.Size = new System.Drawing.Size(54, 13);
             seniorityScoreLabel.TabIndex = 12;
-            seniorityScoreLabel.Text = "Séniorité : ";
+            seniorityScoreLabel.Text = "Séniorité :";
             // 
             // succeedeedGameRatioLabel
             // 
@@ -343,7 +350,7 @@ namespace ClashStats.LetsPlay.Leagues
             // 
             label9.AutoSize = true;
             label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label9.Location = new System.Drawing.Point(140, 255);
+            label9.Location = new System.Drawing.Point(140, 304);
             label9.Name = "label9";
             label9.Size = new System.Drawing.Size(201, 16);
             label9.TabIndex = 58;
@@ -430,36 +437,6 @@ namespace ClashStats.LetsPlay.Leagues
             this.SelectedWarriorCheckBoxColumn.Name = "SelectedWarriorCheckBoxColumn";
             this.SelectedWarriorCheckBoxColumn.Width = 16;
             // 
-            // WarriorName
-            // 
-            this.WarriorName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.WarriorName.DataPropertyName = "WarriorName";
-            this.WarriorName.HeaderText = "Joueur";
-            this.WarriorName.Name = "WarriorName";
-            this.WarriorName.ReadOnly = true;
-            // 
-            // ClanName
-            // 
-            this.ClanName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ClanName.DataPropertyName = "ClanName";
-            this.ClanName.HeaderText = "Clan";
-            this.ClanName.Name = "ClanName";
-            this.ClanName.ReadOnly = true;
-            this.ClanName.Width = 53;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Score";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Score";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 60;
-            // 
-            // rewardBindingSource
-            // 
-            this.rewardBindingSource.AllowNew = false;
-            this.rewardBindingSource.DataSource = typeof(ClashEntities.Rewards.Reward);
-            // 
             // btnReward
             // 
             this.btnReward.Location = new System.Drawing.Point(201, 12);
@@ -468,6 +445,7 @@ namespace ClashStats.LetsPlay.Leagues
             this.btnReward.TabIndex = 2;
             this.btnReward.Text = "Donner les bonus";
             this.btnReward.UseVisualStyleBackColor = true;
+            this.btnReward.Click += new System.EventHandler(this.btnReward_Click);
             // 
             // btnCompute
             // 
@@ -484,6 +462,12 @@ namespace ClashStats.LetsPlay.Leagues
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.lastBonusScoreTextBox);
+            this.groupBox2.Controls.Add(this.label20);
+            this.groupBox2.Controls.Add(this.lastBonusInMonthTextBox);
+            this.groupBox2.Controls.Add(lastLeagueBonusPointsLabel);
+            this.groupBox2.Controls.Add(this.lastLeagueBonusPointsTextBox);
+            this.groupBox2.Controls.Add(this.scoreLastLeagueBonusCheckBox);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label15);
@@ -522,7 +506,7 @@ namespace ClashStats.LetsPlay.Leagues
             this.groupBox2.Controls.Add(this.warParticipationScoreTextBox);
             this.groupBox2.Location = new System.Drawing.Point(3, 456);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(783, 449);
+            this.groupBox2.Size = new System.Drawing.Size(783, 452);
             this.groupBox2.TabIndex = 51;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Scores de guerrier";
@@ -572,10 +556,6 @@ namespace ClashStats.LetsPlay.Leagues
             this.gameParticipationPointsTextBox.Name = "gameParticipationPointsTextBox";
             this.gameParticipationPointsTextBox.Size = new System.Drawing.Size(54, 20);
             this.gameParticipationPointsTextBox.TabIndex = 61;
-            // 
-            // warriorScoreOptionsBindingSource
-            // 
-            this.warriorScoreOptionsBindingSource.DataSource = typeof(ClashEntities.ScoreOptions.WarriorScoreOptions);
             // 
             // leagueParticipationPointsTextBox
             // 
@@ -693,10 +673,6 @@ namespace ClashStats.LetsPlay.Leagues
             this.gameParticipationRatioTextBox.Size = new System.Drawing.Size(48, 20);
             this.gameParticipationRatioTextBox.TabIndex = 3;
             // 
-            // warriorRewardBindingSource
-            // 
-            this.warriorRewardBindingSource.DataSource = typeof(ClashEntities.Rewards.WarriorReward);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -736,7 +712,7 @@ namespace ClashStats.LetsPlay.Leagues
             // 
             this.scoreTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.warriorRewardBindingSource, "Score", true));
             this.scoreTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreTextBox1.Location = new System.Drawing.Point(352, 254);
+            this.scoreTextBox1.Location = new System.Drawing.Point(352, 303);
             this.scoreTextBox1.Name = "scoreTextBox1";
             this.scoreTextBox1.Size = new System.Drawing.Size(62, 22);
             this.scoreTextBox1.TabIndex = 11;
@@ -930,10 +906,6 @@ namespace ClashStats.LetsPlay.Leagues
             this.failedWarFaultPointsTextBox.Size = new System.Drawing.Size(54, 20);
             this.failedWarFaultPointsTextBox.TabIndex = 33;
             // 
-            // leagueScoreOptionsBindingSource
-            // 
-            this.leagueScoreOptionsBindingSource.DataSource = typeof(ClashEntities.ScoreOptions.LeagueScoreOptions);
-            // 
             // higherTownHallAttackMinimumStarsTextBox
             // 
             this.higherTownHallAttackMinimumStarsTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.leagueScoreOptionsBindingSource, "HigherTownHallAttackMinimumStars", true));
@@ -1068,10 +1040,6 @@ namespace ClashStats.LetsPlay.Leagues
             this.totalStarsTextBox.Name = "totalStarsTextBox";
             this.totalStarsTextBox.Size = new System.Drawing.Size(48, 20);
             this.totalStarsTextBox.TabIndex = 29;
-            // 
-            // leagueRewardBindingSource
-            // 
-            this.leagueRewardBindingSource.DataSource = typeof(ClashEntities.Rewards.LeagueReward);
             // 
             // totalHigherAttacksTextBox
             // 
@@ -1230,6 +1198,27 @@ namespace ClashStats.LetsPlay.Leagues
             this.tabPageWarriorScoreOptions.Text = "Options de guerrier";
             this.tabPageWarriorScoreOptions.UseVisualStyleBackColor = true;
             // 
+            // rewardBindingSource
+            // 
+            this.rewardBindingSource.AllowNew = false;
+            this.rewardBindingSource.DataSource = typeof(ClashEntities.Rewards.Reward);
+            // 
+            // warriorScoreOptionsBindingSource
+            // 
+            this.warriorScoreOptionsBindingSource.DataSource = typeof(ClashEntities.ScoreOptions.WarriorScoreOptions);
+            // 
+            // warriorRewardBindingSource
+            // 
+            this.warriorRewardBindingSource.DataSource = typeof(ClashEntities.Rewards.WarriorReward);
+            // 
+            // leagueScoreOptionsBindingSource
+            // 
+            this.leagueScoreOptionsBindingSource.DataSource = typeof(ClashEntities.ScoreOptions.LeagueScoreOptions);
+            // 
+            // leagueRewardBindingSource
+            // 
+            this.leagueRewardBindingSource.DataSource = typeof(ClashEntities.Rewards.LeagueReward);
+            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -1245,6 +1234,7 @@ namespace ClashStats.LetsPlay.Leagues
             this.dataGridViewTextBoxColumn2.HeaderText = "Clan";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 53;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -1252,6 +1242,83 @@ namespace ClashStats.LetsPlay.Leagues
             this.dataGridViewTextBoxColumn3.DataPropertyName = "Score";
             this.dataGridViewTextBoxColumn3.HeaderText = "Score";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 60;
+            // 
+            // WarriorName
+            // 
+            this.WarriorName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.WarriorName.DataPropertyName = "WarriorName";
+            this.WarriorName.HeaderText = "Joueur";
+            this.WarriorName.Name = "WarriorName";
+            this.WarriorName.ReadOnly = true;
+            // 
+            // ClanName
+            // 
+            this.ClanName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ClanName.DataPropertyName = "ClanName";
+            this.ClanName.HeaderText = "Clan";
+            this.ClanName.Name = "ClanName";
+            this.ClanName.ReadOnly = true;
+            this.ClanName.Width = 53;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Score";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Score";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 60;
+            // 
+            // scoreLastLeagueBonusCheckBox
+            // 
+            this.scoreLastLeagueBonusCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.warriorScoreOptionsBindingSource, "ScoreLastLeagueBonus", true));
+            this.scoreLastLeagueBonusCheckBox.Location = new System.Drawing.Point(293, 230);
+            this.scoreLastLeagueBonusCheckBox.Name = "scoreLastLeagueBonusCheckBox";
+            this.scoreLastLeagueBonusCheckBox.Size = new System.Drawing.Size(24, 24);
+            this.scoreLastLeagueBonusCheckBox.TabIndex = 82;
+            this.scoreLastLeagueBonusCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // lastLeagueBonusPointsLabel
+            // 
+            lastLeagueBonusPointsLabel.AutoSize = true;
+            lastLeagueBonusPointsLabel.Location = new System.Drawing.Point(78, 235);
+            lastLeagueBonusPointsLabel.Name = "lastLeagueBonusPointsLabel";
+            lastLeagueBonusPointsLabel.Size = new System.Drawing.Size(115, 13);
+            lastLeagueBonusPointsLabel.TabIndex = 82;
+            lastLeagueBonusPointsLabel.Text = "Dernier bonus obtenu :";
+            // 
+            // lastLeagueBonusPointsTextBox
+            // 
+            this.lastLeagueBonusPointsTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.warriorScoreOptionsBindingSource, "LastLeagueBonusPoints", true));
+            this.lastLeagueBonusPointsTextBox.Location = new System.Drawing.Point(326, 232);
+            this.lastLeagueBonusPointsTextBox.Name = "lastLeagueBonusPointsTextBox";
+            this.lastLeagueBonusPointsTextBox.Size = new System.Drawing.Size(54, 20);
+            this.lastLeagueBonusPointsTextBox.TabIndex = 83;
+            // 
+            // lastBonusInMonthTextBox
+            // 
+            this.lastBonusInMonthTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.warriorRewardBindingSource, "LastBonusInMonth", true));
+            this.lastBonusInMonthTextBox.Location = new System.Drawing.Point(199, 232);
+            this.lastBonusInMonthTextBox.Name = "lastBonusInMonthTextBox";
+            this.lastBonusInMonthTextBox.Size = new System.Drawing.Size(48, 20);
+            this.lastBonusInMonthTextBox.TabIndex = 84;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(253, 235);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(28, 13);
+            this.label20.TabIndex = 85;
+            this.label20.Text = "mois";
+            // 
+            // lastBonusScoreTextBox
+            // 
+            this.lastBonusScoreTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.warriorRewardBindingSource, "LastBonusScore", true));
+            this.lastBonusScoreTextBox.Location = new System.Drawing.Point(561, 232);
+            this.lastBonusScoreTextBox.Name = "lastBonusScoreTextBox";
+            this.lastBonusScoreTextBox.Size = new System.Drawing.Size(100, 20);
+            this.lastBonusScoreTextBox.TabIndex = 86;
             // 
             // RewardAndCloseLeagueForm
             // 
@@ -1271,13 +1338,13 @@ namespace ClashStats.LetsPlay.Leagues
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rewardDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rewardBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.warriorScoreOptionsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.warriorRewardBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.rewardBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.warriorScoreOptionsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.warriorRewardBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leagueScoreOptionsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leagueRewardBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -1378,5 +1445,10 @@ namespace ClashStats.LetsPlay.Leagues
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox lastBonusScoreTextBox;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox lastBonusInMonthTextBox;
+        private System.Windows.Forms.TextBox lastLeagueBonusPointsTextBox;
+        private System.Windows.Forms.CheckBox scoreLastLeagueBonusCheckBox;
     }
 }

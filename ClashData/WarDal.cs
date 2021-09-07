@@ -1,6 +1,8 @@
 ﻿using ClashData.SQLite;
 using ClashEntities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ClashData
 {
@@ -15,14 +17,21 @@ namespace ClashData
             return _iSQLiteManagement.Get<War>($"SELECT * FROM Wars WHERE ClanId = @clanId ORDER BY WarDate DESC LIMIT 1", new { clanId = clanId });
         }
 
-        public int GetWarsCount(DateTime from)
+        public int GetWarsCount(DateTime from, int clanId)
         {
-            throw new NotImplementedException();
+            string sql = "SELECT count(*) FROM Wars WHERE WarDate >= @from AND ClanId = @clanId";
+            var parameters = new
+            {
+                from = from,
+                clanId = clanId
+            };
+            return _iSQLiteManagement.Count(sql, parameters);
         }
 
-        public int GetWarsCount(int warriorId)
+        public List<War> GetWars(int warriorId)
         {
-            throw new NotImplementedException();
+            string sql = "SELECT w.* FROM Wars w INNER JOIN WarPlayers wp ON w.Id = wp.WarId WHERE wp.WarriorId = @warriorId";
+            return _iSQLiteManagement.GetAll<War>(sql, new { warriorId = warriorId }).ToList();
         }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace ClashBusiness.Exceptions
 {
-    public class UnkownClanException : Exception
+    public class UnknownClanException : Exception
     {
-        public UnkownClanException() : 
+        public UnknownClanException() : 
             base("Clan doesn't exist")
         {
         }

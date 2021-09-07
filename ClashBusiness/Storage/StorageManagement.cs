@@ -26,7 +26,7 @@ namespace ClashBusiness.Storage
         {
             if (!DoesDatabaseExist())
             {
-                //CreateDatabase();
+                CreateDatabase();
                 CreateDatabaseVersion();
             }
 

@@ -124,7 +124,7 @@ namespace ClashStats.LetsPlay.Games
             game.Players = players;
 
             var gamesManagement = AutofacFactory.Instance.GetInstance<IGameManagement>();
-            if (gamesManagement.RegisterNewGames(game))
+            if (gamesManagement.RegisterNewGame(game))
             {
                 MessageBox.Show("Sauvegarde réussie", "Sauvegarde", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 GoToNextScreen(this, new ClashEventArgs("Jeux de Clan démarrés. Veux-tu les ouvrir ?", typeof(CurrentGameControl), _clan));

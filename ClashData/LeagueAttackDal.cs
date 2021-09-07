@@ -12,12 +12,12 @@ namespace ClashData
         {
         }
 
-        public bool DeleteCurrentLeaguePlayers(int leagueId)
+        public bool DeleteLeaguePlayers(int leagueId)
         {
             return _iSQLiteManagement.ExecuteNonQueryScript($"DELETE FROM LeagueAttacks WHERE LeagueId = {leagueId}") >= 0;
         }
 
-        public List<LeagueAttack> LoadCurrentLeaguePlayersOfDay(int leagueId, int day)
+        public List<LeagueAttack> LoadLeaguePlayersOfDay(int leagueId, int day)
         {
             return _iSQLiteManagement.GetAll<LeagueAttack>($"SELECT * FROM LeagueAttacks WHERE LeagueId = {leagueId} and Day = {day} ORDER BY Position").ToList();
         }

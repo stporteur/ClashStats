@@ -1,9 +1,11 @@
 ﻿using ClashBusiness.Rewards;
+using ClashData;
 using ClashEntities;
 using ClashEntities.Rewards;
 using NFluent;
 using NSubstitute;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +17,7 @@ namespace ClashBusiness.Tests.RewardManagementTests
         private League _league;
         private List<Warrior> _warriors;
         private List<IScoreRewardManagement> _dummyManagers;
+        private ILeagueBonusDal _leagueBonusDal;
 
         [SetUp]
         public void Setup()
@@ -25,14 +28,16 @@ namespace ClashBusiness.Tests.RewardManagementTests
                 Substitute.For<IScoreRewardManagement>()
             };
 
-            _rewardManagement = new RewardManagement(_dummyManagers);
+            _leagueBonusDal = Substitute.For<ILeagueBonusDal>();
+
+            _rewardManagement = new RewardManagement(_dummyManagers, _leagueBonusDal);
 
             _league = new League();
             _league.Id = 1;
             _warriors = new List<Warrior>
             {
-                new Warrior { Id = 100, Name = "Warrior 1" },
-                new Warrior { Id = 101, Name = "Warrior 2" }
+                new Warrior { Id = 100, Name = "Warrior 1", WantsBonus = true },
+                new Warrior { Id = 101, Name = "Warrior 2", WantsBonus = true }
             };
         }
 
@@ -52,6 +57,20 @@ namespace ClashBusiness.Tests.RewardManagementTests
                 var reward = rewards.Single(r => r.Warrior.Id == player.Id);
                 Check.That(reward.Score).IsEqualTo(0);
             }
+        }
+
+        [Test]
+        public void Should_return_only_one_reward_with_score_set_to_0_when_getting_rank_suggestion_and_one_warrior_doesnt_want_bonus()
+        {
+            _league.Players = _warriors;
+            _warriors[1].WantsBonus = false;
+            foreach (var dummyManager in _dummyManagers)
+            {
+                dummyManager.ComputeLeagueScore(_league).Returns(new List<IAbstractReward>());
+            }
+            var rewards = _rewardManagement.GetRankSuggestion(_league);
+
+            Check.That(rewards).HasSize(1);
         }
 
         [Test]
@@ -136,6 +155,30 @@ namespace ClashBusiness.Tests.RewardManagementTests
             {
                 Check.That(rewards[i].Score).IsStrictlyGreaterThan(rewards[i + 1].Score);
             }
+        }
+
+        [Test]
+        public void Should_save_rewards_for_each_given_warrior()
+        {
+            var warriors = new List<Warrior>
+            {
+                new Warrior { Id = 1 },
+                new Warrior { Id = 2 },
+                new Warrior { Id = 3 },
+                new Warrior { Id = 4 }
+            };
+
+            var leagueDate = DateTime.Today;
+
+            _rewardManagement.GiveRewards(leagueDate, warriors.Select(x => x.Id).ToList());
+
+            foreach (var warrior in warriors)
+            {
+                _leagueBonusDal.Received(1).Insert(Arg.Is<LeagueBonus>(x => x.WarriorId == warrior.Id && x.BonusDate == leagueDate));
+            }
+
+
+
         }
     }
 }

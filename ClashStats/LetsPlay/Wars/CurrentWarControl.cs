@@ -31,6 +31,8 @@ namespace ClashStats.LetsPlay.Wars
         private IWarManagement _warManagement;
         private War _war;
         private Clan _clan;
+        private IEnumerable<WarriorSummary> _warriorSummaries;
+
 
         public CurrentWarControl(Clan clan)
         {
@@ -42,11 +44,26 @@ namespace ClashStats.LetsPlay.Wars
         {
             clanBindingSource.DataSource = AutofacFactory.Instance.GetInstance<IClanManagement>().GetClans();
             _warManagement = AutofacFactory.Instance.GetInstance<IWarManagement>();
+
+            var maxTh = int.Parse(AutofacFactory.Instance.GetInstance<IApplicationManagement>().GetApplicationSetting("TownHallMax"));
+            firstAttackAttackedThLevelNumericUpDown.Minimum = 0;
+            firstAttackAttackedThLevelNumericUpDown.Maximum = maxTh;
+            firstAttackCurrentThLevelNumericUpDown.Minimum = 0;
+            firstAttackCurrentThLevelNumericUpDown.Maximum = maxTh;
+            secondAttackAttackedThLevelNumericUpDown.Minimum = 0;
+            secondAttackAttackedThLevelNumericUpDown.Maximum = maxTh;
+            secondAttackCurrentThLevelNumericUpDown.Minimum = 0;
+            secondAttackCurrentThLevelNumericUpDown.Maximum = maxTh;
+            dataGridViewNumericUpDownColumn1.Minimum = 0;
+            dataGridViewNumericUpDownColumn1.Maximum = maxTh;
+
             SetupWar();
         }
 
         private void SetupWar()
         {
+            this.currentWarControl_WarriorSummaryDataGridView.CellValueChanged -= new DataGridViewCellEventHandler(this.currentWarControl_WarriorSummaryDataGridView_CellValueChanged);
+
             _war = _warManagement.LoadCurrentWar(_clan.Id);
             if (_war == null)
             {
@@ -55,10 +72,13 @@ namespace ClashStats.LetsPlay.Wars
             else
             {
                 warBindingSource.DataSource = _war;
-                warriorSummaryBindingSource.DataSource = _war.Players.Select(x => new WarriorSummary { WarPlayer = x });
+                _warriorSummaries = _war.Players.Select(x => new WarriorSummary { WarPlayer = x });
+                warriorSummaryBindingSource.DataSource = _warriorSummaries;
 
                 clanIdComboBox.SelectedValue = _war.ClanId;
             }
+            this.currentWarControl_WarriorSummaryDataGridView.CellValueChanged += new DataGridViewCellEventHandler(this.currentWarControl_WarriorSummaryDataGridView_CellValueChanged);
+
         }
 
         private void warriorSummaryBindingSource_CurrentChanged(object sender, EventArgs e)
@@ -78,6 +98,109 @@ namespace ClashStats.LetsPlay.Wars
         private void cancelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SetupWar();
+        }
+
+        private void upToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var grid = currentWarControl_WarriorSummaryDataGridView;
+            if (grid.SelectedRows.Count == 1)
+            {
+                var playerIndex = grid.SelectedRows[0].Index;
+                if (playerIndex > 0)
+                {
+                    var playerToMove = _war.Players[playerIndex];
+                    playerToMove.Position--;
+                    _war.Players.Remove(playerToMove);
+                    _war.Players.Insert(playerIndex - 1, playerToMove);
+                    _war.Players[playerIndex].Position++;
+                    playersBindingSource.ResetBindings(false);
+                    foreach (DataGridViewRow row in grid.SelectedRows)
+                    {
+                        row.Selected = false;
+                    }
+                    grid.Rows[playerIndex - 1].Selected = true;
+                }
+            }
+        }
+
+        private void downToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var grid = currentWarControl_WarriorSummaryDataGridView;
+            if (grid.SelectedRows.Count == 1)
+            {
+                var playerIndex = grid.SelectedRows[0].Index;
+                if (playerIndex > 0)
+                {
+                    var playerToMove = _war.Players[playerIndex];
+                    playerToMove.Position++;
+                    _war.Players.Remove(playerToMove);
+                    _war.Players.Insert(playerIndex + 1, playerToMove);
+                    _war.Players[playerIndex].Position--;
+                    playersBindingSource.ResetBindings(false);
+                    foreach (DataGridViewRow row in grid.SelectedRows)
+                    {
+                        row.Selected = false;
+                    }
+                    grid.Rows[playerIndex + 1].Selected = true;
+                }
+            }
+        }
+
+        private void currentWarControl_WarriorSummaryDataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var dataGridView = sender as DataGridView;
+                WarAttack warAttack = null;
+                if (dataGridView.Columns[e.ColumnIndex].DataPropertyName == "FirstAttackStars")
+                {
+                    var summary = dataGridView.Rows[e.RowIndex].DataBoundItem as WarriorSummary;
+                    warAttack = summary.WarPlayer.FirstAttack;
+                }
+                if (dataGridView.Columns[e.ColumnIndex].DataPropertyName == "SecondAttackStars")
+                {
+                    var summary = dataGridView.Rows[e.RowIndex].DataBoundItem as WarriorSummary;
+                    warAttack = summary.WarPlayer.SecondAttack;
+                }
+
+                if (warAttack != null)
+                {
+                    if (warAttack.AttackDone == false && warAttack.Stars > 0)
+                    {
+                        warAttack.AttackDone = true;
+                        warAttack.HasFollowedStrategy = true;
+                        warAttack.IsCoherentAttack = true;
+                        if (warAttack.AttackedThLevel == 0)
+                        {
+                            warAttack.AttackedThLevel = warAttack.CurrentThLevel;
+                        }
+                    }
+
+                    ResetTotalStars();
+
+                }
+            }
+        }
+
+        private void ResetTotalStars()
+        {
+            //if (_warriorSummaries != null)
+            //{
+            //    _war.OurStars = _warriorSummaries.Sum(x => x.FirstAttackStars + x.SecondAttackStars);
+            //    warBindingSource.ResetBindings(false);
+            //}
+        }
+
+        private void firstAttackStarsNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            ResetTotalStars();
+
+        }
+
+        private void secondAttackStarsNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            ResetTotalStars();
+
         }
     }
 }

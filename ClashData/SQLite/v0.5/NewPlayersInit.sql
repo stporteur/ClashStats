@@ -1,3 +1,0 @@
-INSERT INTO Warriors (Id, Name, Hash, TownHallLevel, TownHallLevelMaturity, ClanId, ArrivalDate) VALUES (61, 'SParTiaTe ThMs', '#28YG9V0QP', 11, 2, 2, '2020-02-14 00:00:00');
-INSERT INTO Warriors (Id, Name, Hash, TownHallLevel, TownHallLevelMaturity, ClanId, ArrivalDate) VALUES (62, 'Kalvinn 17', '#RG9V92L9', 10, 1, 2, '2020-07-01 00:00:00');
-INSERT INTO Warriors (Id, Name, Hash, TownHallLevel, TownHallLevelMaturity, ClanId, ArrivalDate) VALUES (63, 'NooXx096', '#J22QV2RP', 9, 1, 2, '2020-03-24 00:00:00');

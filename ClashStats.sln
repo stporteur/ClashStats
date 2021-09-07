@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClashData", "ClashData\Clas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClashBusiness.Tests", "ClashBusiness.Tests\ClashBusiness.Tests.csproj", "{76853502-F1F4-4633-B504-9C94F5D6D9FB}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ClashStatsInstaller", "ClashStatsInstaller\ClashStatsInstaller.vdproj", "{ACF8B3CD-07B7-4244-86C8-501FEAEC382C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -127,6 +129,16 @@ Global
 		{76853502-F1F4-4633-B504-9C94F5D6D9FB}.Release|x64.Build.0 = Release|Any CPU
 		{76853502-F1F4-4633-B504-9C94F5D6D9FB}.Release|x86.ActiveCfg = Release|Any CPU
 		{76853502-F1F4-4633-B504-9C94F5D6D9FB}.Release|x86.Build.0 = Release|Any CPU
+		{ACF8B3CD-07B7-4244-86C8-501FEAEC382C}.Debug|Any CPU.ActiveCfg = Debug
+		{ACF8B3CD-07B7-4244-86C8-501FEAEC382C}.Debug|ARM.ActiveCfg = Debug
+		{ACF8B3CD-07B7-4244-86C8-501FEAEC382C}.Debug|ARM64.ActiveCfg = Debug
+		{ACF8B3CD-07B7-4244-86C8-501FEAEC382C}.Debug|x64.ActiveCfg = Debug
+		{ACF8B3CD-07B7-4244-86C8-501FEAEC382C}.Debug|x86.ActiveCfg = Debug
+		{ACF8B3CD-07B7-4244-86C8-501FEAEC382C}.Release|Any CPU.ActiveCfg = Release
+		{ACF8B3CD-07B7-4244-86C8-501FEAEC382C}.Release|ARM.ActiveCfg = Release
+		{ACF8B3CD-07B7-4244-86C8-501FEAEC382C}.Release|ARM64.ActiveCfg = Release
+		{ACF8B3CD-07B7-4244-86C8-501FEAEC382C}.Release|x64.ActiveCfg = Release
+		{ACF8B3CD-07B7-4244-86C8-501FEAEC382C}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

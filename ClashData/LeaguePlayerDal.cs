@@ -12,7 +12,7 @@ namespace ClashData
         {
         }
 
-        public List<Warrior> LoadCurrentLeaguePlayers(int leagueId)
+        public List<Warrior> LoadLeaguePlayers(int leagueId)
         {
             return _iSQLiteManagement.GetAll<Warrior>($"SELECT W.* FROM Warriors W INNER JOIN LeaguePlayers LP ON W.Id = LP.WarriorId WHERE LP.LeagueId = {leagueId}").ToList();
         }

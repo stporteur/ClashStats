@@ -12,5 +12,5 @@ WarAttacks.sql
 ScoreOptions.sql
 SeniorityScoreOptions.sql
 TownHallLevelScoreOptions.sql
-InitializeScoreOptions.sql
-ClashOfAdulteInit.sql
+LeagueBonus.sql
+InitializeDatabase.sql

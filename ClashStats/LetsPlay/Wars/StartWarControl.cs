@@ -146,7 +146,7 @@ namespace ClashStats.LetsPlay.Wars
                     var player = selectedPlayer as Warrior;
                     if (player != null)
                     {
-                        players.Add(new WarPlayer { WarriorId = player.Id });
+                        players.Add(new WarPlayer { WarriorId = player.Id, Position = players.Count + 1 });
                     }
                 }
                 newWar.Players = players;

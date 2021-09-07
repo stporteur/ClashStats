@@ -1,5 +1,7 @@
-﻿using ClashEntities;
+﻿using ClashData;
+using ClashEntities;
 using ClashEntities.Rewards;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,10 +10,12 @@ namespace ClashBusiness.Rewards
     public class RewardManagement : IRewardManagement
     {
         private readonly IEnumerable<IScoreRewardManagement> _scoreRewardManagers;
+        private readonly ILeagueBonusDal _leagueBonusDal;
 
-        public RewardManagement(IEnumerable<IScoreRewardManagement> scoreRewardManagers)
+        public RewardManagement(IEnumerable<IScoreRewardManagement> scoreRewardManagers, ILeagueBonusDal leagueBonusDal)
         {
             _scoreRewardManagers = scoreRewardManagers;
+            _leagueBonusDal = leagueBonusDal;
         }
 
         public List<Reward> GetRankSuggestion(League leagueWar)
@@ -25,6 +29,20 @@ namespace ClashBusiness.Rewards
             }
 
             return rewards.OrderByDescending(x => x.Score).ToList();
+        }
+
+        public void GiveRewards(DateTime leagueDate, List<int> warriors)
+        {
+            foreach(var warriorId in warriors)
+            {
+                var bonus = new LeagueBonus
+                {
+                    WarriorId = warriorId,
+                    BonusDate = leagueDate
+                };
+
+                _leagueBonusDal.Insert(bonus);
+            }
         }
 
         private void AssignScores(List<Reward> rewards, List<IAbstractReward> newRewards)
@@ -44,7 +62,7 @@ namespace ClashBusiness.Rewards
         {
             var rewards = new List<Reward>();
 
-            foreach (var player in league.Players)
+            foreach (var player in league.Players.Where(x=> x.WantsBonus == true))
             {
                 rewards.Add(new Reward { Warrior = player, Score = 0, RewardDetails = new List<IAbstractReward>() });
             }

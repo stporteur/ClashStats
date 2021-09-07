@@ -8,5 +8,7 @@ namespace ClashBusiness
         List<Clan> GetClans();
         bool SaveClans(List<Clan> clans);
         bool DeleteClans(List<Clan> clans);
+
+        List<Clan> ImportClans(List<Clan> importedClans);
     }
 }

@@ -16,11 +16,16 @@ namespace ClashEntities.ScoreOptions
         public bool ScoreMinimumGamePoints { get; set; }
         public int MinimumGamePointsThreshold { get; set; }
         public int MinimumGamePoints { get; set; }
+        public bool ScoreSnippedGame { get; set; }
+        public int SnippedGamePoints { get; set; }
 
         public bool ScoreTownHallLevel { get; set; }
         public List<TownHallMaturityBonus> TownHallLevelPoints { get; set; }
 
         public bool ScoreSeniority { get; set; }
         public List<SeniorityBonus> SeniorityPoints { get; set; }
+
+        public bool ScoreLastLeagueBonus { get; set; }
+        public int LastLeagueBonusPoints { get; set; }
     }
 }

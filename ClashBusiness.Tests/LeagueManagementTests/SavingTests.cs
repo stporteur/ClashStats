@@ -87,7 +87,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                 }
             };
 
-            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
+            _leaguePlayerDal.LoadLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             _leagueDal.Received(1).Update(league);
@@ -110,10 +110,10 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack>() }
                 }
             };
-            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
+            _leaguePlayerDal.LoadLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
-            _leagueAttackDal.Received(1).DeleteCurrentLeaguePlayers(league.Id);
+            _leagueAttackDal.Received(1).DeleteLeaguePlayers(league.Id);
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack>() }
                 }
             };
-            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
+            _leaguePlayerDal.LoadLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             _leagueAttackDal.Received(1).Insert(leagueAttack);
@@ -161,7 +161,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack>() }
                 }
             };
-            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
+            _leaguePlayerDal.LoadLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             _leagueAttackDal.Received(1).Insert(leagueAttack1);
@@ -194,7 +194,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack> { leagueAttack7 } }
                 }
             };
-            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
+            _leaguePlayerDal.LoadLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             _leagueAttackDal.Received(1).Insert(leagueAttack1);
@@ -237,7 +237,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack> { leagueAttack7, leagueAttack14 } }
                 }
             };
-            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
+            _leaguePlayerDal.LoadLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             _leagueAttackDal.Received(1).Insert(leagueAttack1);
@@ -277,7 +277,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack>() }
                 }
             };
-            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
+            _leaguePlayerDal.LoadLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             Check.That(leagueAttack1.Position).IsEqualTo(1);
@@ -314,7 +314,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                     { 7, new List<LeagueAttack>() }
                 }
             };
-            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
+            _leaguePlayerDal.LoadLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>());
             _leagueManagement.UpdateLeague(league);
 
             Check.That(leagueAttack1.Position).IsEqualTo(1);
@@ -351,7 +351,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                 }
             };
 
-            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>
+            _leaguePlayerDal.LoadLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>
                 {
                     new Warrior { Id = 1}
                 });
@@ -384,7 +384,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                 }
             };
 
-            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>
+            _leaguePlayerDal.LoadLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>
                 {
                     new Warrior { Id = 1}
                 });
@@ -416,7 +416,7 @@ namespace ClashBusiness.Tests.LeagueManagementTests
                 }
             };
 
-            _leaguePlayerDal.LoadCurrentLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>
+            _leaguePlayerDal.LoadLeaguePlayers(Arg.Any<int>()).Returns(new List<Warrior>
                 {
                     new Warrior { Id = 1}
                 });

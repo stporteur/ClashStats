@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ClashStats
+namespace ClashStats.Management
 {
     public partial class SelectScriptForm : Form
     {

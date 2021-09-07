@@ -86,6 +86,8 @@ namespace ClashBusiness.ScoreOptions
                 ScoreMinimumGamePoints = Convert.ToBoolean(options.Single(x => x.ScoreName == "ScoreMinimumGamePoints").ScoreValue),
                 MinimumGamePoints = Convert.ToInt32(options.Single(x => x.ScoreName == "MinimumGamePoints").ScoreValue),
                 MinimumGamePointsThreshold = Convert.ToInt32(options.Single(x => x.ScoreName == "MinimumGamePointsThreshold").ScoreValue),
+                ScoreSnippedGame = Convert.ToBoolean(options.Single(x => x.ScoreName == "ScoreSnippedGame").ScoreValue),
+                SnippedGamePoints = Convert.ToInt32(options.Single(x => x.ScoreName == "SnippedGamePoints").ScoreValue),
 
                 ScoreLeagueParticipation = Convert.ToBoolean(options.Single(x => x.ScoreName == "ScoreLeagueParticipation").ScoreValue),
                 LeagueParticipationPoints = Convert.ToInt32(options.Single(x => x.ScoreName == "LeagueParticipationPoints").ScoreValue),
@@ -97,7 +99,10 @@ namespace ClashBusiness.ScoreOptions
                 SeniorityPoints = _seniorityScoreOptionsDal.GetAll().OrderBy(x => x.MinimumMonth).ToList(),
 
                 ScoreTownHallLevel = Convert.ToBoolean(options.Single(x => x.ScoreName == "ScoreTownHallLevel").ScoreValue),
-                TownHallLevelPoints = _townHallLevelScoreOptionsDal.GetAll().OrderByDescending(x => x.TownHallLevel).ThenBy(x => (int)x.Maturity).ToList()
+                TownHallLevelPoints = _townHallLevelScoreOptionsDal.GetAll().OrderByDescending(x => x.TownHallLevel).ThenBy(x => (int)x.Maturity).ToList(),
+
+                ScoreLastLeagueBonus = Convert.ToBoolean(options.Single(x => x.ScoreName == "ScoreLastLeagueBonus").ScoreValue),
+                LastLeagueBonusPoints = Convert.ToInt32(options.Single(x => x.ScoreName == "LastLeagueBonusPoints").ScoreValue),
             };
         }
 
@@ -120,6 +125,9 @@ namespace ClashBusiness.ScoreOptions
 
             options.Single(x => x.ScoreName == "ScoreSeniority").ScoreValue = warriorScoreOptions.ScoreSeniority ? "true" : "false";
             options.Single(x => x.ScoreName == "ScoreTownHallLevel").ScoreValue = warriorScoreOptions.ScoreTownHallLevel ? "true" : "false";
+
+            options.Single(x => x.ScoreName == "ScoreLastLeagueBonus").ScoreValue = warriorScoreOptions.ScoreLastLeagueBonus ? "true" : "false";
+            options.Single(x => x.ScoreName == "LastLeagueBonusPoints").ScoreValue = warriorScoreOptions.LastLeagueBonusPoints.ToString();
 
             bool succeed = true;
             options.ForEach(x => succeed &= _scoreOptionsDal.Update(x));

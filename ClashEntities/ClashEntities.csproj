@@ -58,6 +58,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameWarrior.cs" />
     <Compile Include="IDatabaseEntity.cs" />
+    <Compile Include="LeagueBonus.cs" />
     <Compile Include="LeaguePlayer.cs" />
     <Compile Include="League.cs" />
     <Compile Include="LeagueAttack.cs" />

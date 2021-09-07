@@ -18,7 +18,6 @@ namespace ClashData.SQLite
 
         public SQLiteManagement()
         {
-            InitializeDatabaseAccess();
         }
 
         public List<ApplicationSetting> GetDatabaseSettings()
@@ -55,63 +54,75 @@ namespace ClashData.SQLite
 
         public int ExecuteNonQueryScript(string sqlCommand)
         {
+            InitializeDatabaseAccess();
             var command = new SQLiteCommand(sqlCommand, _sqliteConnection);
             return command.ExecuteNonQuery();
         }
 
         public int Count(string sqlCommand)
         {
+            InitializeDatabaseAccess();
             return _sqliteConnection.QuerySingle<int>(sqlCommand);
         }
 
         public int Count(string sqlCommand, object parameters)
         {
+            InitializeDatabaseAccess();
             return _sqliteConnection.QuerySingle<int>(sqlCommand, parameters);
         }
 
         #region CRUD
         public T Get<T>(int id) where T : class
         {
+            InitializeDatabaseAccess();
             return _sqliteConnection.Get<T>(id);
         }
 
         public T Get<T>(string query) where T : class
         {
+            InitializeDatabaseAccess();
             return _sqliteConnection.Query<T>(query).FirstOrDefault();
         }
 
         public T Get<T>(string query, object parameters) where T : class
         {
+            InitializeDatabaseAccess();
             return _sqliteConnection.Query<T>(query, parameters).FirstOrDefault();
         }
 
         public IEnumerable<T> GetAll<T>() where T : class
         {
+            InitializeDatabaseAccess();
             return _sqliteConnection.GetAll<T>();
         }
 
         public IEnumerable<T> GetAll<T>(string query) where T : class
         {
+            InitializeDatabaseAccess();
             return _sqliteConnection.Query<T>(query);
         }
 
         public IEnumerable<T> GetAll<T>(string query, object parameters) where T : class
         {
+            InitializeDatabaseAccess();
             return _sqliteConnection.Query<T>(query, parameters);
         }
 
         public bool Update<T>(T item) where T : class
         {
+            InitializeDatabaseAccess();
             return _sqliteConnection.Update<T>(item);
         }
 
         public int Insert<T>(T item) where T : class
         {
+            InitializeDatabaseAccess();
             return (int)_sqliteConnection.Insert(item);
         }
 
         public bool Delete<T>(T item) where T : class
         {
+            InitializeDatabaseAccess();
             return _sqliteConnection.Delete(item);
         } 
         #endregion

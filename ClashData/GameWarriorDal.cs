@@ -12,7 +12,7 @@ namespace ClashData
         {
         }
 
-        public bool DeleteCurrentGamePlayers(int gameId)
+        public bool DeleteGamePlayers(int gameId)
         {
             return _iSQLiteManagement.ExecuteNonQueryScript($"DELETE FROM GameWarriors WHERE GameId = {gameId}") >= 0;
         }
@@ -22,7 +22,7 @@ namespace ClashData
             return _iSQLiteManagement.GetAll<GameWarrior>($"SELECT * FROM GameWarriors WHERE WarriorId = {warriorId}").ToList();
         }
 
-        public List<GameWarrior> LoadCurrentGameWarriors(int gameId)
+        public List<GameWarrior> LoadGameWarriors(int gameId)
         {
             return _iSQLiteManagement.GetAll<GameWarrior>($"SELECT * FROM GameWarriors WHERE GameId = {gameId}").ToList();
         }

@@ -29,9 +29,13 @@ namespace ClashStats
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.executeScriptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importExportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scoreOptionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,6 +79,7 @@ namespace ClashStats
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.executeScriptToolStripMenuItem,
+            this.importExportToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -87,6 +92,29 @@ namespace ClashStats
             this.executeScriptToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.executeScriptToolStripMenuItem.Text = "Executer un script de mise à jour";
             this.executeScriptToolStripMenuItem.Click += new System.EventHandler(this.executeScriptToolStripMenuItem_Click);
+            // 
+            // importExportToolStripMenuItem
+            // 
+            this.importExportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportToolStripMenuItem,
+            this.importToolStripMenuItem});
+            this.importExportToolStripMenuItem.Name = "importExportToolStripMenuItem";
+            this.importExportToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
+            this.importExportToolStripMenuItem.Text = "Import / Export";
+            // 
+            // exportToolStripMenuItem
+            // 
+            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.exportToolStripMenuItem.Text = "Exporter";
+            this.exportToolStripMenuItem.Click += new System.EventHandler(this.exportToolStripMenuItem_Click);
+            // 
+            // importToolStripMenuItem
+            // 
+            this.importToolStripMenuItem.Name = "importToolStripMenuItem";
+            this.importToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.importToolStripMenuItem.Text = "Importer";
+            this.importToolStripMenuItem.Click += new System.EventHandler(this.importToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -174,7 +202,7 @@ namespace ClashStats
             this.latestLeagueToolStripMenuItem,
             this.allLeaguesToolStripMenuItem});
             this.leaguesToolStripMenuItem.Name = "leaguesToolStripMenuItem";
-            this.leaguesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.leaguesToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.leaguesToolStripMenuItem.Text = "Les ligues";
             // 
             // startNewLeagueToolStripMenuItem
@@ -205,7 +233,7 @@ namespace ClashStats
             this.latestWarToolStripMenuItem,
             this.allWarsToolStripMenuItem});
             this.warToolStripMenuItem.Name = "warToolStripMenuItem";
-            this.warToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.warToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.warToolStripMenuItem.Text = "Les GDC";
             // 
             // startNewWarToolStripMenuItem
@@ -235,7 +263,7 @@ namespace ClashStats
             this.latestGamesToolStripMenuItem,
             this.allGamesToolStripMenuItem});
             this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
-            this.gameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gameToolStripMenuItem.Size = new System.Drawing.Size(125, 22);
             this.gameToolStripMenuItem.Text = "Les Jeux";
             // 
             // startGamesToolStripMenuItem
@@ -273,6 +301,7 @@ namespace ClashStats
             this.ClientSize = new System.Drawing.Size(983, 584);
             this.Controls.Add(this.containerPanel);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Clash Stats";
@@ -312,5 +341,8 @@ namespace ClashStats
         private System.Windows.Forms.ToolStripMenuItem latestGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allGamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem executeScriptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importExportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importToolStripMenuItem;
     }
 }

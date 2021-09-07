@@ -64,5 +64,23 @@ namespace ClashStats.LetsPlay.Leagues
                 warriorRewardBindingSource.DataSource = currentReward.RewardDetails.Single(x => x is WarriorReward);
             }
         }
+
+        private void btnReward_Click(object sender, EventArgs e)
+        {
+            var playersId = new List<int>();
+            var playersName = new List<string>();
+            foreach (DataGridViewRow row in rewardDataGridView.Rows)
+            {
+                if(((bool?)row.Cells["SelectedWarriorCheckBoxColumn"].Value) == true)
+                {
+                    var reward = row.DataBoundItem as Reward;
+                    playersId.Add(reward.Warrior.Id);
+                    playersName.Add(reward.WarriorName);
+                }
+            }
+
+            _rewardManagement.GiveRewards(_league.LeagueDate, playersId);
+            MessageBox.Show(string.Format("Ils ont leur bonus ! {0}", string.Join(" ", playersName)));
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ClashBusiness;
 using ClashEntities;
+using ClashStats.CustomControls.DataGridViewNumericUpDown;
 using ClashStats.LetsPlay.Games;
 using System;
 using System.Collections.Generic;
@@ -82,9 +83,23 @@ namespace ClashStats.LetsPlay.Leagues
                 {7, day7DataGridView }
             };
 
+            var maxTh = int.Parse(AutofacFactory.Instance.GetInstance<IApplicationManagement>().GetApplicationSetting("TownHallMax"));
+
             foreach (var grid in _gridsByDay.Values)
             {
-                grid.CellEndEdit += dataGridView_CellEndEdit;
+                foreach (DataGridViewColumn column in grid.Columns)
+                {
+                    if(column.DataPropertyName == "CurrentThLevel" || column.DataPropertyName == "AttackedThLevel")
+                    {
+                        var dgvCol = column as DataGridViewNumericUpDownColumn;
+                        if(dgvCol != null)
+                        {
+                            dgvCol.Minimum = 0;
+                            dgvCol.Maximum = maxTh;
+                        }
+                    }
+                }
+                grid.CellValueChanged += dataGridView_CellValueChanged;
                 grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             }
         }
@@ -119,7 +134,7 @@ namespace ClashStats.LetsPlay.Leagues
         private void FillAvailablePlayerList(int day)
         {
             var assignedPlayers = _league.PlayersPerDay[day].Select(x => x.WarriorId).ToList();
-            playersBindingSource.DataSource = _availablePlayers = _league.Players.Where(x => !assignedPlayers.Contains(x.Id)).ToList();
+            playersBindingSource.DataSource = _availablePlayers = _league.Players.Where(x => !assignedPlayers.Contains(x.Id)).OrderBy(x=>x.Name).ToList();
         }
 
         private void FillDayPlayers(int day)
@@ -184,17 +199,24 @@ namespace ClashStats.LetsPlay.Leagues
             SetupLeague();
         }
 
-        private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            var dataGridView = sender as DataGridView;
-            if (dataGridView.Columns[e.ColumnIndex].DataPropertyName == "Stars")
+            if (e.RowIndex >= 0)
             {
-                var attack = dataGridView.Rows[e.RowIndex].DataBoundItem as LeagueAttack;
-                if (attack.AttackDone == false && attack.Stars > 0)
+                var dataGridView = sender as DataGridView;
+                if (dataGridView.Columns[e.ColumnIndex].DataPropertyName == "Stars")
                 {
-                    attack.AttackDone = true;
-                    attack.HasFollowedStrategy = true;
-                    attack.IsCoherentAttack = true;
+                    var attack = dataGridView.Rows[e.RowIndex].DataBoundItem as LeagueAttack;
+                    if (attack.AttackDone == false && attack.Stars > 0)
+                    {
+                        attack.AttackDone = true;
+                        attack.HasFollowedStrategy = true;
+                        attack.IsCoherentAttack = true;
+                        if (attack.AttackedThLevel == 0)
+                        {
+                            attack.AttackedThLevel = attack.CurrentThLevel;
+                        }
+                    }
                 }
             }
         }
@@ -292,6 +314,11 @@ namespace ClashStats.LetsPlay.Leagues
             {
                 closeLeagueForm.ShowDialog();
             }
+        }
+
+        private void playersDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AddPlayerToDay(GetCurrentDay());
         }
     }
 }

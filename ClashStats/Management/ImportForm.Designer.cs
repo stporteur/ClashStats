@@ -1,7 +1,7 @@
 ﻿
-namespace ClashStats
+namespace ClashStats.Management
 {
-    partial class SelectScriptForm
+    partial class ImportForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,76 +29,77 @@ namespace ClashStats
         /// </summary>
         private void InitializeComponent()
         {
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtFile = new System.Windows.Forms.TextBox();
-            this.btnSelect = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.txtFile = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Fichier";
-            // 
-            // txtFile
-            // 
-            this.txtFile.Location = new System.Drawing.Point(66, 22);
-            this.txtFile.Name = "txtFile";
-            this.txtFile.Size = new System.Drawing.Size(445, 20);
-            this.txtFile.TabIndex = 1;
-            // 
-            // btnSelect
-            // 
-            this.btnSelect.Location = new System.Drawing.Point(517, 20);
-            this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(32, 23);
-            this.btnSelect.TabIndex = 2;
-            this.btnSelect.Text = "...";
-            this.btnSelect.UseVisualStyleBackColor = true;
-            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(393, 58);
+            this.btnCancel.Location = new System.Drawing.Point(391, 62);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 5;
+            this.btnCancel.TabIndex = 10;
             this.btnCancel.Text = "Annuler";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(474, 58);
+            this.btnOk.Location = new System.Drawing.Point(472, 62);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 4;
+            this.btnOk.TabIndex = 9;
             this.btnOk.Text = "Valider";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // SelectScriptForm
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(515, 21);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(32, 23);
+            this.btnSelect.TabIndex = 8;
+            this.btnSelect.Text = "...";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // txtFile
+            // 
+            this.txtFile.Location = new System.Drawing.Point(98, 23);
+            this.txtFile.Name = "txtFile";
+            this.txtFile.Size = new System.Drawing.Size(411, 20);
+            this.txtFile.TabIndex = 7;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Fichier";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // ImportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 101);
+            this.ClientSize = new System.Drawing.Size(568, 106);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.txtFile);
             this.Controls.Add(this.label1);
-            this.Name = "SelectScriptForm";
-            this.Text = "Sélectionner un script à excuter";
+            this.Name = "ImportForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Importer des données";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -106,11 +107,11 @@ namespace ClashStats
 
         #endregion
 
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtFile;
-        private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnSelect;
+        private System.Windows.Forms.TextBox txtFile;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
